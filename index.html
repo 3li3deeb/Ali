@@ -1,37 +1,70 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>مدونتي الشخصية</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>علي | مدونتي الشخصية</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <!-- اللوغو كبير في الوسط -->
-    <img src="images/logo.png" alt="لوغو الموقع" class="logo">
 
-    <!-- قائمة الروابط تحت اللوغو -->
-    <nav>
-      <a href="index.html">الرئيسية</a>
-      <a href="about.html">من أنا</a>
-      <a href="contact.html">اتصل بي</a>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo-text">علي</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">الرئيسية</a></li>
+                <li><a href="about.html">من أنا</a></li>
+                <li><a href="contact.html">اتصل بي</a></li>
+            </ul>
+        </div>
     </nav>
-  </header>
 
-  <main>
-    <article>
-      <h2>أول مقال</h2>
-      <p>هذا مثال لمقالتي الأولى في المدونة. هنا يمكنني كتابة أفكاري وتجربتي الشخصية.</p>
-    </article>
+    <!-- القسم الرئيسي (Hero) -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">مرحباً، أنا <span class="gradient-text">علي</span></h1>
+            <p class="hero-subtitle">أشارك أفكاري وتجاربي الشخصية هنا</p>
+            <a href="#articles" class="btn-primary">تصفح المقالات</a>
+        </div>
+        <div class="hero-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+    </header>
 
-    <article>
-      <h2>مقال آخر</h2>
-      <p>يمكنك إضافة المزيد من المقالات هنا، كل مقال داخل وسم &lt;article&gt;.</p>
-    </article>
-  </main>
+    <!-- قسم المقالات -->
+    <main id="articles" class="articles-section">
+        <h2 class="section-title">أحدث المقالات</h2>
+        
+        <div class="articles-grid">
+            <article class="article-card reveal">
+                <div class="card-header">
+                    <span class="card-date">2026</span>
+                </div>
+                <h3>أول مقال</h3>
+                <p>هذا مثال لمقالتي الأولى في المدونة. هنا يمكنني كتابة أفكاري وتجربتي الشخصية.</p>
+                <a href="#" class="card-link">اقرأ المزيد →</a>
+            </article>
 
-  <footer>
-    <p>© 2026 علي - جميع الحقوق محفوظة</p>
-  </footer>
+            <article class="article-card reveal">
+                <div class="card-header">
+                    <span class="card-date">2026</span>
+                </div>
+                <h3>مقال آخر</h3>
+                <p>يمكنك إضافة المزيد من المقالات هنا، كل مقال داخل وسم article.</p>
+                <a href="#" class="card-link">اقرأ المزيد →</a>
+            </article>
+        </div>
+    </main>
+
+    <!-- التذييل -->
+    <footer class="footer">
+        <p>© 2026 علي — جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
