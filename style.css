@@ -1,14 +1,42 @@
 body {
-  font-family: Tahoma, Arial, sans-serif;
-  background-color: #f0f0f0;
+  font-family: "Tahoma", Arial, sans-serif;
+  background-color: #fff8e1; /* خلفية بلون خردلي فاتح */
+  margin: 0;
+  padding: 0;
+  direction: rtl;
+}
+
+header {
+  background-color: #d4a017; /* خردلي غامق */
+  color: white;
+  padding: 20px;
   text-align: center;
-  margin: 50px;
 }
 
-h1 {
-  color: #2c3e50;
+nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
 }
 
-p {
-  color: #555;
+nav a:hover {
+  text-decoration: underline;
+}
+
+main {
+  padding: 20px;
+}
+
+article {
+  background: #fff3cd; /* درجة خردلية أفتح */
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+footer {
+  background-color: #d4a017;
+  color: white;
+  text-align: center;
+  padding: 10px;
 }
