@@ -1,6 +1,6 @@
 body {
-  font-family: "Tahoma", Arial, sans-serif;
-  background-color: #fff8e1; /* خلفية بلون خردلي فاتح */
+  font-family: 'Cairo', sans-serif;
+  background-color: #fff8e1; /* خلفية خردلية فاتحة */
   margin: 0;
   padding: 0;
   direction: rtl;
@@ -9,14 +9,35 @@ body {
 header {
   background-color: #d4a017; /* خردلي غامق */
   color: white;
-  padding: 20px;
-  text-align: center;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  width: 80px;
+  opacity: 0;
+  transform: translateY(-100px);
+  animation: slideDown 1.5s ease-out forwards;
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 nav a {
   color: white;
-  margin: 0 10px;
+  margin: 0 15px;
   text-decoration: none;
+  font-weight: bold;
 }
 
 nav a:hover {
@@ -29,9 +50,11 @@ main {
 
 article {
   background: #fff3cd; /* درجة خردلية أفتح */
-  margin-bottom: 20px;
-  padding: 15px;
-  border-radius: 8px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 700px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 footer {
