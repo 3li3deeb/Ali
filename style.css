@@ -33,7 +33,7 @@ body {
     overflow-x: hidden;
 }
 
-/* ===== الهيدر (اللوغو الكبير) ===== */
+/* ===== الهيدر ===== */
 .header-top {
     position: fixed;
     top: 0; left: 0;
@@ -49,10 +49,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem 2rem 1.5rem;
+    padding: 0;
     transition: var(--transition);
     background: var(--primary);
     overflow: hidden;
+    line-height: 0;
 }
 
 .logo-link {
@@ -61,13 +62,13 @@ body {
 }
 
 .logo-img {
-    height: 330px;
+    height: 160px;
     width: auto;
-    max-width: 95vw;
+    max-width: 100vw;
     object-fit: contain;
     transition: var(--transition);
     display: block;
-    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.25));
+    padding: 0.3rem 0;
 }
 
 .logo-link:hover .logo-img {
@@ -75,11 +76,11 @@ body {
 }
 
 .header-top.scrolled .logo-section {
-    padding: 0.5rem 2rem;
+    padding: 0;
 }
 
 .header-top.scrolled .logo-img {
-    height: 100px;
+    height: 70px;
 }
 
 /* ===== شريط الخيارات ===== */
@@ -144,7 +145,6 @@ body {
     color: #ffffff;
 }
 
-/* القائمة المنسدلة */
 .dropdown {
     position: relative;
 }
@@ -193,7 +193,6 @@ body {
     transform: none;
 }
 
-/* زر تواصل معي */
 .btn-facebook {
     display: inline-block;
     padding: 0.7rem 1.6rem;
@@ -229,7 +228,7 @@ body {
     justify-content: center;
     position: relative;
     overflow: hidden;
-    padding: 32rem 2rem 4rem;
+    padding: 22rem 2rem 4rem;
     background: linear-gradient(135deg, #ffffff 0%, var(--primary-soft) 100%);
 }
 
@@ -376,6 +375,12 @@ body {
     max-width: 1300px;
     margin: 0 auto;
     padding: 5rem 2rem;
+}
+
+/* هامش علوي للمحتوى الأول بعد الهيدر الثابت */
+main.section:first-child,
+main:first-of-type {
+    padding-top: 13rem;
 }
 
 .section-alt {
@@ -694,22 +699,22 @@ body {
         padding: 0.9rem 0.9rem;
     }
     .logo-img {
-        height: 240px;
+        height: 140px;
     }
 }
 
 @media (max-width: 768px) {
     .logo-section {
-        padding: 1rem 1rem 0.5rem;
+        padding: 0;
     }
     
     .logo-img {
-        height: 180px;
-        max-width: 95vw;
+        height: 120px;
+        max-width: 100vw;
     }
     
     .header-top.scrolled .logo-img {
-        height: 70px;
+        height: 55px;
     }
     
     .nav-container {
@@ -731,8 +736,13 @@ body {
         font-size: 0.8rem;
     }
     
-    .hero {
-        padding: 26rem 1.5rem 3rem;
+    main.section:first-child,
+    main:first-of-type {
+        padding-top: 10rem;
+    }
+    
+    .section {
+        padding: 3rem 1.5rem;
     }
     
     .hero-title {
