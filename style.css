@@ -1,20 +1,27 @@
 /* ===== المتغيرات ===== */
 :root {
-    --primary: #d4a017;
-    --primary-dark: #b8860b;
-    --accent: #ff6b6b;
-    --bg: #0a0a0f;
-    --bg-card: rgba(255, 255, 255, 0.05);
-    --text: #e8e8e8;
-    --text-muted: #a0a0a0;
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --primary: #b8a838;          /* الخردلي الرئيسي */
+    --primary-dark: #9a8c2e;     /* الخردلي الغامق */
+    --primary-light: #d4c65a;    /* الخردلي الفاتح */
+    --primary-soft: #f5f1d8;     /* خلفية خردلية ناعمة */
+    --bg: #ffffff;               /* أبيض */
+    --bg-alt: #fafafa;           /* أبيض مائل للرمادي */
+    --text: #1a1a1a;             /* نص غامق */
+    --text-muted: #666666;       /* نص رمادي */
+    --border: #e8e8e8;           /* حدود فاتحة */
+    --shadow: rgba(0, 0, 0, 0.08);
+    --shadow-lg: rgba(0, 0, 0, 0.15);
+    --transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -26,77 +33,75 @@ body {
     overflow-x: hidden;
 }
 
-/* ===== خلفية متحركة ===== */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: 
-        radial-gradient(circle at 20% 20%, rgba(212, 160, 23, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(100, 100, 255, 0.05) 0%, transparent 70%);
-    z-index: -1;
-    animation: bgShift 20s ease-in-out infinite alternate;
-}
-
-@keyframes bgShift {
-    0% { transform: scale(1) rotate(0deg); }
-    100% { transform: scale(1.2) rotate(5deg); }
-}
-
 /* ===== شريط التنقل ===== */
 .navbar {
     position: fixed;
     top: 0; left: 0;
     width: 100%;
-    padding: 1rem 0;
-    background: rgba(10, 10, 15, 0.8);
+    padding: 0.8rem 0;
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--glass-border);
+    border-bottom: 3px solid var(--primary);
     z-index: 1000;
     transition: var(--transition);
+    box-shadow: 0 2px 20px var(--shadow);
 }
 
 .navbar.scrolled {
-    padding: 0.6rem 0;
-    background: rgba(10, 10, 15, 0.95);
+    padding: 0.5rem 0;
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 4px 30px var(--shadow);
 }
 
 .nav-container {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     padding: 0 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1.5rem;
 }
 
-.logo-text {
-    font-size: 1.8rem;
-    font-weight: 900;
-    color: var(--primary);
+/* اللوغو */
+.logo {
+    display: flex;
+    align-items: center;
     text-decoration: none;
-    letter-spacing: 2px;
 }
 
+.logo-img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    transition: var(--transition);
+}
+
+.logo-img:hover {
+    transform: scale(1.05);
+}
+
+/* روابط التنقل */
 .nav-links {
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
     list-style: none;
+    align-items: center;
+    flex: 1;
+    justify-content: center;
 }
 
 .nav-links a {
     color: var(--text);
     text-decoration: none;
     font-weight: 600;
+    font-size: 0.95rem;
     position: relative;
     padding: 0.5rem 0;
     transition: var(--transition);
 }
 
-/* تأثير الخط السفلي المتحرك */
 .nav-links a::after {
     content: '';
     position: absolute;
@@ -104,7 +109,7 @@ body::before {
     right: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--primary), var(--accent));
+    background: var(--primary);
     transition: width 0.3s ease;
 }
 
@@ -113,8 +118,76 @@ body::before {
     width: 100%;
 }
 
-.nav-links a:hover {
-    color: var(--primary);
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--primary-dark);
+}
+
+/* القائمة المنسدلة */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 200px;
+    background: #fff;
+    border: 2px solid var(--primary);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px var(--shadow-lg);
+    list-style: none;
+    padding: 0.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: var(--transition);
+    z-index: 100;
+    margin-top: 0.5rem;
+}
+
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.dropdown-menu li a::after {
+    display: none;
+}
+
+.dropdown-menu li a:hover {
+    background: var(--primary-soft);
+    color: var(--primary-dark);
+}
+
+/* زر الفيسبوك */
+.btn-facebook {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: var(--transition);
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(184, 168, 56, 0.3);
+}
+
+.btn-facebook:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(184, 168, 56, 0.5);
 }
 
 /* ===== القسم الرئيسي (Hero) ===== */
@@ -125,23 +198,26 @@ body::before {
     justify-content: center;
     position: relative;
     overflow: hidden;
-    padding: 6rem 2rem 2rem;
+    padding: 8rem 2rem 4rem;
+    background: linear-gradient(135deg, #ffffff 0%, var(--primary-soft) 100%);
 }
 
 .hero-content {
     text-align: center;
     z-index: 2;
+    max-width: 800px;
 }
 
 .hero-title {
-    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-size: clamp(2.2rem, 5vw, 4rem);
     font-weight: 900;
     margin-bottom: 1rem;
     animation: fadeInUp 1s ease-out;
+    color: var(--text);
 }
 
 .gradient-text {
-    background: linear-gradient(135deg, var(--primary), var(--accent), #a855f7);
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark), var(--primary-light));
     background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -155,25 +231,34 @@ body::before {
 }
 
 .hero-subtitle {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: var(--text-muted);
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     animation: fadeInUp 1s ease-out 0.2s both;
 }
 
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+/* الأزرار */
 .btn-primary {
     display: inline-block;
-    padding: 1rem 2.5rem;
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    padding: 0.9rem 2.2rem;
+    background: var(--primary);
     color: #fff;
     text-decoration: none;
     border-radius: 50px;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1rem;
     transition: var(--transition);
-    animation: fadeInUp 1s ease-out 0.4s both;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 4px 15px rgba(184, 168, 56, 0.3);
 }
 
 .btn-primary::before {
@@ -181,8 +266,8 @@ body::before {
     position: absolute;
     top: 0; left: -100%;
     width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.5s ease;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.6s ease;
 }
 
 .btn-primary:hover::before {
@@ -190,8 +275,29 @@ body::before {
 }
 
 .btn-primary:hover {
+    background: var(--primary-dark);
     transform: translateY(-3px);
-    box-shadow: 0 15px 40px rgba(212, 160, 23, 0.4);
+    box-shadow: 0 12px 30px rgba(184, 168, 56, 0.5);
+}
+
+.btn-outline {
+    display: inline-block;
+    padding: 0.9rem 2.2rem;
+    background: transparent;
+    color: var(--primary-dark);
+    text-decoration: none;
+    border: 2px solid var(--primary);
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(184, 168, 56, 0.4);
 }
 
 /* الأشكال العائمة */
@@ -199,32 +305,33 @@ body::before {
     position: absolute;
     inset: 0;
     pointer-events: none;
+    overflow: hidden;
 }
 
 .shape {
     position: absolute;
     border-radius: 50%;
-    filter: blur(60px);
-    opacity: 0.4;
+    filter: blur(80px);
+    opacity: 0.35;
 }
 
 .shape-1 {
     width: 400px; height: 400px;
-    background: var(--primary);
+    background: var(--primary-light);
     top: -100px; right: -100px;
     animation: float 8s ease-in-out infinite;
 }
 
 .shape-2 {
     width: 300px; height: 300px;
-    background: var(--accent);
+    background: var(--primary);
     bottom: -50px; left: -50px;
     animation: float 10s ease-in-out infinite reverse;
 }
 
 .shape-3 {
-    width: 200px; height: 200px;
-    background: #a855f7;
+    width: 250px; height: 250px;
+    background: var(--primary-light);
     top: 50%; left: 50%;
     animation: float 12s ease-in-out infinite;
 }
@@ -235,49 +342,57 @@ body::before {
     66% { transform: translate(-20px, 20px) scale(0.9); }
 }
 
-/* ===== قسم المقالات ===== */
-.articles-section {
-    max-width: 1200px;
+/* ===== الأقسام العامة ===== */
+.section {
+    max-width: 1300px;
     margin: 0 auto;
     padding: 5rem 2rem;
 }
 
+.section-alt {
+    background: var(--bg-alt);
+    max-width: 100%;
+    padding: 5rem 2rem;
+}
+
 .section-title {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     text-align: center;
     margin-bottom: 3rem;
     position: relative;
-    display: inline-block;
-    width: 100%;
+    color: var(--text);
+    font-weight: 900;
 }
 
 .section-title::after {
     content: '';
     display: block;
     width: 80px;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary), var(--accent));
+    height: 5px;
+    background: var(--primary);
     margin: 1rem auto 0;
-    border-radius: 2px;
+    border-radius: 3px;
 }
 
+/* ===== بطاقات المقالات ===== */
 .articles-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 2rem;
+    max-width: 1300px;
+    margin: 0 auto;
 }
 
-/* بطاقات المقالات بتأثير زجاجي */
 .article-card {
-    background: var(--bg-card);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
     padding: 2rem;
     transition: var(--transition);
     position: relative;
     overflow: hidden;
+    border-top: 4px solid var(--primary);
+    box-shadow: 0 4px 20px var(--shadow);
 }
 
 .article-card::before {
@@ -285,9 +400,10 @@ body::before {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: linear-gradient(135deg, rgba(212, 160, 23, 0.1), transparent);
+    background: linear-gradient(135deg, var(--primary-soft), transparent);
     opacity: 0;
     transition: opacity 0.4s ease;
+    pointer-events: none;
 }
 
 .article-card:hover::before {
@@ -295,53 +411,149 @@ body::before {
 }
 
 .article-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(212, 160, 23, 0.15);
-    border-color: rgba(212, 160, 23, 0.3);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(184, 168, 56, 0.2);
+    border-top-color: var(--primary-dark);
 }
 
-.card-date {
+.card-tag {
     display: inline-block;
-    padding: 0.3rem 1rem;
-    background: rgba(212, 160, 23, 0.15);
-    color: var(--primary);
+    padding: 0.3rem 0.9rem;
+    background: var(--primary-soft);
+    color: var(--primary-dark);
     border-radius: 50px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 700;
     margin-bottom: 1rem;
+    border: 1px solid var(--primary-light);
 }
 
 .article-card h3 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     margin-bottom: 0.8rem;
-    color: #fff;
+    color: var(--text);
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
 }
 
 .article-card p {
     color: var(--text-muted);
     margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
 }
 
 .card-link {
-    color: var(--primary);
+    color: var(--primary-dark);
     text-decoration: none;
     font-weight: 700;
     transition: var(--transition);
     display: inline-block;
+    position: relative;
+    z-index: 1;
 }
 
 .card-link:hover {
-    color: var(--accent);
+    color: var(--primary);
+    transform: translateX(-5px);
+}
+
+/* ===== الأخبار السريعة ===== */
+.news-ticker {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #fff;
+    border: 2px solid var(--primary);
+    border-radius: 16px;
+    padding: 1.5rem 2rem;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 8px 30px var(--shadow);
+}
+
+.news-ticker-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.news-item {
+    padding: 0.8rem 1.2rem;
+    background: var(--primary-soft);
+    border-right: 4px solid var(--primary);
+    border-radius: 8px;
+    font-weight: 600;
+    color: var(--text);
+    transition: var(--transition);
+}
+
+.news-item:hover {
+    background: var(--primary-light);
     transform: translateX(-5px);
 }
 
 /* ===== التذييل ===== */
 .footer {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 3rem 2rem 1rem;
+    border-top: 5px solid var(--primary);
+}
+
+.footer-content {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #333;
+}
+
+.footer-brand p {
+    color: #aaa;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.footer-logo {
+    height: 50px;
+    width: auto;
+    background: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+}
+
+.footer h4 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.footer-links a {
+    display: block;
+    color: #ccc;
+    text-decoration: none;
+    padding: 0.4rem 0;
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+    transform: translateX(-5px);
+}
+
+.footer-social .btn-facebook {
+    margin-top: 0.5rem;
+}
+
+.footer-bottom {
     text-align: center;
-    padding: 2rem;
-    border-top: 1px solid var(--glass-border);
-    color: var(--text-muted);
-    margin-top: 3rem;
+    padding-top: 1.5rem;
+    color: #888;
+    font-size: 0.85rem;
 }
 
 /* ===== تأثيرات التمرير ===== */
@@ -369,20 +581,76 @@ body::before {
 }
 
 /* ===== استجابة الشاشات ===== */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+    .nav-container {
+        padding: 0 1rem;
+    }
+    
     .nav-links {
         gap: 1rem;
     }
     
     .nav-links a {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.6rem 0;
+    }
+    
+    .nav-container {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+    }
+    
+    .nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+    }
+    
+    .logo-img {
+        height: 40px;
+    }
+    
+    .btn-facebook {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+    
+    .hero {
+        padding: 9rem 1.5rem 3rem;
     }
     
     .hero-title {
-        font-size: 2.2rem;
+        font-size: 2rem;
     }
     
     .articles-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        margin-top: 0.5rem;
+        display: none;
+    }
+    
+    .dropdown:hover .dropdown-menu {
+        display: block;
     }
 }
