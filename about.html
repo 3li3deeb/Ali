@@ -8,38 +8,95 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo-text">علي</a>
-            <ul class="nav-links">
-                <li><a href="index.html">الرئيسية</a></li>
-                <li><a href="about.html" class="active">من أنا</a></li>
-                <li><a href="contact.html">اتصل بي</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <header class="hero" style="min-height: 50vh;">
+    <div class="header-top" id="headerTop">
+        <div class="logo-section">
+            <a href="index.html" class="logo-link">
+                <img src="images/logo.png" alt="علي" class="logo-img">
+            </a>
+        </div>
+        <nav class="navbar">
+            <div class="nav-container">
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li class="dropdown">
+                        <a href="articles.html">مقالات ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="articles.html#scientific">مقالات علمية</a></li>
+                            <li><a href="articles.html#political">مقالات سياسية</a></li>
+                            <li><a href="articles.html#art">مقالات فنية</a></li>
+                            <li><a href="articles.html#sports">مقالات رياضية</a></li>
+                            <li><a href="articles.html#history">مقالات تأريخية</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="gallery.html">أرشيف الصور</a></li>
+                    <li><a href="news.html">أخبار سريعة</a></li>
+                    <li><a href="about.html" class="active">من أنا</a></li>
+                    <li><a href="contact.html">اتصل بي</a></li>
+                    <li>
+                        <a href="https://www.facebook.com/share/1KAexjGzm2/" 
+                           target="_blank" 
+                           class="btn-facebook">تواصل معي</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <header class="hero" style="min-height: 55vh;">
         <div class="hero-content">
             <h1 class="hero-title">من <span class="gradient-text">أنا</span></h1>
+            <p class="hero-subtitle">تعرّف عليّ أكثر</p>
+        </div>
+        <div class="hero-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
         </div>
     </header>
 
-    <main class="articles-section">
-        <div class="article-card reveal" style="max-width: 700px; margin: 0 auto;">
-            <p style="font-size: 1.2rem; line-height: 2;">
-                أنا <strong style="color: var(--primary);">علي</strong>، وهذه مدونتي الشخصية 
+    <main class="section">
+        <div class="article-card reveal" style="max-width: 800px; margin: 0 auto;">
+            <h2 style="color: var(--primary-dark); margin-bottom: 1.5rem; font-size: 1.8rem;">مرحباً 👋</h2>
+            <p style="font-size: 1.15rem; line-height: 2; color: var(--text);">
+                أنا <strong style="color: var(--primary-dark);">علي</strong>، وهذه مدونتي الشخصية 
                 حيث أشارك مقالاتي وكتاباتي وأفكاري.
             </p>
-            <p style="margin-top: 1.5rem; color: var(--text-muted);">
+            <p style="margin-top: 1.5rem; font-size: 1.05rem; color: var(--text-muted); line-height: 2;">
                 أهتم بالتقنية والكتابة والتطوير الذاتي. أنشأت هذه المساحة 
-                لمشاركة تجاربي وأفكاري مع العالم.
+                لمشاركة تجاربي وأفكاري مع العالم، وأتمنى أن تجد فيها ما يفيدك.
             </p>
+            <p style="margin-top: 1.5rem; font-size: 1.05rem; color: var(--text-muted); line-height: 2;">
+                يمكنك تصفح <a href="articles.html" style="color: var(--primary-dark); font-weight: 700;">المقالات</a>، 
+                أو الاطلاع على <a href="gallery.html" style="color: var(--primary-dark); font-weight: 700;">أرشيف الصور</a>، 
+                ومتابعة <a href="news.html" style="color: var(--primary-dark); font-weight: 700;">الأخبار السريعة</a>.
+            </p>
+            <div style="margin-top: 2rem; text-align: center;">
+                <a href="https://www.facebook.com/share/1KAexjGzm2/" target="_blank" class="btn-primary">تواصل معي</a>
+            </div>
         </div>
     </main>
 
     <footer class="footer">
-        <p>© 2026 علي — جميع الحقوق محفوظة</p>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="images/logo.png" alt="علي" class="footer-logo">
+                <p>مساحة شخصية لمشاركة الأفكار والمقالات.</p>
+            </div>
+            <div class="footer-links">
+                <h4>روابط سريعة</h4>
+                <a href="index.html">الرئيسية</a>
+                <a href="articles.html">مقالات</a>
+                <a href="gallery.html">أرشيف الصور</a>
+                <a href="news.html">أخبار سريعة</a>
+            </div>
+            <div class="footer-social">
+                <h4>تابعني</h4>
+                <a href="https://www.facebook.com/share/1KAexjGzm2/" target="_blank" class="btn-facebook">تواصل معي</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 علي — جميع الحقوق محفوظة</p>
+        </div>
     </footer>
 
     <script src="script.js"></script>
