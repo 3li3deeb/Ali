@@ -1,27 +1,47 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>من أنا</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>من أنا | علي</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <img src="images/logo.png" alt="لوغو الموقع" class="logo">
-    <h1>من أنا</h1>
-    <nav>
-      <a href="index.html">الرئيسية</a>
-      <a href="about.html">من أنا</a>
-      <a href="contact.html">اتصل بي</a>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo-text">علي</a>
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="about.html" class="active">من أنا</a></li>
+                <li><a href="contact.html">اتصل بي</a></li>
+            </ul>
+        </div>
     </nav>
-  </header>
 
-  <main>
-    <p>أنا علي، وهذه مدونتي الشخصية حيث أشارك مقالاتي وكتاباتي.</p>
-  </main>
+    <header class="hero" style="min-height: 50vh;">
+        <div class="hero-content">
+            <h1 class="hero-title">من <span class="gradient-text">أنا</span></h1>
+        </div>
+    </header>
 
-  <footer>
-    <p>© 2026 علي - جميع الحقوق محفوظة</p>
-  </footer>
+    <main class="articles-section">
+        <div class="article-card reveal" style="max-width: 700px; margin: 0 auto;">
+            <p style="font-size: 1.2rem; line-height: 2;">
+                أنا <strong style="color: var(--primary);">علي</strong>، وهذه مدونتي الشخصية 
+                حيث أشارك مقالاتي وكتاباتي وأفكاري.
+            </p>
+            <p style="margin-top: 1.5rem; color: var(--text-muted);">
+                أهتم بالتقنية والكتابة والتطوير الذاتي. أنشأت هذه المساحة 
+                لمشاركة تجاربي وأفكاري مع العالم.
+            </p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 علي — جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
