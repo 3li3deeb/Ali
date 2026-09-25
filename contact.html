@@ -1,27 +1,49 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>اتصل بي</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اتصل بي | علي</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <img src="images/logo.png" alt="لوغو الموقع" class="logo">
-    <h1>اتصل بي</h1>
-    <nav>
-      <a href="index.html">الرئيسية</a>
-      <a href="about.html">من أنا</a>
-      <a href="contact.html">اتصل بي</a>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo-text">علي</a>
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="about.html">من أنا</a></li>
+                <li><a href="contact.html" class="active">اتصل بي</a></li>
+            </ul>
+        </div>
     </nav>
-  </header>
 
-  <main>
-    <p>يمكنك التواصل معي عبر البريد الإلكتروني: <strong>example@email.com</strong></p>
-  </main>
+    <header class="hero" style="min-height: 50vh;">
+        <div class="hero-content">
+            <h1 class="hero-title">اتصل <span class="gradient-text">بي</span></h1>
+        </div>
+    </header>
 
-  <footer>
-    <p>© 2026 علي - جميع الحقوق محفوظة</p>
-  </footer>
+    <main class="articles-section">
+        <div class="article-card reveal" style="max-width: 600px; margin: 0 auto; text-align: center;">
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                يمكنك التواصل معي عبر البريد الإلكتروني:
+            </p>
+            <a href="mailto:example@email.com" class="btn-primary">example@email.com</a>
+            
+            <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 1.5rem;">
+                <a href="#" style="color: var(--primary); font-size: 1.5rem; transition: var(--transition);">🐦</a>
+                <a href="#" style="color: var(--primary); font-size: 1.5rem; transition: var(--transition);">💼</a>
+                <a href="#" style="color: var(--primary); font-size: 1.5rem; transition: var(--transition);">📷</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 علي — جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
