@@ -1,25 +1,24 @@
 body {
   font-family: 'Cairo', sans-serif;
-  background-color: #fff8e1; /* خلفية خردلية فاتحة */
+  background-color: #fff8e1;
   margin: 0;
   padding: 0;
   direction: rtl;
 }
 
 header {
-  background-color: #d4a017; /* خردلي غامق */
+  background-color: #d4a017;
   color: white;
-  padding: 15px 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 20px;
+  text-align: center; /* يجعل المحتوى في الوسط */
 }
 
 .logo {
-  width: 80px;
+  width: 150px; /* حجم كبير */
   opacity: 0;
   transform: translateY(-100px);
   animation: slideDown 1.5s ease-out forwards;
+  margin-bottom: 10px;
 }
 
 @keyframes slideDown {
@@ -49,7 +48,7 @@ main {
 }
 
 article {
-  background: #fff3cd; /* درجة خردلية أفتح */
+  background: #fff3cd;
   margin: 20px auto;
   padding: 20px;
   border-radius: 10px;
