@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>علي | مدونتي الشخصية</title>
+    <title>علي | الرئيسية</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 </head>
@@ -12,21 +12,41 @@
     <!-- شريط التنقل -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html" class="logo-text">علي</a>
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="علي" class="logo-img">
+            </a>
             <ul class="nav-links">
                 <li><a href="index.html" class="active">الرئيسية</a></li>
+                <li class="dropdown">
+                    <a href="articles.html">مقالات ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="articles.html#scientific">مقالات علمية</a></li>
+                        <li><a href="articles.html#political">مقالات سياسية</a></li>
+                        <li><a href="articles.html#art">مقالات فنية</a></li>
+                        <li><a href="articles.html#sports">مقالات رياضية</a></li>
+                        <li><a href="articles.html#history">مقالات تأريخية</a></li>
+                    </ul>
+                </li>
+                <li><a href="gallery.html">أرشيف الصور</a></li>
+                <li><a href="news.html">أخبار سريعة</a></li>
                 <li><a href="about.html">من أنا</a></li>
                 <li><a href="contact.html">اتصل بي</a></li>
             </ul>
+            <a href="https://www.facebook.com/share/1KAexjGzm2/" target="_blank" class="btn-facebook">
+                تواصل معي
+            </a>
         </div>
     </nav>
 
     <!-- القسم الرئيسي (Hero) -->
     <header class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">مرحباً، أنا <span class="gradient-text">علي</span></h1>
-            <p class="hero-subtitle">أشارك أفكاري وتجاربي الشخصية هنا</p>
-            <a href="#articles" class="btn-primary">تصفح المقالات</a>
+            <h1 class="hero-title">مرحباً بك في <span class="gradient-text">مدونتي</span></h1>
+            <p class="hero-subtitle">مساحة لمشاركة الأفكار والمقالات والصور</p>
+            <div class="hero-buttons">
+                <a href="articles.html" class="btn-primary">تصفح المقالات</a>
+                <a href="https://www.facebook.com/share/1KAexjGzm2/" target="_blank" class="btn-outline">تواصل معي</a>
+            </div>
         </div>
         <div class="hero-shapes">
             <div class="shape shape-1"></div>
@@ -35,34 +55,67 @@
         </div>
     </header>
 
-    <!-- قسم المقالات -->
-    <main id="articles" class="articles-section">
+    <!-- قسم المقالات المميزة -->
+    <main class="section">
         <h2 class="section-title">أحدث المقالات</h2>
-        
         <div class="articles-grid">
             <article class="article-card reveal">
-                <div class="card-header">
-                    <span class="card-date">2026</span>
-                </div>
-                <h3>أول مقال</h3>
-                <p>هذا مثال لمقالتي الأولى في المدونة. هنا يمكنني كتابة أفكاري وتجربتي الشخصية.</p>
-                <a href="#" class="card-link">اقرأ المزيد →</a>
+                <span class="card-tag">مقالات علمية</span>
+                <h3>عنوان المقال الأول</h3>
+                <p>هذا مثال لمقالتي الأولى. يمكنك استبدال هذا النص بمحتوى مقالك الحقيقي.</p>
+                <a href="articles.html" class="card-link">اقرأ المزيد ←</a>
             </article>
 
             <article class="article-card reveal">
-                <div class="card-header">
-                    <span class="card-date">2026</span>
-                </div>
-                <h3>مقال آخر</h3>
-                <p>يمكنك إضافة المزيد من المقالات هنا، كل مقال داخل وسم article.</p>
-                <a href="#" class="card-link">اقرأ المزيد →</a>
+                <span class="card-tag">مقالات تأريخية</span>
+                <h3>عنوان المقال الثاني</h3>
+                <p>هذا مثال آخر لمقال. أضف مقالاتك هنا لتبدو مدونتك احترافية.</p>
+                <a href="articles.html" class="card-link">اقرأ المزيد ←</a>
+            </article>
+
+            <article class="article-card reveal">
+                <span class="card-tag">مقالات فنية</span>
+                <h3>عنوان المقال الثالث</h3>
+                <p>يمكنك إضافة عدد غير محدود من المقالات، وسيتم ترتيبها تلقائياً.</p>
+                <a href="articles.html" class="card-link">اقرأ المزيد ←</a>
             </article>
         </div>
     </main>
 
+    <!-- قسم الأخبار السريعة -->
+    <section class="section section-alt">
+        <h2 class="section-title">أخبار سريعة</h2>
+        <div class="news-ticker">
+            <div class="news-ticker-content">
+                <span class="news-item">🔔 خبر عاجل: هذا مثال لخبر سريع يمكنك تحديثه.</span>
+                <span class="news-item">📢 خبر آخر: أضف أخبارك السريعة هنا.</span>
+                <span class="news-item">✨ مرحباً بكم في الموقع الجديد.</span>
+            </div>
+        </div>
+    </section>
+
     <!-- التذييل -->
     <footer class="footer">
-        <p>© 2026 علي — جميع الحقوق محفوظة</p>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="logo.png" alt="علي" class="footer-logo">
+                <p>مساحة شخصية لمشاركة الأفكار والمقالات.</p>
+            </div>
+            <div class="footer-links">
+                <h4>روابط سريعة</h4>
+                <a href="index.html">الرئيسية</a>
+                <a href="articles.html">مقالات</a>
+                <a href="gallery.html">أرشيف الصور</a>
+                <a href="news.html">أخبار سريعة</a>
+            </div>
+            <div class="footer-social">
+                <h4>تابعني</h4>
+                <a href="https://www.facebook.com/share/1KAexjGzm2/" target="_blank" class="btn-facebook">تواصل معي</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 علي — جميع الحقوق محفوظة</p>
+        </div>
     </footer>
 
     <script src="script.js"></script>
