@@ -1,9 +1,9 @@
 /* ===== المتغيرات ===== */
 :root {
-    --primary: #b8a838;
-    --primary-dark: #9a8c2e;
-    --primary-light: #d4c65a;
-    --primary-soft: #f5f1d8;
+    --primary: #CD853F;
+    --primary-dark: #a86a2f;
+    --primary-light: #e0a56a;
+    --primary-soft: #faeee0;
     --bg: #ffffff;
     --bg-alt: #fafafa;
     --text: #1a1a1a;
@@ -49,9 +49,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1.5rem 2rem 1rem;
+    padding: 2rem 2rem 1.5rem;
     transition: var(--transition);
-    background: #ffffff;
+    background: var(--primary);
+    overflow: hidden;
 }
 
 .logo-link {
@@ -60,29 +61,30 @@ body {
 }
 
 .logo-img {
-    height: 110px;
+    height: 330px;
     width: auto;
-    max-width: 90vw;
+    max-width: 95vw;
     object-fit: contain;
     transition: var(--transition);
     display: block;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.25));
 }
 
 .logo-link:hover .logo-img {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 .header-top.scrolled .logo-section {
-    padding: 0.6rem 2rem;
+    padding: 0.5rem 2rem;
 }
 
 .header-top.scrolled .logo-img {
-    height: 60px;
+    height: 100px;
 }
 
 /* ===== شريط الخيارات ===== */
 .navbar {
-    background: var(--primary);
+    background: var(--primary-dark);
     transition: var(--transition);
 }
 
@@ -138,7 +140,7 @@ body {
 
 .nav-links a:hover,
 .nav-links a.active {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.2);
     color: #ffffff;
 }
 
@@ -208,11 +210,11 @@ body {
 }
 
 .btn-facebook:hover {
-    background: var(--primary-dark);
+    background: var(--primary);
     color: #ffffff !important;
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-    border-color: var(--primary-dark);
+    border-color: var(--primary);
 }
 
 .btn-facebook::after {
@@ -227,7 +229,7 @@ body {
     justify-content: center;
     position: relative;
     overflow: hidden;
-    padding: 18rem 2rem 4rem;
+    padding: 32rem 2rem 4rem;
     background: linear-gradient(135deg, #ffffff 0%, var(--primary-soft) 100%);
 }
 
@@ -286,7 +288,7 @@ body {
     transition: var(--transition);
     position: relative;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(184, 168, 56, 0.3);
+    box-shadow: 0 4px 15px rgba(205, 133, 63, 0.35);
 }
 
 .btn-primary::before {
@@ -305,7 +307,7 @@ body {
 .btn-primary:hover {
     background: var(--primary-dark);
     transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(184, 168, 56, 0.5);
+    box-shadow: 0 12px 30px rgba(205, 133, 63, 0.5);
 }
 
 .btn-outline {
@@ -325,7 +327,7 @@ body {
     background: var(--primary);
     color: #fff;
     transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(184, 168, 56, 0.4);
+    box-shadow: 0 12px 30px rgba(205, 133, 63, 0.4);
 }
 
 .hero-shapes {
@@ -430,7 +432,7 @@ body {
 
 .article-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(184, 168, 56, 0.2);
+    box-shadow: 0 20px 40px rgba(205, 133, 63, 0.2);
     border-top-color: var(--primary-dark);
 }
 
@@ -501,7 +503,7 @@ body {
     background: var(--primary);
     color: #fff;
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(184, 168, 56, 0.4);
+    box-shadow: 0 8px 20px rgba(205, 133, 63, 0.4);
 }
 
 /* ===== الأخبار السريعة ===== */
@@ -561,7 +563,7 @@ body {
 
 .gallery-item:hover {
     transform: scale(1.03);
-    box-shadow: 0 20px 40px rgba(184, 168, 56, 0.3);
+    box-shadow: 0 20px 40px rgba(205, 133, 63, 0.3);
     border-color: var(--primary);
 }
 
@@ -622,9 +624,9 @@ body {
 }
 
 .footer-logo {
-    height: 60px;
+    height: 80px;
     width: auto;
-    background: #fff;
+    background: var(--primary);
     padding: 0.5rem 1rem;
     border-radius: 10px;
 }
@@ -691,6 +693,9 @@ body {
         font-size: 0.85rem;
         padding: 0.9rem 0.9rem;
     }
+    .logo-img {
+        height: 240px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -699,11 +704,12 @@ body {
     }
     
     .logo-img {
-        height: 70px;
+        height: 180px;
+        max-width: 95vw;
     }
     
     .header-top.scrolled .logo-img {
-        height: 50px;
+        height: 70px;
     }
     
     .nav-container {
@@ -726,7 +732,7 @@ body {
     }
     
     .hero {
-        padding: 13rem 1.5rem 3rem;
+        padding: 26rem 1.5rem 3rem;
     }
     
     .hero-title {
