@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>لوحة التحكم | Mendocino</title>
-    <link rel="stylesheet" href="dashboard.css?v=2">
+    <link rel="stylesheet" href="dashboard.css?v=3">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <!-- محرر النصوص الاحترافي Quill -->
+    <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
 </head>
 <body>
 
@@ -45,13 +47,17 @@
                 <span class="nav-icon">💬</span>
                 <span class="nav-label">التعليقات</span>
             </a>
-            <a href="#settings" class="nav-item" data-section="settings" data-title="الإعدادات" data-subtitle="إعدادات الموقع والحساب">
+            <a href="#settings" class="nav-item" data-section="settings" data-title="الإعدادات" data-subtitle="إعدادات الحساب">
                 <span class="nav-icon">⚙️</span>
                 <span class="nav-label">الإعدادات</span>
             </a>
         </nav>
 
         <div class="sidebar-footer">
+            <button class="logout-btn" id="logoutBtn">
+                <span>🚪</span>
+                <span>تسجيل الخروج</span>
+            </button>
             <a href="index.html" class="back-link">
                 <span>←</span>
                 <span>العودة للموقع</span>
@@ -70,7 +76,6 @@
     <!-- ===== المحتوى الرئيسي ===== -->
     <main class="main-content">
 
-        <!-- شريط علوي -->
         <header class="topbar">
             <div class="topbar-left">
                 <h1 class="page-title" id="pageTitle">نظرة عامة</h1>
@@ -79,16 +84,12 @@
             <div class="topbar-right">
                 <div class="search-box">
                     <span class="search-icon">🔍</span>
-                    <input type="text" placeholder="ابحث في المحتوى...">
+                    <input type="text" placeholder="ابحث في المحتوى..." id="globalSearch">
                 </div>
-                <button class="icon-btn" title="الإشعارات">
-                    🔔
-                    <span class="badge">5</span>
-                </button>
                 <div class="user-profile">
-                    <div class="user-avatar">A</div>
+                    <div class="user-avatar" id="userAvatar">A</div>
                     <div class="user-info">
-                        <span class="user-name">علي</span>
+                        <span class="user-name" id="userName">المدير</span>
                         <span class="user-role">محرر</span>
                     </div>
                 </div>
@@ -97,108 +98,33 @@
 
         <!-- ===== قسم: نظرة عامة ===== -->
         <section class="content-section active" id="overview">
-
             <div class="stats-cards">
                 <div class="stat-card">
                     <div class="stat-card-icon" style="background: linear-gradient(135deg, #2A9D9F, #4DB8BA);">📝</div>
                     <div class="stat-card-body">
                         <span class="stat-card-label">إجمالي المقالات</span>
-                        <span class="stat-card-value" data-count="248">0</span>
-                        <span class="stat-card-change positive">+12 هذا الشهر</span>
+                        <span class="stat-card-value" id="statArticles" data-count="0">0</span>
                     </div>
                 </div>
-
                 <div class="stat-card">
                     <div class="stat-card-icon" style="background: linear-gradient(135deg, #F59E0B, #FBBF24);">📰</div>
                     <div class="stat-card-body">
                         <span class="stat-card-label">الأخبار المنشورة</span>
-                        <span class="stat-card-value" data-count="86">0</span>
-                        <span class="stat-card-change positive">+5 هذا الأسبوع</span>
+                        <span class="stat-card-value" id="statNews" data-count="0">0</span>
                     </div>
                 </div>
-
                 <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #10B981, #34D399);">👁️</div>
+                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #10B981, #34D399);">💊</div>
                     <div class="stat-card-body">
-                        <span class="stat-card-label">مشاهدات اليوم</span>
-                        <span class="stat-card-value" data-count="15420">0</span>
-                        <span class="stat-card-change positive">+8% عن أمس</span>
+                        <span class="stat-card-label">الأدوية</span>
+                        <span class="stat-card-value" id="statMedicines" data-count="0">0</span>
                     </div>
                 </div>
-
                 <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #8B5CF6, #A78BFA);">👥</div>
+                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #8B5CF6, #A78BFA);">🦠</div>
                     <div class="stat-card-body">
-                        <span class="stat-card-label">الزوار النشطون</span>
-                        <span class="stat-card-value" data-count="342">0</span>
-                        <span class="stat-card-change positive">+15% الآن</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="dashboard-row">
-                <div class="dashboard-card chart-card">
-                    <div class="card-header">
-                        <h3>مشاهدات آخر 7 أيام</h3>
-                        <select class="card-select">
-                            <option>آخر 7 أيام</option>
-                            <option>آخر 30 يوم</option>
-                            <option>آخر سنة</option>
-                        </select>
-                    </div>
-                    <div class="chart-bars">
-                        <div class="bar-wrapper">
-                            <div class="bar" style="height: 60%;"></div>
-                            <span class="bar-label">السبت</span>
-                        </div>
-                        <div class="bar-wrapper">
-                            <div class="bar" style="height: 80%;"></div>
-                            <span class="bar-label">الأحد</span>
-                        </div>
-                        <div class="bar-wrapper">
-                            <div class="bar" style="height: 45%;"></div>
-                            <span class="bar-label">الاثنين</span>
-                        </div>
-                        <div class="bar-wrapper">
-                            <div class="bar" style="height: 90%;"></div>
-                            <span class="bar-label">الثلاثاء</span>
-                        </div>
-                        <div class="bar-wrapper">
-                            <div class="bar" style="height: 70%;"></div>
-                            <span class="bar-label">الأربعاء</span>
-                        </div>
-                        <div class="bar-wrapper">
-                            <div class="bar" style="height: 55%;"></div>
-                            <span class="bar-label">الخميس</span>
-                        </div>
-                        <div class="bar-wrapper">
-                            <div class="bar" style="height: 85%;"></div>
-                            <span class="bar-label">الجمعة</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="dashboard-card quick-actions">
-                    <div class="card-header">
-                        <h3>إجراءات سريعة</h3>
-                    </div>
-                    <div class="actions-grid">
-                        <a href="#articles" class="action-btn">
-                            <span class="action-icon">✍️</span>
-                            <span>مقال جديد</span>
-                        </a>
-                        <a href="#news" class="action-btn">
-                            <span class="action-icon">📢</span>
-                            <span>خبر جديد</span>
-                        </a>
-                        <a href="#medicines" class="action-btn">
-                            <span class="action-icon">💊</span>
-                            <span>إضافة دواء</span>
-                        </a>
-                        <a href="#diseases" class="action-btn">
-                            <span class="action-icon">🦠</span>
-                            <span>إضافة مرض</span>
-                        </a>
+                        <span class="stat-card-label">الأمراض</span>
+                        <span class="stat-card-value" id="statDiseases" data-count="0">0</span>
                     </div>
                 </div>
             </div>
@@ -214,109 +140,24 @@
                             <tr>
                                 <th>العنوان</th>
                                 <th>التصنيف</th>
-                                <th>الكاتب</th>
-                                <th>المشاهدات</th>
-                                <th>الحالة</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>أحدث تطورات علاج السكري</td>
-                                <td>علمية</td>
-                                <td>د. علي</td>
-                                <td>1,245</td>
-                                <td><span class="status-badge success">منشور</span></td>
-                            </tr>
-                            <tr>
-                                <td>أهمية التغذية الصحية</td>
-                                <td>تغذية</td>
-                                <td>د. سارة</td>
-                                <td>892</td>
-                                <td><span class="status-badge success">منشور</span></td>
-                            </tr>
-                            <tr>
-                                <td>الوقاية من أمراض القلب</td>
-                                <td>قلب</td>
-                                <td>د. خالد</td>
-                                <td>567</td>
-                                <td><span class="status-badge warning">مسودة</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="dashboard-card">
-                <div class="card-header">
-                    <h3>الأخبار الطبية الحديثة</h3>
-                    <a href="#news" class="card-link">عرض الكل ←</a>
-                </div>
-                <div class="table-wrapper">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>الخبر</th>
-                                <th>المصدر</th>
                                 <th>التاريخ</th>
                                 <th>الحالة</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>اكتشاف علاج جديد لفيروس الكبد</td>
-                                <td>منظمة الصحة</td>
-                                <td>2026-09-25</td>
-                                <td><span class="status-badge success">منشور</span></td>
-                            </tr>
-                            <tr>
-                                <td>تحذير من تفشي الإنفلونزا الموسمية</td>
-                                <td>وزارة الصحة</td>
-                                <td>2026-09-24</td>
-                                <td><span class="status-badge success">منشور</span></td>
-                            </tr>
-                            <tr>
-                                <td>دراسة جديدة حول فوائد الصيام</td>
-                                <td>مجلة طبية</td>
-                                <td>2026-09-23</td>
-                                <td><span class="status-badge warning">مسودة</span></td>
-                            </tr>
+                        <tbody id="recentArticles">
+                            <tr><td colspan="4" class="empty-state">لا توجد مقالات بعد. ابدأ بإضافة مقال جديد.</td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-
         </section>
 
         <!-- ===== قسم: المقالات ===== -->
         <section class="content-section" id="articles">
-            <div class="stats-cards">
-                <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #2A9D9F, #4DB8BA);">✅</div>
-                    <div class="stat-card-body">
-                        <span class="stat-card-label">مقالات منشورة</span>
-                        <span class="stat-card-value" data-count="218">0</span>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #F59E0B, #FBBF24);">📝</div>
-                    <div class="stat-card-body">
-                        <span class="stat-card-label">مسودات</span>
-                        <span class="stat-card-value" data-count="30">0</span>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #10B981, #34D399);">👁️</div>
-                    <div class="stat-card-body">
-                        <span class="stat-card-label">إجمالي القراءات</span>
-                        <span class="stat-card-value" data-count="85420">0</span>
-                    </div>
-                </div>
-            </div>
-
             <div class="dashboard-card">
                 <div class="card-header">
                     <h3>إدارة المقالات العلمية</h3>
-                    <button class="btn-add">+ مقال جديد</button>
+                    <button class="btn-add" onclick="openEditor('article')">+ مقال جديد</button>
                 </div>
                 <div class="table-wrapper">
                     <table class="data-table">
@@ -324,98 +165,25 @@
                             <tr>
                                 <th>العنوان</th>
                                 <th>التصنيف</th>
-                                <th>الكاتب</th>
                                 <th>التاريخ</th>
-                                <th>المشاهدات</th>
                                 <th>الحالة</th>
                                 <th>إجراءات</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>أحدث تطورات علاج السكري</td>
-                                <td>علمية</td>
-                                <td>د. علي</td>
-                                <td>2026-09-25</td>
-                                <td>1,245</td>
-                                <td><span class="status-badge success">منشور</span></td>
-                                <td>
-                                    <button class="btn-mini">✏️</button>
-                                    <button class="btn-mini danger">🗑️</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>أهمية التغذية الصحية</td>
-                                <td>تغذية</td>
-                                <td>د. سارة</td>
-                                <td>2026-09-24</td>
-                                <td>892</td>
-                                <td><span class="status-badge success">منشور</span></td>
-                                <td>
-                                    <button class="btn-mini">✏️</button>
-                                    <button class="btn-mini danger">🗑️</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>الوقاية من أمراض القلب</td>
-                                <td>قلب</td>
-                                <td>د. خالد</td>
-                                <td>2026-09-23</td>
-                                <td>567</td>
-                                <td><span class="status-badge warning">مسودة</span></td>
-                                <td>
-                                    <button class="btn-mini">✏️</button>
-                                    <button class="btn-mini danger">🗑️</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>فيروسات الجهاز التنفسي</td>
-                                <td>علمية</td>
-                                <td>د. ليلى</td>
-                                <td>2026-09-22</td>
-                                <td>1,890</td>
-                                <td><span class="status-badge success">منشور</span></td>
-                                <td>
-                                    <button class="btn-mini">✏️</button>
-                                    <button class="btn-mini danger">🗑️</button>
-                                </td>
-                            </tr>
+                        <tbody id="articlesTable">
+                            <tr><td colspan="5" class="empty-state">لا توجد مقالات بعد</td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </section>
 
-        <!-- ===== قسم: الأخبار الطبية ===== -->
+        <!-- ===== قسم: الأخبار ===== -->
         <section class="content-section" id="news">
-            <div class="stats-cards">
-                <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #2A9D9F, #4DB8BA);">📰</div>
-                    <div class="stat-card-body">
-                        <span class="stat-card-label">أخبار منشورة</span>
-                        <span class="stat-card-value" data-count="86">0</span>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #F59E0B, #FBBF24);">🔥</div>
-                    <div class="stat-card-body">
-                        <span class="stat-card-label">أخبار عاجلة</span>
-                        <span class="stat-card-value" data-count="12">0</span>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #10B981, #34D399);">👁️</div>
-                    <div class="stat-card-body">
-                        <span class="stat-card-label">قراءات الأخبار</span>
-                        <span class="stat-card-value" data-count="42310">0</span>
-                    </div>
-                </div>
-            </div>
-
             <div class="dashboard-card">
                 <div class="card-header">
                     <h3>إدارة الأخبار الطبية</h3>
-                    <button class="btn-add">+ خبر جديد</button>
+                    <button class="btn-add" onclick="openEditor('news')">+ خبر جديد</button>
                 </div>
                 <div class="table-wrapper">
                     <table class="data-table">
@@ -424,45 +192,12 @@
                                 <th>العنوان</th>
                                 <th>المصدر</th>
                                 <th>التاريخ</th>
-                                <th>المشاهدات</th>
                                 <th>الحالة</th>
                                 <th>إجراءات</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>اكتشاف علاج جديد لفيروس الكبد</td>
-                                <td>منظمة الصحة</td>
-                                <td>2026-09-25</td>
-                                <td>2,340</td>
-                                <td><span class="status-badge success">منشور</span></td>
-                                <td>
-                                    <button class="btn-mini">✏️</button>
-                                    <button class="btn-mini danger">🗑️</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>تحذير من تفشي الإنفلونزا الموسمية</td>
-                                <td>وزارة الصحة</td>
-                                <td>2026-09-24</td>
-                                <td>1,890</td>
-                                <td><span class="status-badge danger">عاجل</span></td>
-                                <td>
-                                    <button class="btn-mini">✏️</button>
-                                    <button class="btn-mini danger">🗑️</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>دراسة جديدة حول فوائد الصيام</td>
-                                <td>مجلة طبية</td>
-                                <td>2026-09-23</td>
-                                <td>945</td>
-                                <td><span class="status-badge warning">مسودة</span></td>
-                                <td>
-                                    <button class="btn-mini">✏️</button>
-                                    <button class="btn-mini danger">🗑️</button>
-                                </td>
-                            </tr>
+                        <tbody id="newsTable">
+                            <tr><td colspan="5" class="empty-state">لا توجد أخبار بعد</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -471,34 +206,10 @@
 
         <!-- ===== قسم: الأمراض ===== -->
         <section class="content-section" id="diseases">
-            <div class="stats-cards">
-                <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #EF4444, #F87171);">🦠</div>
-                    <div class="stat-card-body">
-                        <span class="stat-card-label">الأمراض المسجلة</span>
-                        <span class="stat-card-value" data-count="142">0</span>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #10B981, #34D399);">✅</div>
-                    <div class="stat-card-body">
-                        <span class="stat-card-label">معلومات محدثة</span>
-                        <span class="stat-card-value" data-count="138">0</span>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #F59E0B, #FBBF24);">📖</div>
-                    <div class="stat-card-body">
-                        <span class="stat-card-label">قيد المراجعة</span>
-                        <span class="stat-card-value" data-count="4">0</span>
-                    </div>
-                </div>
-            </div>
-
             <div class="dashboard-card">
                 <div class="card-header">
                     <h3>قاعدة بيانات الأمراض</h3>
-                    <button class="btn-add">+ إضافة مرض</button>
+                    <button class="btn-add" onclick="openEditor('disease')">+ إضافة مرض</button>
                 </div>
                 <div class="table-wrapper">
                     <table class="data-table">
@@ -506,46 +217,12 @@
                             <tr>
                                 <th>اسم المرض</th>
                                 <th>التصنيف</th>
-                                <th>عدد المقالات</th>
-                                <th>المشاهدات</th>
-                                <th>الحالة</th>
+                                <th>الوصف</th>
                                 <th>إجراءات</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>السكري</td>
-                                <td>مزمن</td>
-                                <td>24</td>
-                                <td>8,540</td>
-                                <td><span class="status-badge success">محدّث</span></td>
-                                <td>
-                                    <button class="btn-mini">✏️</button>
-                                    <button class="btn-mini danger">🗑️</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>ضغط الدم</td>
-                                <td>مزمن</td>
-                                <td>18</td>
-                                <td>6,210</td>
-                                <td><span class="status-badge success">محدّث</span></td>
-                                <td>
-                                    <button class="btn-mini">✏️</button>
-                                    <button class="btn-mini danger">🗑️</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>الإنفلونزا</td>
-                                <td>موسمي</td>
-                                <td>12</td>
-                                <td>4,320</td>
-                                <td><span class="status-badge warning">قيد المراجعة</span></td>
-                                <td>
-                                    <button class="btn-mini">✏️</button>
-                                    <button class="btn-mini danger">🗑️</button>
-                                </td>
-                            </tr>
+                        <tbody id="diseasesTable">
+                            <tr><td colspan="4" class="empty-state">لا توجد أمراض مضافة بعد</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -554,34 +231,10 @@
 
         <!-- ===== قسم: الأدوية ===== -->
         <section class="content-section" id="medicines">
-            <div class="stats-cards">
-                <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #2A9D9F, #4DB8BA);">💊</div>
-                    <div class="stat-card-body">
-                        <span class="stat-card-label">إجمالي الأدوية</span>
-                        <span class="stat-card-value" data-count="524">0</span>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #10B981, #34D399);">✅</div>
-                    <div class="stat-card-body">
-                        <span class="stat-card-label">معلومات مكتملة</span>
-                        <span class="stat-card-value" data-count="480">0</span>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #F59E0B, #FBBF24);">📝</div>
-                    <div class="stat-card-body">
-                        <span class="stat-card-label">تحتاج تحديث</span>
-                        <span class="stat-card-value" data-count="44">0</span>
-                    </div>
-                </div>
-            </div>
-
             <div class="dashboard-card">
                 <div class="card-header">
                     <h3>دليل الأدوية</h3>
-                    <button class="btn-add">+ إضافة دواء</button>
+                    <button class="btn-add" onclick="openEditor('medicine')">+ إضافة دواء</button>
                 </div>
                 <div class="table-wrapper">
                     <table class="data-table">
@@ -590,45 +243,11 @@
                                 <th>اسم الدواء</th>
                                 <th>التصنيف</th>
                                 <th>الاستخدامات</th>
-                                <th>المشاهدات</th>
-                                <th>الحالة</th>
                                 <th>إجراءات</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>باراسيتامول</td>
-                                <td>مسكن</td>
-                                <td>خافض حرارة، مسكن ألم</td>
-                                <td>3,450</td>
-                                <td><span class="status-badge success">مكتمل</span></td>
-                                <td>
-                                    <button class="btn-mini">✏️</button>
-                                    <button class="btn-mini danger">🗑️</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>أموكسيسيلين</td>
-                                <td>مضاد حيوي</td>
-                                <td>علاج البكتيريا</td>
-                                <td>2,180</td>
-                                <td><span class="status-badge success">مكتمل</span></td>
-                                <td>
-                                    <button class="btn-mini">✏️</button>
-                                    <button class="btn-mini danger">🗑️</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>ميتفورمين</td>
-                                <td>سكري</td>
-                                <td>خفض سكر الدم</td>
-                                <td>1,920</td>
-                                <td><span class="status-badge warning">يحتاج تحديث</span></td>
-                                <td>
-                                    <button class="btn-mini">✏️</button>
-                                    <button class="btn-mini danger">🗑️</button>
-                                </td>
-                            </tr>
+                        <tbody id="medicinesTable">
+                            <tr><td colspan="4" class="empty-state">لا توجد أدوية مضافة بعد</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -640,131 +259,149 @@
             <div class="dashboard-card">
                 <div class="card-header">
                     <h3>تصنيفات المحتوى</h3>
-                    <button class="btn-add">+ تصنيف جديد</button>
                 </div>
-                <div class="categories-grid">
-                    <div class="category-item">
-                        <span class="category-item-icon">🔬</span>
-                        <h4>مقالات علمية</h4>
-                        <span class="category-item-count">68 مقال</span>
-                        <div class="category-item-actions">
-                            <button class="btn-mini">✏️</button>
-                            <button class="btn-mini danger">🗑️</button>
-                        </div>
-                    </div>
-                    <div class="category-item">
-                        <span class="category-item-icon">🥗</span>
-                        <h4>تغذية</h4>
-                        <span class="category-item-count">42 مقال</span>
-                        <div class="category-item-actions">
-                            <button class="btn-mini">✏️</button>
-                            <button class="btn-mini danger">🗑️</button>
-                        </div>
-                    </div>
-                    <div class="category-item">
-                        <span class="category-item-icon">❤️</span>
-                        <h4>صحة القلب</h4>
-                        <span class="category-item-count">35 مقال</span>
-                        <div class="category-item-actions">
-                            <button class="btn-mini">✏️</button>
-                            <button class="btn-mini danger">🗑️</button>
-                        </div>
-                    </div>
-                    <div class="category-item">
-                        <span class="category-item-icon">🧠</span>
-                        <h4>الصحة النفسية</h4>
-                        <span class="category-item-count">28 مقال</span>
-                        <div class="category-item-actions">
-                            <button class="btn-mini">✏️</button>
-                            <button class="btn-mini danger">🗑️</button>
-                        </div>
-                    </div>
-                    <div class="category-item">
-                        <span class="category-item-icon">👶</span>
-                        <h4>صحة الأطفال</h4>
-                        <span class="category-item-count">24 مقال</span>
-                        <div class="category-item-actions">
-                            <button class="btn-mini">✏️</button>
-                            <button class="btn-mini danger">🗑️</button>
-                        </div>
-                    </div>
-                    <div class="category-item">
-                        <span class="category-item-icon">💉</span>
-                        <h4>الأمراض المزمنة</h4>
-                        <span class="category-item-count">51 مقال</span>
-                        <div class="category-item-actions">
-                            <button class="btn-mini">✏️</button>
-                            <button class="btn-mini danger">🗑️</button>
-                        </div>
-                    </div>
+                <div class="categories-grid" id="categoriesGrid">
+                    <div class="empty-state">لا توجد تصنيفات بعد. أضف مقالات لإنشاء تصنيفات تلقائياً.</div>
                 </div>
             </div>
         </section>
 
         <!-- ===== قسم: التعليقات ===== -->
         <section class="content-section" id="comments">
-            <div class="stats-cards">
-                <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #2A9D9F, #4DB8BA);">💬</div>
-                    <div class="stat-card-body">
-                        <span class="stat-card-label">إجمالي التعليقات</span>
-                        <span class="stat-card-value" data-count="1842">0</span>
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h3>تعليقات الزوار</h3>
+                </div>
+                <div class="comments-list" id="commentsList">
+                    <div class="empty-state">لا توجد تعليقات بعد.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== قسم: الإعدادات ===== -->
+        <section class="content-section" id="settings">
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h3>إعدادات الحساب</h3>
+                </div>
+                <div class="settings-form">
+                    <div class="form-group">
+                        <label>البريد الإلكتروني</label>
+                        <input type="email" id="settingsEmail" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>اسم المستخدم</label>
+                        <input type="text" value="علي" id="settingsName">
+                    </div>
+                    <div class="form-group">
+                        <label>نبذة عنك</label>
+                        <textarea placeholder="اكتب نبذة قصيرة..."></textarea>
+                    </div>
+                    <button class="btn-save" id="saveSettings">حفظ التغييرات</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== نافذة المحرر المنبثقة ===== -->
+    <div class="modal" id="editorModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">إضافة مقال جديد</h2>
+                <button class="modal-close" onclick="closeEditor()">✕</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editorTitle">العنوان *</label>
+                        <input type="text" id="editorTitle" placeholder="اكتب عنوان المقال...">
                     </div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #F59E0B, #FBBF24);">⏳</div>
-                    <div class="stat-card-body">
-                        <span class="stat-card-label">بانتظار المراجعة</span>
-                        <span class="stat-card-value" data-count="12">0</span>
+
+                <div class="form-row" id="articleFieldsOnly">
+                    <div class="form-group">
+                        <label for="editorCategory">التصنيف *</label>
+                        <select id="editorCategory">
+                            <option value="">اختر تصنيفاً...</option>
+                            <option value="علمية">مقالات علمية</option>
+                            <option value="تغذية">تغذية</option>
+                            <option value="صحة القلب">صحة القلب</option>
+                            <option value="الصحة النفسية">الصحة النفسية</option>
+                            <option value="صحة الأطفال">صحة الأطفال</option>
+                            <option value="الأمراض المزمنة">الأمراض المزمنة</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editorSource">المصدر</label>
+                        <input type="text" id="editorSource" placeholder="مصدر الخبر (اختياري)">
                     </div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #10B981, #34D399);">✅</div>
-                    <div class="stat-card-body">
-                        <span class="stat-card-label">تمت الموافقة</span>
-                        <span class="stat-card-value" data-count="1820">0</span>
+
+                <div class="form-row" id="diseaseMedicineFields">
+                    <div class="form-group">
+                        <label for="editorCategoryField">التصنيف *</label>
+                        <input type="text" id="editorCategoryField" placeholder="مثال: مزمن، مضاد حيوي...">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="editorImage">رابط صورة (اختياري)</label>
+                    <input type="url" id="editorImage" placeholder="https://example.com/image.jpg">
+                </div>
+
+                <div class="form-group">
+                    <label>المحتوى *</label>
+                    <div id="quillEditor"></div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editorStatus">الحالة</label>
+                        <select id="editorStatus">
+                            <option value="published">منشور</option>
+                            <option value="draft">مسودة</option>
+                            <option value="urgent">عاجل</option>
+                        </select>
                     </div>
                 </div>
             </div>
 
-            <div class="dashboard-card">
-                <div class="card-header">
-                    <h3>التعليقات الحديثة</h3>
-                </div>
-                <div class="comments-list">
-                    <div class="comment-item">
-                        <div class="comment-avatar">أ</div>
-                        <div class="comment-body">
-                            <div class="comment-header">
-                                <strong>أحمد محمد</strong>
-                                <span class="comment-date">قبل 5 دقائق</span>
-                            </div>
-                            <p>مقال رائع، استفدت كثيراً. شكراً على المجهود.</p>
-                            <div class="comment-actions">
-                                <button class="btn-mini success">✓ موافقة</button>
-                                <button class="btn-mini danger">✗ رفض</button>
-                            </div>
-                        </div>
-                    </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeEditor()">إلغاء</button>
+                <button class="btn-save-modal" id="saveModalBtn">
+                    <span class="spinner-modal" id="modalSpinner"></span>
+                    <span id="saveModalText">حفظ ونشر</span>
+                </button>
+            </div>
+        </div>
+    </div>
 
-                    <div class="comment-item">
-                        <div class="comment-avatar">ف</div>
-                        <div class="comment-body">
-                            <div class="comment-header">
-                                <strong>فاطمة علي</strong>
-                                <span class="comment-date">قبل 20 دقيقة</span>
-                            </div>
-                            <p>هل يمكن إضافة مصادر علمية للمقال؟</p>
-                            <div class="comment-actions">
-                                <button class="btn-mini success">✓ موافقة</button>
-                                <button class="btn-mini danger">✗ رفض</button>
-                            </div>
-                        </div>
-                    </div>
+    <!-- ===== نافذة تأكيد الحذف ===== -->
+    <div class="modal" id="deleteModal">
+        <div class="modal-content modal-small">
+            <div class="modal-header">
+                <h2>تأكيد الحذف</h2>
+                <button class="modal-close" onclick="closeDeleteModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center; padding: 1rem 0; font-size: 1.05rem;">
+                    هل أنت متأكد من حذف هذا العنصر؟<br>
+                    <span style="color: #EF4444; font-size: 0.9rem;">لا يمكن التراجع عن هذه العملية.</span>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeDeleteModal()">إلغاء</button>
+                <button class="btn-delete" id="confirmDeleteBtn">حذف نهائياً</button>
+            </div>
+        </div>
+    </div>
 
-                    <div class="comment-item">
-                        <div class="comment-avatar">م</div>
-                        <div class="comment-body">
-                            <div class="comment-header">
-                                <strong>محمد حسن</strong>
-                                <span class="comment-date">قبل ساعة
+    <!-- ===== محرر Quill ===== -->
+    <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+
+    <!-- ===== سكربت لوحة التحكم ===== -->
+    <script src="dashboard.js?v=3" type="module"></script>
+</body>
+</html>
