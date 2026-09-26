@@ -1,447 +1,859 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة التحكم | Mendocino</title>
-    <link rel="stylesheet" href="dashboard.css?v=4">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة التحكم | Mendocino</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+<style>
+:root{--primary:#2A9D9F;--primary-dark:#1E7B7D;--primary-soft:#E8F6F6;--text:#1a1a1a;--muted:#6B7280;--bg:#F4F7F9;--card:#fff;--border:#E5E7EB;--success:#10B981;--warning:#F59E0B;--danger:#EF4444;--sidebar:#0F2B2C}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direction:rtl;line-height:1.7}
+/* ===== Sidebar ===== */
+.sidebar{position:fixed;top:0;right:0;width:260px;height:100vh;background:var(--sidebar);color:#fff;display:flex;flex-direction:column;z-index:100;overflow-y:auto;transition:transform .3s}
+.sidebar-brand{display:flex;align-items:center;gap:12px;padding:20px;border-bottom:1px solid rgba(255,255,255,.1)}
+.brand-icon{font-size:28px;color:#4DB8BA;background:rgba(77,184,186,.2);width:48px;height:48px;display:flex;align-items:center;justify-content:center;border-radius:12px;font-weight:900}
+.brand-name{font-size:20px;font-weight:900}
+.sidebar-nav{flex:1;padding:16px 12px;display:flex;flex-direction:column;gap:4px}
+.nav-item{display:flex;align-items:center;gap:12px;padding:14px 16px;color:#a8b5b5;text-decoration:none;border-radius:10px;font-weight:600;font-size:14px;cursor:pointer;transition:all .2s}
+.nav-item:hover{background:#1A3E40;color:#fff}
+.nav-item.active{background:linear-gradient(135deg,#2A9D9F,#1E7B7D);color:#fff}
+.nav-icon{font-size:19px;width:24px;text-align:center}
+.sidebar-footer{padding:16px 20px;border-top:1px solid rgba(255,255,255,.1)}
+.back-link{display:flex;align-items:center;justify-content:center;gap:8px;color:#4DB8BA;text-decoration:none;font-weight:600;font-size:14px;padding:10px}
+.back-link:hover{color:#fff}
+/* ===== Menu Toggle ===== */
+.menu-toggle{display:none;position:fixed;top:16px;right:16px;z-index:200;width:46px;height:46px;background:var(--primary);border:none;border-radius:12px;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:4px;box-shadow:0 4px 15px rgba(42,157,159,.4)}
+.menu-toggle span{display:block;width:20px;height:2.5px;background:#fff;border-radius:3px}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:99}
+.overlay.active{display:block}
+/* ===== Main ===== */
+.main-content{margin-right:260px;padding:24px 32px;min-height:100vh}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:24px;background:var(--card);padding:20px 24px;border-radius:16px;margin-bottom:32px;flex-wrap:wrap;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.page-title{font-size:24px;font-weight:900}
+.page-subtitle{font-size:13px;color:var(--muted)}
+.user-avatar{width:40px;height:40px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px}
+/* ===== Sections ===== */
+.content-section{display:none}
+.content-section.active{display:block;animation:fadeIn .4s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+/* ===== Stats ===== */
+.stats-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:24px}
+.stat-card{background:var(--card);border-radius:16px;padding:20px;display:flex;align-items:center;gap:16px;border:1px solid var(--border);transition:.3s}
+.stat-card:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.stat-card-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.stat-card-label{font-size:13px;color:var(--muted);font-weight:600}
+.stat-card-value{font-size:28px;font-weight:900;line-height:1.1}
+/* ===== Cards ===== */
+.card{background:var(--card);border-radius:16px;padding:24px;border:1px solid var(--border);margin-bottom:24px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.card-header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+.card-header h3{font-size:18px;font-weight:900;display:flex;align-items:center;gap:10px}
+.card-header h3::before{content:'';width:4px;height:22px;background:linear-gradient(180deg,var(--primary),var(--primary-dark));border-radius:3px}
+.btn-add{padding:10px 22px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;border:none;border-radius:50px;font-family:'Cairo',sans-serif;font-weight:700;font-size:14px;cursor:pointer;transition:.2s;box-shadow:0 4px 12px rgba(42,157,159,.3)}
+.btn-add:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(42,157,159,.4)}
+/* ===== Tables ===== */
+.table-wrap{overflow-x:auto;border-radius:12px}
+table{width:100%;border-collapse:collapse;min-width:600px}
+thead{background:var(--bg)}
+th{padding:14px;text-align:right;font-size:12px;font-weight:700;color:var(--muted);border-bottom:2px solid var(--border);white-space:nowrap}
+td{padding:14px;font-size:13px;border-bottom:1px solid var(--border);vertical-align:middle}
+tbody tr{transition:.2s}
+tbody tr:hover{background:var(--primary-soft)}
+tbody tr:last-child td{border-bottom:none}
+.empty{text-align:center!important;color:var(--muted);padding:40px 16px!important;font-style:italic}
+.thumb{width:55px;height:55px;border-radius:10px;object-fit:cover;display:block;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.thumb-empty{width:55px;height:55px;border-radius:10px;background:var(--bg);border:1.5px dashed var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--muted);opacity:.5}
+.badge{display:inline-block;padding:5px 14px;border-radius:50px;font-size:11px;font-weight:700}
+.badge.success{background:rgba(16,185,129,.15);color:var(--success)}
+.badge.warning{background:rgba(245,158,11,.15);color:var(--warning)}
+.badge.danger{background:rgba(239,68,68,.15);color:var(--danger)}
+.btn-mini{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--bg);border:1px solid var(--border);cursor:pointer;font-size:16px;transition:.2s;margin-left:4px}
+.btn-mini:hover{background:var(--primary-soft);border-color:var(--primary);transform:translateY(-2px)}
+.btn-mini.danger:hover{background:rgba(239,68,68,.1);border-color:var(--danger)}
+/* ===== Modal ===== */
+.modal{display:none;position:fixed;inset:0;background:rgba(15,43,44,.7);backdrop-filter:blur(6px);z-index:1000;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
+.modal.active{display:flex}
+.modal-content{background:#fff;border-radius:20px;width:100%;max-width:800px;max-height:92vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,.2);animation:slideUp .4s}
+@keyframes slideUp{from{opacity:0;transform:translateY(40px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff}
+.modal-header h2{font-size:18px;font-weight:900}
+.modal-close{width:36px;height:36px;background:rgba(255,255,255,.2);border:none;border-radius:50%;color:#fff;font-size:18px;cursor:pointer;transition:.3s;font-family:'Cairo',sans-serif}
+.modal-close:hover{background:rgba(255,255,255,.35);transform:rotate(90deg)}
+.modal-body{padding:24px;overflow-y:auto;flex:1}
+.modal-footer{display:flex;gap:12px;padding:16px 24px;border-top:1px solid var(--border);background:var(--bg);justify-content:flex-end}
+.form-group{margin-bottom:18px;display:flex;flex-direction:column;gap:8px}
+.form-group label{font-size:13px;font-weight:700}
+.form-group input,.form-group select,.form-group textarea{padding:12px 18px;border:1.5px solid var(--border);border-radius:12px;font-family:'Cairo',sans-serif;font-size:14px;outline:none;background:var(--bg);transition:.2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-soft);background:#fff}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.btn-cancel,.btn-save-modal{padding:12px 28px;border-radius:50px;font-family:'Cairo',sans-serif;font-weight:700;font-size:14px;cursor:pointer;border:none;transition:.2s}
+.btn-cancel{background:#fff;color:var(--text);border:1.5px solid var(--border)}
+.btn-cancel:hover{background:var(--bg)}
+.btn-save-modal{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;box-shadow:0 4px 15px rgba(42,157,159,.3)}
+.btn-save-modal:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 25px rgba(42,157,159,.4)}
+.btn-save-modal:disabled{opacity:.6;cursor:not-allowed}
+/* ===== Image Upload ===== */
+.img-upload{position:relative;width:100%;min-height:200px;border:2px dashed var(--border);border-radius:14px;background:var(--bg);cursor:pointer;transition:.2s;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.img-upload:hover{border-color:var(--primary);background:var(--primary-soft)}
+.upload-placeholder{display:flex;flex-direction:column;align-items:center;gap:8px;padding:32px 16px;text-align:center;pointer-events:none}
+.upload-placeholder .icon{font-size:48px;line-height:1}
+.upload-placeholder strong{color:var(--primary-dark);font-size:15px}
+.upload-placeholder span{color:var(--muted);font-size:12px}
+.img-preview{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.img-preview img{width:100%;max-height:400px;object-fit:contain;border-radius:12px}
+.preview-btns{position:absolute;top:10px;left:10px;display:flex;gap:8px}
+.preview-btns button{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.95);border:none;cursor:pointer;font-size:16px;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.progress{position:absolute;bottom:10px;left:10px;right:10px;background:rgba(255,255,255,.95);padding:8px 14px;border-radius:30px;display:flex;align-items:center;gap:10px;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+.progress-bar{flex:1;height:6px;background:var(--primary-soft);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;width:0;background:var(--primary);transition:width .3s}
+.char-counter{font-size:11px;color:var(--muted);text-align:left;padding-left:8px}
+/* ===== Spinner ===== */
+.spinner{display:none;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;margin-left:8px}
+.spinner.show{display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* ===== Categories ===== */
+.categories-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.category-item{background:var(--bg);border:1.5px solid var(--border);border-radius:14px;padding:24px;text-align:center;transition:.2s}
+.category-item:hover{border-color:var(--primary);background:var(--primary-soft);transform:translateY(-4px)}
+.category-item .icon{font-size:40px;display:block;margin-bottom:12px}
+.category-item h4{font-size:16px;font-weight:700;margin-bottom:4px}
+.category-item .count{font-size:13px;color:var(--muted)}
+/* ===== Mobile ===== */
+@media(max-width:768px){
+.sidebar{transform:translateX(100%)}
+.sidebar.open{transform:translateX(0)}
+.menu-toggle{display:flex}
+.main-content{margin-right:0;padding:80px 16px 16px}
+.topbar{padding:16px;flex-direction:column;align-items:stretch}
+.page-title{font-size:20px}
+.form-row{grid-template-columns:1fr}
+.modal-footer{flex-direction:column}
+.btn-cancel,.btn-save-modal{width:100%;justify-content:center}
+.thumb,.thumb-empty{width:45px;height:45px}
+}
+</style>
 </head>
 <body>
 
-    <!-- ===== الشريط الجانبي ===== -->
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-brand">
-            <span class="brand-icon">✚</span>
-            <span class="brand-name">Mendocino</span>
+<button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+<div class="overlay" id="overlay"></div>
+
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+        <span class="brand-icon">✚</span>
+        <span class="brand-name">Mendocino</span>
+    </div>
+    <nav class="sidebar-nav">
+        <a class="nav-item active" data-sec="overview" data-title="نظرة عامة" data-sub="ملخص الموقع"><span class="nav-icon">📊</span>نظرة عامة</a>
+        <a class="nav-item" data-sec="articles" data-title="المقالات العلمية" data-sub="إدارة المقالات"><span class="nav-icon">📝</span>المقالات</a>
+        <a class="nav-item" data-sec="news" data-title="الأخبار الطبية" data-sub="إدارة الأخبار"><span class="nav-icon">📰</span>الأخبار</a>
+        <a class="nav-item" data-sec="diseases" data-title="الأمراض" data-sub="قاعدة بيانات الأمراض"><span class="nav-icon">🦠</span>الأمراض</a>
+        <a class="nav-item" data-sec="medicines" data-title="الأدوية" data-sub="دليل الأدوية"><span class="nav-icon">💊</span>الأدوية</a>
+        <a class="nav-item" data-sec="categories" data-title="التصنيفات" data-sub="تصنيفات المحتوى"><span class="nav-icon">🏷️</span>التصنيفات</a>
+        <a class="nav-item" data-sec="comments" data-title="التعليقات" data-sub="تعليقات الزوار"><span class="nav-icon">💬</span>التعليقات</a>
+    </nav>
+    <div class="sidebar-footer">
+        <a href="index.html" class="back-link"><span>←</span> العودة للموقع</a>
+    </div>
+</aside>
+
+<main class="main-content">
+    <header class="topbar">
+        <div>
+            <h1 class="page-title" id="pageTitle">نظرة عامة</h1>
+            <p class="page-subtitle" id="pageSub">ملخص الموقع</p>
         </div>
+        <div class="user-avatar">A</div>
+    </header>
 
-        <nav class="sidebar-nav">
-            <a href="#overview" class="nav-item active" data-section="overview" data-title="نظرة عامة" data-subtitle="ملخص شامل لأداء الموقع">
-                <span class="nav-icon">📊</span>
-                <span class="nav-label">نظرة عامة</span>
-            </a>
-            <a href="#articles" class="nav-item" data-section="articles" data-title="المقالات العلمية" data-subtitle="إدارة المقالات المنشورة">
-                <span class="nav-icon">📝</span>
-                <span class="nav-label">المقالات</span>
-            </a>
-            <a href="#news" class="nav-item" data-section="news" data-title="الأخبار الطبية" data-subtitle="إدارة الأخبار الصحية">
-                <span class="nav-icon">📰</span>
-                <span class="nav-label">الأخبار الطبية</span>
-            </a>
-            <a href="#diseases" class="nav-item" data-section="diseases" data-title="الأمراض" data-subtitle="قاعدة بيانات الأمراض">
-                <span class="nav-icon">🦠</span>
-                <span class="nav-label">الأمراض</span>
-            </a>
-            <a href="#medicines" class="nav-item" data-section="medicines" data-title="الأدوية" data-subtitle="دليل الأدوية الطبية">
-                <span class="nav-icon">💊</span>
-                <span class="nav-label">الأدوية</span>
-            </a>
-            <a href="#categories" class="nav-item" data-section="categories" data-title="التصنيفات" data-subtitle="إدارة تصنيفات المحتوى">
-                <span class="nav-icon">🏷️</span>
-                <span class="nav-label">التصنيفات</span>
-            </a>
-            <a href="#comments" class="nav-item" data-section="comments" data-title="التعليقات" data-subtitle="مراجعة تعليقات القراء">
-                <span class="nav-icon">💬</span>
-                <span class="nav-label">التعليقات</span>
-            </a>
-            <a href="#settings" class="nav-item" data-section="settings" data-title="الإعدادات" data-subtitle="إعدادات الحساب">
-                <span class="nav-icon">⚙️</span>
-                <span class="nav-label">الإعدادات</span>
-            </a>
-        </nav>
+    <!-- نظرة عامة -->
+    <section class="content-section active" id="overview">
+        <div class="stats-cards">
+            <div class="stat-card">
+                <div class="stat-card-icon" style="background:linear-gradient(135deg,#2A9D9F,#4DB8BA)">📝</div>
+                <div><div class="stat-card-label">المقالات</div><div class="stat-card-value" id="sA">0</div></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-icon" style="background:linear-gradient(135deg,#F59E0B,#FBBF24)">📰</div>
+                <div><div class="stat-card-label">الأخبار</div><div class="stat-card-value" id="sN">0</div></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-icon" style="background:linear-gradient(135deg,#10B981,#34D399)">💊</div>
+                <div><div class="stat-card-label">الأدوية</div><div class="stat-card-value" id="sM">0</div></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-icon" style="background:linear-gradient(135deg,#8B5CF6,#A78BFA)">🦠</div>
+                <div><div class="stat-card-label">الأمراض</div><div class="stat-card-value" id="sD">0</div></div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header"><h3>أحدث المقالات</h3></div>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>العنوان</th><th>التصنيف</th><th>التاريخ</th><th>الحالة</th></tr></thead>
+                    <tbody id="recentTable"><tr><td colspan="4" class="empty">جاري التحميل...</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
 
-        <div class="sidebar-footer">
-            <button class="logout-btn" id="logoutBtn">
-                <span>🚪</span>
-                <span>تسجيل الخروج</span>
+    <!-- المقالات -->
+    <section class="content-section" id="articles">
+        <div class="card">
+            <div class="card-header">
+                <h3>إدارة المقالات</h3>
+                <button class="btn-add" onclick="openEditor('articles')">+ مقال جديد</button>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>الصورة</th><th>العنوان</th><th>التصنيف</th><th>التاريخ</th><th>الحالة</th><th></th></tr></thead>
+                    <tbody id="articlesTable"><tr><td colspan="6" class="empty">جاري التحميل...</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- الأخبار -->
+    <section class="content-section" id="news">
+        <div class="card">
+            <div class="card-header">
+                <h3>إدارة الأخبار</h3>
+                <button class="btn-add" onclick="openEditor('news')">+ خبر جديد</button>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>الصورة</th><th>العنوان</th><th>المصدر</th><th>التاريخ</th><th>الحالة</th><th></th></tr></thead>
+                    <tbody id="newsTable"><tr><td colspan="6" class="empty">جاري التحميل...</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- الأمراض -->
+    <section class="content-section" id="diseases">
+        <div class="card">
+            <div class="card-header">
+                <h3>قاعدة بيانات الأمراض</h3>
+                <button class="btn-add" onclick="openEditor('diseases')">+ إضافة مرض</button>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>الصورة</th><th>الاسم</th><th>التصنيف</th><th></th></tr></thead>
+                    <tbody id="diseasesTable"><tr><td colspan="4" class="empty">جاري التحميل...</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- الأدوية -->
+    <section class="content-section" id="medicines">
+        <div class="card">
+            <div class="card-header">
+                <h3>دليل الأدوية</h3>
+                <button class="btn-add" onclick="openEditor('medicines')">+ إضافة دواء</button>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>الصورة</th><th>الاسم</th><th>التصنيف</th><th></th></tr></thead>
+                    <tbody id="medicinesTable"><tr><td colspan="4" class="empty">جاري التحميل...</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- التصنيفات -->
+    <section class="content-section" id="categories">
+        <div class="card">
+            <div class="card-header"><h3>التصنيفات</h3></div>
+            <div class="categories-grid" id="categoriesGrid"><div class="empty">جاري التحميل...</div></div>
+        </div>
+    </section>
+
+    <!-- التعليقات -->
+    <section class="content-section" id="comments">
+        <div class="card">
+            <div class="card-header"><h3>التعليقات</h3></div>
+            <div id="commentsList"><div class="empty">جاري التحميل...</div></div>
+        </div>
+    </section>
+</main>
+
+<!-- Modal Editor -->
+<div class="modal" id="editorModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTitle">إضافة جديد</h2>
+            <button class="modal-close" onclick="closeEditor()">✕</button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label>العنوان *</label>
+                <input type="text" id="fTitle" placeholder="اكتب العنوان...">
+            </div>
+            <div class="form-row" id="rowArticle">
+                <div class="form-group">
+                    <label>التصنيف *</label>
+                    <select id="fCategory">
+                        <option value="">اختر...</option>
+                        <option value="علمية">علمية</option>
+                        <option value="تغذية">تغذية</option>
+                        <option value="صحة القلب">صحة القلب</option>
+                        <option value="الصحة النفسية">الصحة النفسية</option>
+                        <option value="صحة الأطفال">صحة الأطفال</option>
+                        <option value="الأمراض المزمنة">الأمراض المزمنة</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>المصدر</label>
+                    <input type="text" id="fSource" placeholder="اختياري...">
+                </div>
+            </div>
+            <div class="form-group" id="rowCatField" style="display:none">
+                <label>التصنيف *</label>
+                <input type="text" id="fCatField" placeholder="مثال: مزمن...">
+            </div>
+            <div class="form-group">
+                <label>الصورة</label>
+                <div class="img-upload" id="imgArea">
+                    <input type="file" id="imgInput" accept="image/*" style="display:none">
+                    <div class="upload-placeholder" id="uploadPh">
+                        <div class="icon">📷</div>
+                        <strong>اضغط لاختيار صورة</strong>
+                        <span>من الكاميرا أو المعرض</span>
+                    </div>
+                    <div class="img-preview" id="imgPrevBox" style="display:none">
+                        <img id="imgPrev" src="">
+                        <div class="preview-btns">
+                            <button type="button" onclick="removeImg(event)">🗑️</button>
+                            <button type="button" onclick="changeImg(event)">🔄</button>
+                        </div>
+                    </div>
+                    <div class="progress" id="progressBox" style="display:none">
+                        <div class="progress-bar"><div class="progress-fill" id="progFill"></div></div>
+                        <span id="progText" style="font-size:12px;font-weight:700;color:var(--primary-dark)">0%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>موجز قصير <span style="color:var(--muted);font-weight:400;font-size:12px">(يظهر على الصورة)</span></label>
+                <textarea id="fSummary" rows="2" maxlength="150" placeholder="جملة قصيرة..." style="min-height:70px;resize:vertical"></textarea>
+                <span class="char-counter" id="charCount">0 / 150</span>
+            </div>
+            <div class="form-group">
+                <label>المحتوى *</label>
+                <div id="quillEditor"></div>
+            </div>
+            <div class="form-group">
+                <label>الحالة</label>
+                <select id="fStatus">
+                    <option value="published">منشور</option>
+                    <option value="draft">مسودة</option>
+                    <option value="urgent">عاجل</option>
+                </select>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-cancel" onclick="closeEditor()">إلغاء</button>
+            <button class="btn-save-modal" id="saveBtn">
+                <span id="saveText">حفظ ونشر</span>
+                <span class="spinner" id="saveSpin"></span>
             </button>
-            <a href="index.html" class="back-link">
-                <span>←</span>
-                <span>العودة للموقع</span>
-            </a>
-        </div>
-    </aside>
-
-    <button class="menu-toggle" id="menuToggle" aria-label="القائمة">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-
-    <div class="overlay" id="overlay"></div>
-
-    <!-- ===== المحتوى الرئيسي ===== -->
-    <main class="main-content">
-
-        <header class="topbar">
-            <div class="topbar-left">
-                <h1 class="page-title" id="pageTitle">نظرة عامة</h1>
-                <p class="page-subtitle" id="pageSubtitle">ملخص شامل لأداء الموقع</p>
-            </div>
-            <div class="topbar-right">
-                <div class="search-box">
-                    <span class="search-icon">🔍</span>
-                    <input type="text" placeholder="ابحث في المحتوى..." id="globalSearch">
-                </div>
-                <div class="user-profile">
-                    <div class="user-avatar" id="userAvatar">A</div>
-                    <div class="user-info">
-                        <span class="user-name" id="userName">المدير</span>
-                        <span class="user-role">محرر</span>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <!-- ===== قسم: نظرة عامة ===== -->
-        <section class="content-section active" id="overview">
-            <div class="stats-cards">
-                <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #2A9D9F, #4DB8BA);">📝</div>
-                    <div class="stat-card-body">
-                        <span class="stat-card-label">إجمالي المقالات</span>
-                        <span class="stat-card-value" id="statArticles" data-count="0">0</span>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #F59E0B, #FBBF24);">📰</div>
-                    <div class="stat-card-body">
-                        <span class="stat-card-label">الأخبار المنشورة</span>
-                        <span class="stat-card-value" id="statNews" data-count="0">0</span>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #10B981, #34D399);">💊</div>
-                    <div class="stat-card-body">
-                        <span class="stat-card-label">الأدوية</span>
-                        <span class="stat-card-value" id="statMedicines" data-count="0">0</span>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #8B5CF6, #A78BFA);">🦠</div>
-                    <div class="stat-card-body">
-                        <span class="stat-card-label">الأمراض</span>
-                        <span class="stat-card-value" id="statDiseases" data-count="0">0</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="dashboard-card">
-                <div class="card-header">
-                    <h3>أحدث المقالات</h3>
-                    <a href="#articles" class="card-link">عرض الكل ←</a>
-                </div>
-                <div class="table-wrapper">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>العنوان</th>
-                                <th>التصنيف</th>
-                                <th>التاريخ</th>
-                                <th>الحالة</th>
-                            </tr>
-                        </thead>
-                        <tbody id="recentArticles">
-                            <tr><td colspan="4" class="empty-state">لا توجد مقالات بعد. ابدأ بإضافة مقال جديد.</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== قسم: المقالات ===== -->
-        <section class="content-section" id="articles">
-            <div class="dashboard-card">
-                <div class="card-header">
-                    <h3>إدارة المقالات العلمية</h3>
-                    <button class="btn-add" onclick="openEditor('articles')">+ مقال جديد</button>
-                </div>
-                <div class="table-wrapper">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>الصورة</th>
-                                <th>العنوان</th>
-                                <th>التصنيف</th>
-                                <th>التاريخ</th>
-                                <th>الحالة</th>
-                                <th>إجراءات</th>
-                            </tr>
-                        </thead>
-                        <tbody id="articlesTable">
-                            <tr><td colspan="6" class="empty-state">لا توجد مقالات بعد</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== قسم: الأخبار ===== -->
-        <section class="content-section" id="news">
-            <div class="dashboard-card">
-                <div class="card-header">
-                    <h3>إدارة الأخبار الطبية</h3>
-                    <button class="btn-add" onclick="openEditor('news')">+ خبر جديد</button>
-                </div>
-                <div class="table-wrapper">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>الصورة</th>
-                                <th>العنوان</th>
-                                <th>المصدر</th>
-                                <th>التاريخ</th>
-                                <th>الحالة</th>
-                                <th>إجراءات</th>
-                            </tr>
-                        </thead>
-                        <tbody id="newsTable">
-                            <tr><td colspan="6" class="empty-state">لا توجد أخبار بعد</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== قسم: الأمراض ===== -->
-        <section class="content-section" id="diseases">
-            <div class="dashboard-card">
-                <div class="card-header">
-                    <h3>قاعدة بيانات الأمراض</h3>
-                    <button class="btn-add" onclick="openEditor('diseases')">+ إضافة مرض</button>
-                </div>
-                <div class="table-wrapper">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>الصورة</th>
-                                <th>اسم المرض</th>
-                                <th>التصنيف</th>
-                                <th>إجراءات</th>
-                            </tr>
-                        </thead>
-                        <tbody id="diseasesTable">
-                            <tr><td colspan="4" class="empty-state">لا توجد أمراض مضافة بعد</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== قسم: الأدوية ===== -->
-        <section class="content-section" id="medicines">
-            <div class="dashboard-card">
-                <div class="card-header">
-                    <h3>دليل الأدوية</h3>
-                    <button class="btn-add" onclick="openEditor('medicines')">+ إضافة دواء</button>
-                </div>
-                <div class="table-wrapper">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>الصورة</th>
-                                <th>اسم الدواء</th>
-                                <th>التصنيف</th>
-                                <th>إجراءات</th>
-                            </tr>
-                        </thead>
-                        <tbody id="medicinesTable">
-                            <tr><td colspan="4" class="empty-state">لا توجد أدوية مضافة بعد</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== قسم: التصنيفات ===== -->
-        <section class="content-section" id="categories">
-            <div class="dashboard-card">
-                <div class="card-header">
-                    <h3>تصنيفات المحتوى</h3>
-                </div>
-                <div class="categories-grid" id="categoriesGrid">
-                    <div class="empty-state">لا توجد تصنيفات بعد. أضف مقالات لإنشاء تصنيفات تلقائياً.</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== قسم: التعليقات ===== -->
-        <section class="content-section" id="comments">
-            <div class="dashboard-card">
-                <div class="card-header">
-                    <h3>تعليقات الزوار</h3>
-                </div>
-                <div class="comments-list" id="commentsList">
-                    <div class="empty-state">لا توجد تعليقات بعد.</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== قسم: الإعدادات ===== -->
-        <section class="content-section" id="settings">
-            <div class="dashboard-card">
-                <div class="card-header">
-                    <h3>إعدادات الحساب</h3>
-                </div>
-                <div class="settings-form">
-                    <div class="form-group">
-                        <label>البريد الإلكتروني</label>
-                        <input type="email" id="settingsEmail" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label>اسم المستخدم</label>
-                        <input type="text" value="علي" id="settingsName">
-                    </div>
-                    <div class="form-group">
-                        <label>نبذة عنك</label>
-                        <textarea placeholder="اكتب نبذة قصيرة..."></textarea>
-                    </div>
-                    <button class="btn-save" id="saveSettings">حفظ التغييرات</button>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- ===== نافذة المحرر المنبثقة ===== -->
-    <div class="modal" id="editorModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="modalTitle">إضافة جديد</h2>
-                <button class="modal-close" onclick="closeEditor()">✕</button>
-            </div>
-
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="editorTitle">العنوان *</label>
-                    <input type="text" id="editorTitle" placeholder="اكتب العنوان...">
-                </div>
-
-                <div class="form-row" id="articleFieldsOnly">
-                    <div class="form-group">
-                        <label for="editorCategory">التصنيف *</label>
-                        <select id="editorCategory">
-                            <option value="">اختر تصنيفاً...</option>
-                            <option value="علمية">مقالات علمية</option>
-                            <option value="تغذية">تغذية</option>
-                            <option value="صحة القلب">صحة القلب</option>
-                            <option value="الصحة النفسية">الصحة النفسية</option>
-                            <option value="صحة الأطفال">صحة الأطفال</option>
-                            <option value="الأمراض المزمنة">الأمراض المزمنة</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="editorSource">المصدر</label>
-                        <input type="text" id="editorSource" placeholder="مصدر الخبر (اختياري)">
-                    </div>
-                </div>
-
-                <div class="form-row" id="diseaseMedicineFields">
-                    <div class="form-group">
-                        <label for="editorCategoryField">التصنيف *</label>
-                        <input type="text" id="editorCategoryField" placeholder="مثال: مزمن، مضاد حيوي...">
-                    </div>
-                </div>
-
-                <!-- ===== رفع الصورة من الهاتف ===== -->
-                <div class="form-group">
-                    <label>صورة المقال / الخبر</label>
-                    <div class="image-upload-area" id="imageUploadArea">
-                        <input type="file" id="imageInput" accept="image/*" style="display:none;">
-                        
-                        <div class="upload-placeholder" id="uploadPlaceholder">
-                            <div class="upload-icon">📷</div>
-                            <div class="upload-text">
-                                <strong>اضغط لاختيار صورة</strong>
-                                <span>من الكاميرا أو معرض الصور</span>
-                            </div>
-                        </div>
-
-                        <div class="image-preview-container" id="imagePreviewContainer" style="display:none;">
-                            <img id="imagePreview" src="" alt="معاينة">
-                            <div class="preview-overlay">
-                                <button type="button" class="btn-remove-image" id="removeImageBtn" title="إزالة الصورة">🗑️</button>
-                                <button type="button" class="btn-change-image" id="changeImageBtn" title="تغيير الصورة">🔄</button>
-                            </div>
-                        </div>
-
-                        <div class="upload-progress" id="uploadProgress" style="display:none;">
-                            <div class="progress-bar-container">
-                                <div class="progress-bar-fill" id="progressFill"></div>
-                            </div>
-                            <span class="progress-text" id="progressText">0%</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ===== الموجز (يظهر على الصورة) ===== -->
-                <div class="form-group">
-                    <label for="editorSummary">
-                        موجز قصير 
-                        <span style="color: var(--text-muted); font-weight: 400; font-size: 0.78rem;">
-                            (سيظهر مظللاً على الصورة في الموقع)
-                        </span>
-                    </label>
-                    <textarea 
-                        id="editorSummary" 
-                        rows="2" 
-                        maxlength="150"
-                        placeholder="اكتب جملة قصيرة تظهر على الصورة..."
-                        style="resize: vertical; min-height: 70px;"
-                    ></textarea>
-                    <span class="char-counter" id="summaryCounter">0 / 150</span>
-                </div>
-
-                <div class="form-group">
-                    <label>المحتوى الكامل *</label>
-                    <div id="quillEditor"></div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="editorStatus">الحالة</label>
-                        <select id="editorStatus">
-                            <option value="published">منشور</option>
-                            <option value="draft">مسودة</option>
-                            <option value="urgent">عاجل</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <button class="btn-cancel" onclick="closeEditor()">إلغاء</button>
-                <button class="btn-save-modal" id="saveModalBtn">
-                    <span class="spinner-modal" id="modalSpinner"></span>
-                    <span id="saveModalText">حفظ ونشر</span>
-                </button>
-            </div>
         </div>
     </div>
+</div>
 
-    <!-- ===== نافذة تأكيد الحذف ===== -->
-    <div class="modal" id="deleteModal">
-        <div class="modal-content modal-small">
-            <div class="modal-header">
-                <h2>تأكيد الحذف</h2>
-                <button class="modal-close" onclick="closeDeleteModal()">✕</button>
-            </div>
-            <div class="modal-body">
-                <p style="text-align: center; padding: 1rem 0; font-size: 1.05rem;">
-                    هل أنت متأكد من حذف هذا العنصر؟<br>
-                    <span style="color: #EF4444; font-size: 0.9rem;">لا يمكن التراجع عن هذه العملية.</span>
-                </p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn-cancel" onclick="closeDeleteModal()">إلغاء</button>
-                <button class="btn-delete" id="confirmDeleteBtn">حذف نهائياً</button>
-            </div>
+<!-- Modal Delete -->
+<div class="modal" id="deleteModal">
+    <div class="modal-content" style="max-width:450px">
+        <div class="modal-header">
+            <h2>تأكيد الحذف</h2>
+            <button class="modal-close" onclick="closeDelete()">✕</button>
+        </div>
+        <div class="modal-body">
+            <p style="text-align:center;padding:16px 0;font-size:16px">هل أنت متأكد من الحذف؟<br><span style="color:#EF4444;font-size:14px">لا يمكن التراجع.</span></p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-cancel" onclick="closeDelete()">إلغاء</button>
+            <button class="btn-save-modal" style="background:#EF4444" id="delBtn">حذف نهائياً</button>
         </div>
     </div>
+</div>
 
-    <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
-    <script src="dashboard.js?v=4" type="module"></script>
+<!-- Quill + Supabase -->
+<script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+// ===== تهيئة Supabase =====
+const SB_URL = 'https://lkfzibeuyurqkatexhzf.supabase.co';
+const SB_KEY = 'sb_publishable_bDRpST47zs7WWTJP1N1Q9w_SkJCRBPx';
+let sb = null;
+try {
+    sb = supabase.createClient(SB_URL, SB_KEY);
+    console.log('✅ Supabase ready');
+} catch(e) {
+    console.error('❌ Supabase error:', e);
+    alert('خطأ في تحميل Supabase: ' + e.message);
+}
+
+// ===== State =====
+let currentTable = null;
+let currentId = null;
+let deleteTarget = { table:null, id:null };
+let quill = null;
+let selectedFile = null;
+let existingImgUrl = null;
+
+// ===== Init =====
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('✅ DOM ready');
+    initNav();
+    initMenu();
+    initQuill();
+    initImgUpload();
+    initSummaryCounter();
+    loadEverything();
+});
+
+// ===== Navigation =====
+function initNav() {
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            const sec = item.dataset.sec;
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            item.classList.add('active');
+            document.getElementById(sec).classList.add('active');
+            document.getElementById('pageTitle').textContent = item.dataset.title;
+            document.getElementById('pageSub').textContent = item.dataset.sub;
+            if (window.innerWidth <= 768) {
+                document.getElementById('sidebar').classList.remove('open');
+                document.getElementById('overlay').classList.remove('active');
+            }
+            window.scrollTo({top:0, behavior:'smooth'});
+        });
+    });
+}
+
+function initMenu() {
+    const toggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    toggle.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+        overlay.classList.toggle('active');
+    });
+    overlay.addEventListener('click', () => {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
+    });
+}
+
+// ===== Quill =====
+function initQuill() {
+    if (quill) return;
+    quill = new Quill('#quillEditor', {
+        theme: 'snow',
+        placeholder: 'اكتب المحتوى...',
+        modules: {
+            toolbar: [
+                [{'header':[1,2,3,false]}],
+                ['bold','italic','underline','strike'],
+                [{'color':[]},{'background':[]}],
+                [{'list':'ordered'},{'list':'bullet'}],
+                [{'align':[]}],
+                ['blockquote','code-block'],
+                ['link','image'],
+                ['clean']
+            ]
+        }
+    });
+}
+
+// ===== Image Upload =====
+function initImgUpload() {
+    const area = document.getElementById('imgArea');
+    const input = document.getElementById('imgInput');
+
+    area.addEventListener('click', (e) => {
+        if (e.target.closest('.preview-btns')) return;
+        input.click();
+    });
+
+    input.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        if (!file.type.startsWith('image/')) { alert('اختر صورة'); return; }
+        if (file.size > 5*1024*1024) { alert('الصورة أكبر من 5MB'); return; }
+        selectedFile = file;
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+            document.getElementById('imgPrev').src = ev.target.result;
+            document.getElementById('uploadPh').style.display = 'none';
+            document.getElementById('imgPrevBox').style.display = 'flex';
+        };
+        reader.readAsDataURL(file);
+    });
+}
+
+function removeImg(e) {
+    e.stopPropagation();
+    selectedFile = null;
+    existingImgUrl = null;
+    document.getElementById('imgInput').value = '';
+    document.getElementById('imgPrev').src = '';
+    document.getElementById('imgPrevBox').style.display = 'none';
+    document.getElementById('uploadPh').style.display = 'flex';
+}
+
+function changeImg(e) {
+    e.stopPropagation();
+    document.getElementById('imgInput').click();
+}
+
+// ===== Summary Counter =====
+function initSummaryCounter() {
+    const ta = document.getElementById('fSummary');
+    ta.addEventListener('input', () => {
+        const len = ta.value.length;
+        document.getElementById('charCount').textContent = len + ' / 150';
+        document.getElementById('charCount').style.color = len > 130 ? '#EF4444' : '';
+    });
+}
+
+// ===== Load Data =====
+async function loadEverything() {
+    if (!sb) { alert('Supabase غير محمّل'); return; }
+    await Promise.all([
+        loadTable('articles','articlesTable','sA','article'),
+        loadTable('news','newsTable','sN','news'),
+        loadTable('diseases','diseasesTable','sD','disease'),
+        loadTable('medicines','medicinesTable','sM','medicine'),
+        loadComments(),
+        loadCategories(),
+        loadRecent()
+    ]);
+}
+
+async function loadTable(table, tbodyId, statId, type) {
+    const tbody = document.getElementById(tbodyId);
+    try {
+        const { data, error } = await sb.from(table).select('*').order('created_at',{ascending:false});
+        if (error) throw error;
+
+        document.getElementById(statId).textContent = (data||[]).length;
+
+        if (!data || data.length === 0) {
+            const cols = tbody.closest('table').querySelectorAll('thead th').length;
+            tbody.innerHTML = `<tr><td colspan="${cols}" class="empty">لا توجد عناصر</td></tr>`;
+            return;
+        }
+
+        tbody.innerHTML = data.map(item => rowHTML(item, type, table)).join('');
+        tbody.querySelectorAll('[data-edit]').forEach(b => b.onclick = () => {
+            const id = parseInt(b.dataset.edit);
+            const item = data.find(i => i.id === id);
+            if (item) editItem(table, item);
+        });
+        tbody.querySelectorAll('[data-del]').forEach(b => b.onclick = () => {
+            openDelete(table, parseInt(b.dataset.del));
+        });
+    } catch(e) {
+        console.error('Load error:', e);
+        tbody.innerHTML = `<tr><td colspan="6" class="empty" style="color:#EF4444">خطأ: ${e.message}</td></tr>`;
+    }
+}
+
+function rowHTML(item, type, table) {
+    const img = item.image_url
+        ? `<img src="${item.image_url}" class="thumb">`
+        : `<div class="thumb-empty">📷</div>`;
+    const date = item.created_at ? new Date(item.created_at).toISOString().slice(0,10) : '-';
+    const status = statusBadge(item.status);
+    const btns = `<button class="btn-mini" data-edit="${item.id}">✏️</button><button class="btn-mini danger" data-del="${item.id}">🗑️</button>`;
+
+    if (type === 'article' || type === 'news') {
+        const mid = type === 'news' ? `<td>${item.source||'-'}</td>` : `<td>${item.category||'-'}</td>`;
+        const title = item.title || 'بدون عنوان';
+        return `<tr><td>${img}</td><td>${esc(title)}</td>${mid}<td>${date}</td><td>${status}</td><td>${btns}</td></tr>`;
+    } else {
+        return `<tr><td>${img}</td><td>${esc(item.name||'-')}</td><td>${esc(item.category||'-')}</td><td>${btns}</td></tr>`;
+    }
+}
+
+function statusBadge(s) {
+    if (s === 'draft') return '<span class="badge warning">مسودة</span>';
+    if (s === 'urgent') return '<span class="badge danger">عاجل</span>';
+    return '<span class="badge success">منشور</span>';
+}
+
+async function loadRecent() {
+    const tbody = document.getElementById('recentTable');
+    try {
+        const { data } = await sb.from('articles').select('*').order('created_at',{ascending:false}).limit(5);
+        if (!data || data.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="4" class="empty">لا توجد مقالات</td></tr>';
+            return;
+        }
+        tbody.innerHTML = data.map(i => `
+            <tr>
+                <td>${esc(i.title||'-')}</td>
+                <td>${esc(i.category||'-')}</td>
+                <td>${i.created_at ? new Date(i.created_at).toISOString().slice(0,10) : '-'}</td>
+                <td>${statusBadge(i.status)}</td>
+            </tr>
+        `).join('');
+    } catch(e) { console.error(e); }
+}
+
+async function loadComments() {
+    const list = document.getElementById('commentsList');
+    try {
+        const { data } = await sb.from('comments').select('*').order('created_at',{ascending:false});
+        if (!data || data.length === 0) {
+            list.innerHTML = '<div class="empty">لا توجد تعليقات</div>';
+            return;
+        }
+        list.innerHTML = data.map(c => `
+            <div style="padding:16px;border:1px solid var(--border);border-radius:12px;margin-bottom:12px;background:var(--bg)">
+                <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+                    <strong>${esc(c.name||'زائر')}</strong>
+                    <span style="font-size:12px;color:var(--muted)">${c.created_at?new Date(c.created_at).toISOString().slice(0,10):''}</span>
+                </div>
+                <p style="margin-bottom:12px">${esc(c.text||'')}</p>
+                <button class="btn-mini" onclick="approveComment(${c.id},this)" style="width:auto;padding:0 14px;font-size:12px;font-weight:700;color:#10B981">✓ موافقة</button>
+                <button class="btn-mini danger" onclick="deleteComment(${c.id},this)" style="width:auto;padding:0 14px;font-size:12px;font-weight:700">✗ حذف</button>
+            </div>
+        `).join('');
+    } catch(e) { console.error(e); }
+}
+
+async function approveComment(id, btn) {
+    try {
+        await sb.from('comments').update({approved:true}).eq('id',id);
+        btn.textContent = '✓ تم';
+        btn.style.background = '#10B981';
+        btn.style.color = '#fff';
+    } catch(e) { alert(e.message); }
+}
+
+async function deleteComment(id, btn) {
+    if (!confirm('حذف التعليق؟')) return;
+    try {
+        await sb.from('comments').delete().eq('id',id);
+        btn.closest('div[style]').remove();
+    } catch(e) { alert(e.message); }
+}
+
+async function loadCategories() {
+    const grid = document.getElementById('categoriesGrid');
+    try {
+        const { data } = await sb.from('articles').select('category');
+        const counts = {};
+        (data||[]).forEach(i => { if (i.category) counts[i.category]=(counts[i.category]||0)+1; });
+        const entries = Object.entries(counts);
+        if (entries.length === 0) {
+            grid.innerHTML = '<div class="empty">لا توجد تصنيفات</div>';
+            return;
+        }
+        const icons = {'علمية':'🔬','تغذية':'🥗','صحة القلب':'❤️','الصحة النفسية':'🧠','صحة الأطفال':'👶','الأمراض المزمنة':'💉'};
+        grid.innerHTML = entries.map(([n,c]) => `
+            <div class="category-item">
+                <span class="icon">${icons[n]||'📁'}</span>
+                <h4>${esc(n)}</h4>
+                <span class="count">${c} مقال</span>
+            </div>
+        `).join('');
+    } catch(e) { console.error(e); }
+}
+
+// ===== Editor =====
+window.openEditor = function(table) {
+    if (!quill) initQuill();
+    currentTable = table;
+    currentId = null;
+    selectedFile = null;
+    existingImgUrl = null;
+
+    const titles = {articles:'إضافة مقال', news:'إضافة خبر', diseases:'إضافة مرض', medicines:'إضافة دواء'};
+    document.getElementById('modalTitle').textContent = titles[table];
+
+    const isArticle = table === 'articles' || table === 'news';
+    document.getElementById('rowArticle').style.display = isArticle ? 'grid' : 'none';
+    document.getElementById('rowCatField').style.display = isArticle ? 'none' : 'flex';
+
+    document.getElementById('fTitle').value = '';
+    document.getElementById('fCategory').value = '';
+    document.getElementById('fSource').value = '';
+    document.getElementById('fCatField').value = '';
+    document.getElementById('fStatus').value = 'published';
+    document.getElementById('fSummary').value = '';
+    document.getElementById('charCount').textContent = '0 / 150';
+    quill.root.innerHTML = '';
+
+    removeImg({stopPropagation:()=>{}});
+    document.getElementById('saveText').textContent = 'حفظ ونشر';
+    document.getElementById('editorModal').classList.add('active');
+};
+
+function editItem(table, item) {
+    window.openEditor(table);
+    currentId = item.id;
+    document.getElementById('modalTitle').textContent = 'تعديل';
+    document.getElementById('saveText').textContent = 'حفظ التعديلات';
+
+    const isArticle = table === 'articles' || table === 'news';
+    if (isArticle) {
+        document.getElementById('fTitle').value = item.title || '';
+        document.getElementById('fCategory').value = item.category || '';
+        document.getElementById('fSource').value = item.source || '';
+    } else {
+        document.getElementById('fTitle').value = item.name || '';
+        document.getElementById('fCatField').value = item.category || '';
+    }
+    document.getElementById('fStatus').value = item.status || 'published';
+    if (item.summary) {
+        document.getElementById('fSummary').value = item.summary;
+        document.getElementById('charCount').textContent = item.summary.length + ' / 150';
+    }
+    if (item.image_url) {
+        existingImgUrl = item.image_url;
+        document.getElementById('imgPrev').src = item.image_url;
+        document.getElementById('uploadPh').style.display = 'none';
+        document.getElementById('imgPrevBox').style.display = 'flex';
+    }
+    const content = item.content || item.description || '';
+    if (content) quill.root.innerHTML = content;
+}
+
+window.closeEditor = function() {
+    document.getElementById('editorModal').classList.remove('active');
+    currentTable = null;
+    currentId = null;
+};
+
+// ===== Save =====
+document.getElementById('saveBtn').addEventListener('click', async () => {
+    if (!currentTable || !quill) return;
+    const title = document.getElementById('fTitle').value.trim();
+    const content = quill.root.innerHTML.trim();
+    const status = document.getElementById('fStatus').value;
+    const summary = document.getElementById('fSummary').value.trim();
+
+    if (!title) { alert('أدخل العنوان'); return; }
+    if (!content || content === '<p><br></p>') { alert('أدخل المحتوى'); return; }
+
+    const isArticle = currentTable === 'articles' || currentTable === 'news';
+    let data = { status, summary, content };
+
+    if (isArticle) {
+        const cat = document.getElementById('fCategory').value;
+        if (!cat) { alert('اختر التصنيف'); return; }
+        data.title = title;
+        data.category = cat;
+        data.source = document.getElementById('fSource').value.trim();
+    } else {
+        data.name = title;
+        data.category = document.getElementById('fCatField').value.trim();
+        data.description = content;
+    }
+
+    const btn = document.getElementById('saveBtn');
+    const spin = document.getElementById('saveSpin');
+    const txt = document.getElementById('saveText');
+    btn.disabled = true;
+    spin.classList.add('show');
+    txt.textContent = 'جارٍ الحفظ...';
+
+    try {
+        // رفع الصورة
+        if (selectedFile) {
+            const prog = document.getElementById('progressBox');
+            prog.style.display = 'flex';
+            document.getElementById('progFill').style.width = '30%';
+            document.getElementById('progText').textContent = '30%';
+
+            const ext = selectedFile.name.split('.').pop();
+            const name = Date.now() + '-' + Math.random().toString(36).substring(7) + '.' + ext;
+            const path = 'uploads/' + name;
+
+            const { error: upErr } = await sb.storage.from('article-images').upload(path, selectedFile);
+            if (upErr) throw new Error('فشل رفع الصورة: ' + upErr.message);
+
+            const { data: urlD } = sb.storage.from('article-images').getPublicUrl(path);
+            data.image_url = urlD.publicUrl;
+
+            document.getElementById('progFill').style.width = '100%';
+            document.getElementById('progText').textContent = '100%';
+        } else if (existingImgUrl) {
+            data.image_url = existingImgUrl;
+        }
+
+        // Save
+        if (currentId) {
+            const { error } = await sb.from(currentTable).update(data).eq('id', currentId);
+            if (error) throw error;
+        } else {
+            const { error } = await sb.from(currentTable).insert([data]);
+            if (error) throw error;
+        }
+
+        txt.textContent = '✓ تم الحفظ';
+        spin.classList.remove('show');
+        setTimeout(() => {
+            window.closeEditor();
+            loadEverything();
+            btn.disabled = false;
+        }, 800);
+
+    } catch(e) {
+        console.error(e);
+        alert('فشل الحفظ: ' + e.message);
+        btn.disabled = false;
+        spin.classList.remove('show');
+        document.getElementById('progressBox').style.display = 'none';
+        txt.textContent = 'حفظ ونشر';
+    }
+});
+
+// ===== Delete =====
+function openDelete(table, id) {
+    deleteTarget = {table, id};
+    document.getElementById('deleteModal').classList.add('active');
+}
+
+window.closeDelete = function() {
+    document.getElementById('deleteModal').classList.remove('active');
+    deleteTarget = {table:null,id:null};
+};
+
+document.getElementById('delBtn').addEventListener('click', async () => {
+    if (!deleteTarget.table || !deleteTarget.id) return;
+    const btn = document.getElementById('delBtn');
+    btn.disabled = true;
+    btn.textContent = 'جارٍ الحذف...';
+    try {
+        const { error } = await sb.from(deleteTarget.table).delete().eq('id', deleteTarget.id);
+        if (error) throw error;
+        window.closeDelete();
+        loadEverything();
+    } catch(e) {
+        alert('فشل الحذف: ' + e.message);
+    } finally {
+        btn.disabled = false;
+        btn.textContent = 'حذف نهائياً';
+    }
+});
+
+// ===== Helpers =====
+function esc(t) {
+    if (!t) return '';
+    const d = document.createElement('div');
+    d.textContent = t;
+    return d.innerHTML;
+}
+</script>
 </body>
 </html>
