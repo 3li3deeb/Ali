@@ -49,7 +49,7 @@ body {
 .header-container {
     max-width: 1300px;
     margin: 0 auto;
-    padding: 0.8rem 2rem;
+    padding: 0.9rem 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -63,10 +63,17 @@ body {
     text-decoration: none;
 }
 
-.brand-logo {
+.brand-icon {
+    font-size: 2rem;
+    color: var(--primary);
+    background: var(--primary-soft);
+    width: 55px;
     height: 55px;
-    width: auto;
-    object-fit: contain;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-weight: 900;
 }
 
 .brand-name {
@@ -122,7 +129,7 @@ body {
     top: 100%;
     right: 50%;
     transform: translateX(50%) translateY(10px);
-    min-width: 200px;
+    min-width: 220px;
     background: #ffffff;
     border: 1px solid var(--border);
     border-radius: 12px;
@@ -222,7 +229,6 @@ body {
 
 .hero-text h1 .highlight {
     color: var(--primary);
-    position: relative;
 }
 
 .hero-text > p {
@@ -262,7 +268,7 @@ body {
     line-height: 1.5;
 }
 
-/* شريط البحث/الإجراءات */
+/* شريط البحث */
 .action-bar {
     max-width: 1300px;
     margin: 1.5rem auto 0;
@@ -332,7 +338,7 @@ body {
     box-shadow: 0 10px 30px var(--shadow-lg);
 }
 
-/* ===== قسم من أنا ===== */
+/* ===== قسم من نحن ===== */
 .about-section {
     padding: 5rem 2rem;
     background: #ffffff;
@@ -349,18 +355,20 @@ body {
 
 .about-image {
     border-radius: 24px;
-    overflow: hidden;
     background: linear-gradient(135deg, var(--primary-soft), var(--primary-lighter));
-    padding: 3rem;
+    padding: 4rem 3rem;
     text-align: center;
     box-shadow: 0 20px 50px rgba(42, 157, 159, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.about-image img {
-    width: 100%;
-    height: auto;
-    max-width: 300px;
-    object-fit: contain;
+.about-icon {
+    font-size: 8rem;
+    color: var(--primary);
+    font-weight: 900;
+    line-height: 1;
 }
 
 .about-text .section-tag {
@@ -409,7 +417,7 @@ body {
     transform: translateY(-2px);
 }
 
-/* ===== قسم التصنيفات ===== */
+/* ===== قسم الأقسام ===== */
 .categories-section {
     padding: 5rem 2rem;
     background: var(--bg-alt);
@@ -427,7 +435,7 @@ body {
     max-width: 1300px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;
 }
 
@@ -526,7 +534,7 @@ body {
     opacity: 0.9;
 }
 
-/* ===== قسم المقالات المميزة ===== */
+/* ===== الخدمات المميزة ===== */
 .featured-section {
     padding: 5rem 2rem;
     background: #ffffff;
@@ -544,7 +552,7 @@ body {
     background: #ffffff;
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
     text-align: center;
     transition: var(--transition);
     display: flex;
@@ -560,18 +568,12 @@ body {
 .product-image {
     background: var(--primary-lighter);
     border-radius: 12px;
-    padding: 1.5rem;
+    padding: 2rem;
     margin-bottom: 1rem;
+    font-size: 3.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 180px;
-}
-
-.product-image img {
-    max-width: 120px;
-    height: auto;
-    object-fit: contain;
 }
 
 .product-card h3 {
@@ -582,7 +584,7 @@ body {
 }
 
 .product-sub {
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
     margin-bottom: 1.2rem;
     flex: 1;
@@ -611,11 +613,11 @@ body {
 .contact-bar {
     background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
     padding: 1.8rem 2rem;
-    margin: 0 1.5rem 2rem;
     border-radius: 20px;
     max-width: 1300px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto 2rem;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
 }
 
 .contact-container {
@@ -689,15 +691,15 @@ body {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.footer-brand img {
-    height: 60px;
-    background: #ffffff;
-    padding: 0.4rem 0.8rem;
-    border-radius: 10px;
-    margin-bottom: 0.8rem;
+.footer-logo {
+    display: inline-block;
+    font-size: 2.5rem;
+    color: var(--primary-light);
+    font-weight: 900;
+    margin-bottom: 0.5rem;
 }
 
-.footer-brand span {
+.footer-name {
     display: block;
     font-size: 1.4rem;
     font-weight: 900;
@@ -789,8 +791,10 @@ body {
         justify-content: center;
     }
     
-    .brand-logo {
-        height: 40px;
+    .brand-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 1.5rem;
     }
     
     .brand-name {
@@ -852,4 +856,12 @@ body {
     }
     
     .about-image {
-        padding: 2
+        padding: 2.5rem 2rem;
+    }
+    
+    .about-icon {
+        font-size: 5rem;
+    }
+    
+    .categories-grid {
+        grid
