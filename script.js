@@ -1,13 +1,27 @@
-// ===== تأثير شريط التنقل عند التمرير =====
-const navbar = document.querySelector('.navbar');
+// ===== تأثير الهيدر عند التمرير =====
+const headerTop = document.getElementById('headerTop');
+let lastScrollY = window.scrollY;
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
+function handleScroll() {
+    if (!headerTop) return;
+
+    const currentScrollY = window.scrollY;
+
+    // عند التمرير لأسفل أكثر من 150 بكسل
+    if (currentScrollY > 150) {
+        headerTop.classList.add('scrolled');
     } else {
-        navbar.classList.remove('scrolled');
+        headerTop.classList.remove('scrolled');
     }
-});
+
+    lastScrollY = currentScrollY;
+}
+
+// تشغيل عند التمرير
+window.addEventListener('scroll', handleScroll, { passive: true });
+
+// تشغيل عند تحميل الصفحة (لتفادي حالة التمرير المحفوظة)
+window.addEventListener('load', handleScroll);
 
 // ===== تأثير التمرير (Scroll Reveal) =====
 const revealElements = document.querySelectorAll('.reveal');
@@ -25,46 +39,5 @@ const revealOnScroll = () => {
     });
 };
 
-window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('scroll', revealOnScroll, { passive: true });
 window.addEventListener('load', revealOnScroll);
-
-// ===== تأثير الكتابة (اختياري) =====
-const typeWriter = (element, text, speed = 100) => {
-    let i = 0;
-    element.textContent = '';
-    
-    const type = () => {
-        if (i < text.length) {
-            element.textContent += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    };
-    
-    type();
-};
-
-// ===== مؤشر الماوس المتوهج (اختياري) =====
-const createGlow = (e) => {
-    const glow = document.createElement('div');
-    glow.style.cssText = `
-        position: fixed;
-        pointer-events: none;
-        width: 300px;
-        height: 300px;
-        border-radius: 50%;
-        background: radial-gradient(circle, rgba(212,160,23,0.1) 0%, transparent 70%);
-        transform: translate(-50%, -50%);
-        left: ${e.clientX}px;
-        top: ${e.clientY}px;
-        z-index: 0;
-        transition: opacity 0.3s;
-    `;
-    document.body.appendChild(glow);
-    setTimeout(() => glow.remove(), 100);
-};
-
-document.addEventListener('mousemove', createGlow);
-
-// ===== إزالة التنبيه القديم =====
-// تم إزالة alert("مرحباً! موقعك يعمل الآن ") لأنه غير احترافي
