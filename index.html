@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mendocino | الرئيسية</title>
-    <link rel="stylesheet" href="style.css?v=40">
+    <link rel="stylesheet" href="style.css?v=6">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -23,16 +23,19 @@
                 <ul>
                     <li><a href="index.html" class="active">الرئيسية</a></li>
                     <li class="dropdown">
-                        <a href="#departments">الأقسام ▾</a>
+                        <a href="articles.html">الأقسام ▾</a>
                         <ul class="dropdown-menu">
-                            <li><a href="#nursing">قسم التمريض</a></li>
-                            <li><a href="#labs">قسم المختبرات</a></li>
-                            <li><a href="#operations">قسم العمليات</a></li>
-                            <li><a href="#radiology">قسم الأشعة والسونار</a></li>
-                            <li><a href="#diseases">الأمراض</a></li>
-                            <li><a href="#medicines">الأدوية</a></li>
+                            <li><a href="articles.html#scientific">مقالات علمية</a></li>
+                            <li><a href="articles.html#nutrition">تغذية</a></li>
+                            <li><a href="articles.html#heart">صحة القلب</a></li>
+                            <li><a href="articles.html#mental">الصحة النفسية</a></li>
+                            <li><a href="articles.html#children">صحة الأطفال</a></li>
+                            <li><a href="articles.html#chronic">الأمراض المزمنة</a></li>
                         </ul>
                     </li>
+                    <li><a href="news.html">الأخبار</a></li>
+                    <li><a href="diseases.html">الأمراض</a></li>
+                    <li><a href="medicines.html">الأدوية</a></li>
                     <li><a href="about.html">من أنا</a></li>
                     <li><a href="contact.html">اتصل بي</a></li>
                 </ul>
@@ -53,7 +56,7 @@
                     صحة أفضل<br>
                     <span class="highlight">مستقبل أفضل</span>
                 </h1>
-                <p>حلول طبية موثوقة من أجل صحة أفضل. اكتشف أقسامنا الطبية المتنوعة.</p>
+                <p>معلومات طبية موثوقة ومقالات علمية موثقة من أجل حياة صحية أفضل.</p>
 
                 <div class="hero-features">
                     <div class="feature-item">
@@ -63,154 +66,69 @@
                     </div>
                     <div class="feature-item">
                         <div class="feature-icon">🔬</div>
-                        <h4>تقنيات حديثة</h4>
-                        <p>أحدث الأجهزة الطبية</p>
+                        <h4>معلومات حديثة</h4>
+                        <p>من مصادر موثوقة</p>
                     </div>
                     <div class="feature-item">
                         <div class="feature-icon">💙</div>
-                        <h4>رعاية المريض</h4>
-                        <p>اهتمام شخصي بكل مريض</p>
+                        <h4>محتوى متميز</h4>
+                        <p>مقالات مختارة بعناية</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- شريط البحث/الإجراءات -->
         <div class="action-bar">
             <div class="action-field">
-                <label>ابحث عن قسم</label>
-                <a href="#departments" class="action-input">تصفح الأقسام</a>
+                <label>تصفح المقالات</label>
+                <a href="articles.html" class="action-input">اقرأ المقالات ←</a>
             </div>
             <div class="action-field">
                 <label>الأدوية</label>
-                <a href="#medicines" class="action-input">قائمة الأدوية</a>
+                <a href="medicines.html" class="action-input">دليل الأدوية</a>
             </div>
             <div class="action-field">
                 <label>الأمراض</label>
-                <a href="#diseases" class="action-input">المعلومات الطبية</a>
+                <a href="diseases.html" class="action-input">المعلومات الطبية</a>
             </div>
-            <a href="#departments" class="btn-find">استكشف الآن</a>
+            <a href="articles.html" class="btn-find">استكشف الآن</a>
         </div>
     </section>
 
-    <!-- ===== قسم من نحن ===== -->
-    <section class="about-section">
-        <div class="about-container">
-            <div class="about-image">
-                <div class="about-icon">✚</div>
+    <!-- ===== آخر المقالات ===== -->
+    <section class="articles-section">
+        <div class="section-header">
+            <div>
+                <h2 class="section-heading">أحدث المقالات</h2>
+                <p class="section-subheading">اختيارات جديدة من مقالاتنا العلمية</p>
             </div>
-            <div class="about-text">
-                <span class="section-tag">من نحن</span>
-                <h2>ملتزمون بالجودة<br>ومخلصون <span class="highlight">للحياة</span>.</h2>
-                <p>
-                    Mendocino منصة طبية شاملة تقدم معلومات ومحتوى طبي موثوق 
-                    يشمل مختلف التخصصات الطبية، من التمريض إلى الأدوية.
-                </p>
-                <a href="about.html" class="btn-learn">اعرف المزيد ←</a>
-            </div>
+            <a href="articles.html" class="btn-view-all">عرض الكل ←</a>
         </div>
-    </section>
 
-    <!-- ===== قسم الأقسام الطبية ===== -->
-    <section class="categories-section" id="departments">
-        <h2 class="section-heading">أقسامنا الطبية</h2>
-        <div class="categories-grid">
-            <a href="#nursing" class="category-card" id="nursing">
-                <div class="category-icon">💉</div>
-                <h3>قسم التمريض</h3>
-                <p>رعاية تمريضية شاملة</p>
-            </a>
-            <a href="#labs" class="category-card" id="labs">
-                <div class="category-icon">🧪</div>
-                <h3>قسم المختبرات</h3>
-                <p>تحاليل وفحوصات دقيقة</p>
-            </a>
-            <a href="#operations" class="category-card" id="operations">
-                <div class="category-icon">🏥</div>
-                <h3>قسم العمليات</h3>
-                <p>عمليات جراحية متقدمة</p>
-            </a>
-            <a href="#radiology" class="category-card" id="radiology">
-                <div class="category-icon">📡</div>
-                <h3>قسم الأشعة والسونار</h3>
-                <p>تصوير طبي دقيق</p>
-            </a>
-            <a href="#diseases" class="category-card" id="diseases">
-                <div class="category-icon">🦠</div>
-                <h3>الأمراض</h3>
-                <p>معلومات عن الأمراض</p>
-            </a>
-            <a href="#medicines" class="category-card" id="medicines">
-                <div class="category-icon">💊</div>
-                <h3>الأدوية</h3>
-                <p>دليل الأدوية الطبية</p>
-            </a>
-        </div>
-    </section>
-
-    <!-- ===== قسم الإحصائيات ===== -->
-    <section class="stats-section">
-        <div class="stats-container">
-            <div class="stats-text">
-                <h2>لماذا Mendocino؟</h2>
-                <p>جودة تثق بها، ورعاية يمكنك الاعتماد عليها.</p>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-icon">🏥</div>
-                    <div class="stat-number">6+</div>
-                    <div class="stat-label">أقسام طبية</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-icon">👨‍⚕️</div>
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label">أخصائي</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-icon">💊</div>
-                    <div class="stat-number">500+</div>
-                    <div class="stat-label">دواء متوفر</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-icon">😊</div>
-                    <div class="stat-number">2000+</div>
-                    <div class="stat-label">مريض سعيد</div>
-                </div>
+        <div class="article-cards-grid" id="articlesGrid">
+            <!-- تُحمَّل من Supabase -->
+            <div class="loading-state">
+                <div class="loader"></div>
+                <p>جارٍ تحميل المقالات...</p>
             </div>
         </div>
     </section>
 
-    <!-- ===== قسم الخدمات المميزة ===== -->
-    <section class="featured-section">
-        <h2 class="section-heading">خدماتنا المميزة</h2>
-        <div class="featured-grid">
-            <article class="product-card">
-                <div class="product-image">💉</div>
-                <h3>الرعاية التمريضية</h3>
-                <p class="product-sub">خدمات تمريضية على مدار الساعة</p>
-                <a href="#nursing" class="btn-view">اعرف المزيد ←</a>
-            </article>
+    <!-- ===== آخر الأخبار ===== -->
+    <section class="articles-section news-section-home">
+        <div class="section-header">
+            <div>
+                <h2 class="section-heading">آخر الأخبار الطبية</h2>
+                <p class="section-subheading">مستجدات صحية من حول العالم</p>
+            </div>
+            <a href="news.html" class="btn-view-all">عرض الكل ←</a>
+        </div>
 
-            <article class="product-card">
-                <div class="product-image">🧪</div>
-                <h3>التحاليل المخبرية</h3>
-                <p class="product-sub">نتائج دقيقة وسريعة</p>
-                <a href="#labs" class="btn-view">اعرف المزيد ←</a>
-            </article>
-
-            <article class="product-card">
-                <div class="product-image">📡</div>
-                <h3>التصوير الطبي</h3>
-                <p class="product-sub">أحدث أجهزة الأشعة والسونار</p>
-                <a href="#radiology" class="btn-view">اعرف المزيد ←</a>
-            </article>
-
-            <article class="product-card">
-                <div class="product-image">💊</div>
-                <h3>الاستشارات الدوائية</h3>
-                <p class="product-sub">دليل شامل للأدوية</p>
-                <a href="#medicines" class="btn-view">اعرف المزيد ←</a>
-            </article>
+        <div class="article-cards-grid" id="newsGrid">
+            <div class="loading-state">
+                <div class="loader"></div>
+                <p>جارٍ تحميل الأخبار...</p>
+            </div>
         </div>
     </section>
 
@@ -220,10 +138,10 @@
             <div class="contact-icon">🎧</div>
             <div class="contact-text">
                 <h3>نحن هنا لمساعدتك!</h3>
-                <p>فريقنا جاهز لمساعدتك في احتياجاتك الصحية.</p>
+                <p>تواصل معنا لأي استفسار أو اقتراح.</p>
             </div>
             <a href="https://www.facebook.com/share/1KAexjGzm2/" target="_blank" class="btn-contact-bottom">
-                تواصل معنا الآن →
+                تواصل معي الآن →
             </a>
         </div>
     </section>
@@ -238,19 +156,19 @@
             </div>
             <div class="footer-links">
                 <h4>الأقسام</h4>
-                <a href="#nursing">قسم التمريض</a>
-                <a href="#labs">قسم المختبرات</a>
-                <a href="#operations">قسم العمليات</a>
-                <a href="#radiology">قسم الأشعة والسونار</a>
-                <a href="#diseases">الأمراض</a>
-                <a href="#medicines">الأدوية</a>
+                <a href="articles.html#scientific">مقالات علمية</a>
+                <a href="articles.html#nutrition">تغذية</a>
+                <a href="articles.html#heart">صحة القلب</a>
+                <a href="articles.html#mental">الصحة النفسية</a>
+                <a href="news.html">الأخبار الطبية</a>
             </div>
             <div class="footer-links">
                 <h4>روابط سريعة</h4>
                 <a href="index.html">الرئيسية</a>
+                <a href="diseases.html">الأمراض</a>
+                <a href="medicines.html">الأدوية</a>
                 <a href="about.html">من أنا</a>
                 <a href="contact.html">اتصل بي</a>
-                <a href="https://www.facebook.com/share/1KAexjGzm2/" target="_blank">فيسبوك</a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -258,6 +176,110 @@
         </div>
     </footer>
 
-    <script src="script.js?v=40"></script>
+    <script type="module">
+        import { fetchAll } from './supabase-config.js';
+
+        // ===== إنشاء بطاقة مقال =====
+        function createArticleCard(item, type = 'article') {
+            const imageUrl = item.image_url || '';
+            const summary = item.summary || (item.content ? item.content.replace(/<[^>]*>/g, '').substring(0, 100) + '...' : '');
+            const category = item.category || '';
+            const date = formatDate(item.created_at);
+            const url = type === 'news' ? `news.html#${item.id}` : `article.html?id=${item.id}`;
+
+            return `
+                <article class="article-card-img" onclick="window.location.href='${url}'">
+                    <div class="card-image-wrapper">
+                        ${imageUrl 
+                            ? `<img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(item.title)}" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('no-image');">` 
+                            : `<div class="no-image-placeholder">📷</div>`
+                        }
+                        <div class="card-gradient-overlay"></div>
+                        <div class="card-overlay-content">
+                            ${category ? `<span class="card-category-badge">${escapeHtml(category)}</span>` : ''}
+                            <h3 class="card-title-overlay">${escapeHtml(item.title || 'بدون عنوان')}</h3>
+                            ${summary ? `<p class="card-summary-overlay">${escapeHtml(summary.substring(0, 120))}${summary.length > 120 ? '...' : ''}</p>` : ''}
+                            <div class="card-meta-overlay">
+                                <span class="card-date-overlay">📅 ${date}</span>
+                                <span class="card-read-more">اقرأ المزيد →</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            `;
+        }
+
+        // ===== تحميل المقالات =====
+        async function loadArticles() {
+            const grid = document.getElementById('articlesGrid');
+            try {
+                const items = await fetchAll('articles');
+                const published = items.filter(i => i.status !== 'draft').slice(0, 6);
+
+                if (published.length === 0) {
+                    grid.innerHTML = `
+                        <div class="empty-state-home">
+                            <span style="font-size: 3rem;">📝</span>
+                            <p>لا توجد مقالات منشورة بعد</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                grid.innerHTML = published.map(item => createArticleCard(item, 'article')).join('');
+            } catch (error) {
+                console.error('خطأ تحميل المقالات:', error);
+                grid.innerHTML = `<div class="empty-state-home"><p>تعذر تحميل المقالات</p></div>`;
+            }
+        }
+
+        // ===== تحميل الأخبار =====
+        async function loadNews() {
+            const grid = document.getElementById('newsGrid');
+            try {
+                const items = await fetchAll('news');
+                const published = items.filter(i => i.status !== 'draft').slice(0, 3);
+
+                if (published.length === 0) {
+                    grid.innerHTML = `
+                        <div class="empty-state-home">
+                            <span style="font-size: 3rem;">📰</span>
+                            <p>لا توجد أخبار منشورة بعد</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                grid.innerHTML = published.map(item => createArticleCard(item, 'news')).join('');
+            } catch (error) {
+                console.error('خطأ تحميل الأخبار:', error);
+                grid.innerHTML = `<div class="empty-state-home"><p>تعذر تحميل الأخبار</p></div>`;
+            }
+        }
+
+        // ===== أدوات مساعدة =====
+        function formatDate(timestamp) {
+            if (!timestamp) return '-';
+            const date = new Date(timestamp);
+            const y = date.getFullYear();
+            const m = String(date.getMonth() + 1).padStart(2, '0');
+            const d = String(date.getDate()).padStart(2, '0');
+            return `${y}-${m}-${d}`;
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // ===== تشغيل التحميل =====
+        document.addEventListener('DOMContentLoaded', () => {
+            loadArticles();
+            loadNews();
+        });
+    </script>
+
 </body>
 </html>
