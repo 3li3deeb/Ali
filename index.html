@@ -20,12 +20,6 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
 .main-nav a{display:block;padding:10px 16px;color:var(--text);text-decoration:none;font-weight:600;font-size:14.5px;border-radius:8px;transition:.3s;position:relative}
 .main-nav a:hover,.main-nav a.active{color:var(--primary)}
 .main-nav a.active::after{content:'';position:absolute;bottom:3px;right:50%;transform:translateX(50%);width:30%;height:3px;background:var(--primary);border-radius:3px}
-.dropdown{position:relative}
-.dropdown-menu{position:absolute;top:100%;right:50%;transform:translateX(50%) translateY(10px);min-width:220px;background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.12);list-style:none;padding:8px;opacity:0;visibility:hidden;transition:.3s;z-index:100;margin-top:8px}
-.dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateX(50%) translateY(0)}
-.dropdown-menu li a{padding:10px 14px;font-size:13.5px;border-radius:8px}
-.dropdown-menu li a:hover{background:var(--primary-soft);color:var(--primary-dark)}
-.dropdown-menu li a.active::after{display:none}
 .btn-contact{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;background:var(--primary);color:#fff;text-decoration:none;border-radius:50px;font-weight:700;font-size:14.5px;transition:.3s;box-shadow:0 4px 15px var(--shadow-lg);white-space:nowrap}
 .btn-contact:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 8px 25px var(--shadow-lg)}
 /* ===== Hero ===== */
@@ -59,7 +53,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
 .btn-view-all:hover{background:var(--primary);color:#fff;transform:translateX(-5px);box-shadow:0 8px 20px var(--shadow-lg)}
 /* ===== Cards ===== */
 .article-cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:28px;max-width:1300px;margin:0 auto}
-.article-card-img{position:relative;border-radius:20px;overflow:hidden;cursor:pointer;box-shadow:0 8px 25px rgba(0,0,0,.08);transition:all .45s cubic-bezier(.25,.46,.45,.94);background:#f0f0f0;aspect-ratio:4/3;display:block}
+.article-card-img{position:relative;border-radius:20px;overflow:hidden;cursor:pointer;box-shadow:0 8px 25px rgba(0,0,0,.08);transition:all .45s cubic-bezier(.25,.46,.45,.94);background:#f0f0f0;aspect-ratio:4/3;display:block;text-decoration:none;color:inherit}
 .article-card-img:hover{transform:translateY(-8px);box-shadow:0 25px 60px rgba(42,157,159,.3)}
 .card-image-wrapper{position:relative;width:100%;height:100%;overflow:hidden}
 .card-image-wrapper img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.25,.46,.45,.94);display:block}
@@ -308,7 +302,7 @@ const SB_URL = 'https://lkfzibeuyurqkatexhzf.supabase.co';
 const SB_KEY = 'sb_publishable_bDRpST47zs7WWTJP1N1Q9w_SkJCRBPx';
 const sb = supabase.createClient(SB_URL, SB_KEY);
 
-// ===== Create Card =====
+// ===== Create Card (with clickable link) =====
 function createCard(item, type) {
     const imageUrl = item.image_url || '';
     const title = item.title || item.name || 'بدون عنوان';
@@ -317,11 +311,19 @@ function createCard(item, type) {
     const category = item.category || '';
     const date = item.created_at ? new Date(item.created_at).toISOString().slice(0,10) : '';
 
+    // تحديد الجدول في الرابط
+    const tableName = type === 'article' ? 'articles' 
+                    : type === 'news' ? 'news' 
+                    : type === 'disease' ? 'diseases' 
+                    : 'medicines';
+
+    const url = `article.html?type=${tableName}&id=${item.id}`;
+
     return `
-        <div class="article-card-img">
+        <a href="${url}" class="article-card-img">
             <div class="card-image-wrapper">
                 ${imageUrl 
-                    ? `<img src="${esc(imageUrl)}" alt="${esc(title)}" loading="lazy">` 
+                    ? `<img src="${esc(imageUrl)}" alt="${esc(title)}" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\\'no-image-placeholder\\'>${type === 'article' ? '📝' : type === 'news' ? '📰' : type === 'disease' ? '🦠' : '💊'}</div>';">` 
                     : `<div class="no-image-placeholder">${type === 'article' ? '📝' : type === 'news' ? '📰' : type === 'disease' ? '🦠' : '💊'}</div>`
                 }
                 <div class="card-gradient-overlay"></div>
@@ -335,11 +337,11 @@ function createCard(item, type) {
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
     `;
 }
 
-// ===== Load =====
+// ===== Load Section =====
 async function loadSection(table, gridId, type) {
     const grid = document.getElementById(gridId);
     try {
