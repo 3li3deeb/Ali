@@ -202,7 +202,7 @@ body {
 
 /* ============================================
    حالة التمرير: اللوغو يصغر وينزلق لليمين
-   والأزرار تتحول أفقية
+   والأزرار تتحول أفقية في صف واحد
    ============================================ */
 .header-top.scrolled .header-inner {
     padding: 0.3rem 1rem;
@@ -212,7 +212,6 @@ body {
     gap: 0.5rem;
 }
 
-/* اللوغو يصغر وينزلق لأعلى اليمين */
 .header-top.scrolled .logo-section {
     flex: 0 0 auto;
     justify-content: flex-start;
@@ -224,29 +223,40 @@ body {
     padding: 0;
 }
 
-/* الأزرار تصبح أفقية أسفل اللوغو */
+/* الأزرار تصبح أفقية في صف واحد أسفل اللوغو */
 .header-top.scrolled .nav-menu {
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     order: 3;
     width: 100%;
     min-width: 100%;
     max-width: 100%;
     justify-content: center;
-    gap: 0.4rem;
-    padding-top: 0.3rem;
+    align-items: center;
+    gap: 0.35rem;
+    padding-top: 0.4rem;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.header-top.scrolled .nav-menu::-webkit-scrollbar {
+    display: none;
 }
 
 .header-top.scrolled .nav-menu li {
     width: auto;
+    flex-shrink: 0;
 }
 
 .header-top.scrolled .nav-menu a {
-    padding: 0.4rem 0.9rem;
-    font-size: 0.75rem;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.7rem;
     border-radius: 20px;
     width: auto;
+    white-space: nowrap;
 }
 
 .header-top.scrolled .nav-menu a:hover,
@@ -255,10 +265,11 @@ body {
 }
 
 .header-top.scrolled .btn-facebook {
-    padding: 0.4rem 0.9rem;
-    font-size: 0.75rem;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.7rem;
     width: auto;
     display: inline-block;
+    white-space: nowrap;
 }
 
 /* القائمة المنسدلة في الوضع الأفقي */
@@ -762,6 +773,16 @@ main:first-of-type {
     .hero {
         padding: 22rem 2rem 4rem;
     }
+    
+    .header-top.scrolled .nav-menu a {
+        padding: 0.3rem 0.65rem;
+        font-size: 0.65rem;
+    }
+    
+    .header-top.scrolled .btn-facebook {
+        padding: 0.3rem 0.65rem;
+        font-size: 0.65rem;
+    }
 }
 
 @media (max-width: 768px) {
@@ -838,16 +859,21 @@ main:first-of-type {
     
     /* حالة التمرير على الهاتف */
     .header-top.scrolled .logo-img {
-        height: 50px;
+        height: 45px;
+    }
+    
+    .header-top.scrolled .nav-menu {
+        gap: 0.25rem;
+        padding-top: 0.3rem;
     }
     
     .header-top.scrolled .nav-menu a {
-        padding: 0.3rem 0.6rem;
-        font-size: 0.65rem;
+        padding: 0.28rem 0.55rem;
+        font-size: 0.6rem;
     }
     
     .header-top.scrolled .btn-facebook {
-        padding: 0.3rem 0.6rem;
-        font-size: 0.65rem;
+        padding: 0.28rem 0.55rem;
+        font-size: 0.6rem;
     }
 }
