@@ -304,7 +304,7 @@ tbody tr:last-child td{border-bottom:none}
                         <option value="الأمراض المزمنة">الأمراض المزمنة</option>
                     </select>
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="sourceGroup" style="display:none">
                     <label>المصدر</label>
                     <input type="text" id="fSource" placeholder="اختياري...">
                 </div>
@@ -499,7 +499,7 @@ function initImgUpload() {
 }
 
 function removeImg(e) {
-    e.stopPropagation();
+    if (e && e.stopPropagation) e.stopPropagation();
     selectedFile = null;
     existingImgUrl = null;
     document.getElementById('imgInput').value = '';
@@ -681,7 +681,10 @@ window.openEditor = function(table) {
     document.getElementById('modalTitle').textContent = titles[table];
 
     const isArticle = table === 'articles' || table === 'news';
+    const isNews = table === 'news';
+
     document.getElementById('rowArticle').style.display = isArticle ? 'grid' : 'none';
+    document.getElementById('sourceGroup').style.display = isNews ? 'flex' : 'none';
     document.getElementById('rowCatField').style.display = isArticle ? 'none' : 'flex';
 
     document.getElementById('fTitle').value = '';
@@ -693,7 +696,7 @@ window.openEditor = function(table) {
     document.getElementById('charCount').textContent = '0 / 150';
     quill.root.innerHTML = '';
 
-    removeImg({stopPropagation:()=>{}});
+    removeImg();
     document.getElementById('saveText').textContent = 'حفظ ونشر';
     document.getElementById('editorModal').classList.add('active');
 };
@@ -705,10 +708,12 @@ function editItem(table, item) {
     document.getElementById('saveText').textContent = 'حفظ التعديلات';
 
     const isArticle = table === 'articles' || table === 'news';
+    const isNews = table === 'news';
+
     if (isArticle) {
         document.getElementById('fTitle').value = item.title || '';
         document.getElementById('fCategory').value = item.category || '';
-        document.getElementById('fSource').value = item.source || '';
+        if (isNews) document.getElementById('fSource').value = item.source || '';
     } else {
         document.getElementById('fTitle').value = item.name || '';
         document.getElementById('fCatField').value = item.category || '';
@@ -746,6 +751,7 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
     if (!content || content === '<p><br></p>') { alert('أدخل المحتوى'); return; }
 
     const isArticle = currentTable === 'articles' || currentTable === 'news';
+    const isNews = currentTable === 'news';
     let data = { status, summary, content };
 
     if (isArticle) {
@@ -753,7 +759,10 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
         if (!cat) { alert('اختر التصنيف'); return; }
         data.title = title;
         data.category = cat;
-        data.source = document.getElementById('fSource').value.trim();
+        // ⚠️ source يُرسل فقط للأخبار
+        if (isNews) {
+            data.source = document.getElementById('fSource').value.trim();
+        }
     } else {
         data.name = title;
         data.category = document.getElementById('fCatField').value.trim();
