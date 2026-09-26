@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mendocino | الرئيسية</title>
-    <link rel="stylesheet" href="style.css?v=30">
+    <link rel="stylesheet" href="style.css?v=40">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -14,7 +14,7 @@
         <div class="header-container">
             <div class="brand">
                 <a href="index.html" class="brand-link">
-                    <img src="images/logo.png" alt="Mendocino" class="brand-logo">
+                    <span class="brand-icon">✚</span>
                     <span class="brand-name">Mendocino</span>
                 </a>
             </div>
@@ -22,19 +22,18 @@
             <nav class="main-nav">
                 <ul>
                     <li><a href="index.html" class="active">الرئيسية</a></li>
-                    <li><a href="about.html">من أنا</a></li>
                     <li class="dropdown">
-                        <a href="articles.html">مقالات ▾</a>
+                        <a href="#departments">الأقسام ▾</a>
                         <ul class="dropdown-menu">
-                            <li><a href="articles.html#scientific">مقالات علمية</a></li>
-                            <li><a href="articles.html#political">مقالات سياسية</a></li>
-                            <li><a href="articles.html#art">مقالات فنية</a></li>
-                            <li><a href="articles.html#sports">مقالات رياضية</a></li>
-                            <li><a href="articles.html#history">مقالات تأريخية</a></li>
+                            <li><a href="#nursing">قسم التمريض</a></li>
+                            <li><a href="#labs">قسم المختبرات</a></li>
+                            <li><a href="#operations">قسم العمليات</a></li>
+                            <li><a href="#radiology">قسم الأشعة والسونار</a></li>
+                            <li><a href="#diseases">الأمراض</a></li>
+                            <li><a href="#medicines">الأدوية</a></li>
                         </ul>
                     </li>
-                    <li><a href="gallery.html">أرشيف الصور</a></li>
-                    <li><a href="news.html">أخبار سريعة</a></li>
+                    <li><a href="about.html">من أنا</a></li>
                     <li><a href="contact.html">اتصل بي</a></li>
                 </ul>
             </nav>
@@ -51,26 +50,26 @@
         <div class="hero-container">
             <div class="hero-text">
                 <h1>
-                    مرحباً بك في<br>
-                    <span class="highlight">Mendocino</span>
+                    صحة أفضل<br>
+                    <span class="highlight">مستقبل أفضل</span>
                 </h1>
-                <p>مساحتك الشخصية للمقالات والأفكار والصور. اكتشف عالماً من المحتوى الهادف.</p>
+                <p>حلول طبية موثوقة من أجل صحة أفضل. اكتشف أقسامنا الطبية المتنوعة.</p>
 
                 <div class="hero-features">
                     <div class="feature-item">
-                        <div class="feature-icon">📚</div>
-                        <h4>مقالات متنوعة</h4>
-                        <p>علمية، سياسية، فنية، رياضية، تأريخية</p>
+                        <div class="feature-icon">🩺</div>
+                        <h4>رعاية موثوقة</h4>
+                        <p>معايير طبية عالية</p>
                     </div>
                     <div class="feature-item">
-                        <div class="feature-icon">🖼️</div>
-                        <h4>أرشيف صور</h4>
-                        <p>مجموعة مختارة من الصور</p>
+                        <div class="feature-icon">🔬</div>
+                        <h4>تقنيات حديثة</h4>
+                        <p>أحدث الأجهزة الطبية</p>
                     </div>
                     <div class="feature-item">
-                        <div class="feature-icon">⚡</div>
-                        <h4>أخبار سريعة</h4>
-                        <p>آخر المستجدات لحظة بلحظة</p>
+                        <div class="feature-icon">💙</div>
+                        <h4>رعاية المريض</h4>
+                        <p>اهتمام شخصي بكل مريض</p>
                     </div>
                 </div>
             </div>
@@ -79,67 +78,72 @@
         <!-- شريط البحث/الإجراءات -->
         <div class="action-bar">
             <div class="action-field">
-                <label>تصفح المقالات</label>
-                <a href="articles.html" class="action-input">اقرأ المقالات ←</a>
+                <label>ابحث عن قسم</label>
+                <a href="#departments" class="action-input">تصفح الأقسام</a>
             </div>
             <div class="action-field">
-                <label>التصنيفات</label>
-                <a href="articles.html" class="action-input">جميع التصنيفات</a>
+                <label>الأدوية</label>
+                <a href="#medicines" class="action-input">قائمة الأدوية</a>
             </div>
             <div class="action-field">
-                <label>تواصل معي</label>
-                <a href="https://www.facebook.com/share/1KAexjGzm2/" target="_blank" class="action-input">فيسبوك</a>
+                <label>الأمراض</label>
+                <a href="#diseases" class="action-input">المعلومات الطبية</a>
             </div>
-            <a href="articles.html" class="btn-find">استكشف الآن</a>
+            <a href="#departments" class="btn-find">استكشف الآن</a>
         </div>
     </section>
 
-    <!-- ===== قسم من أنا ===== -->
+    <!-- ===== قسم من نحن ===== -->
     <section class="about-section">
         <div class="about-container">
             <div class="about-image">
-                <img src="images/logo.png" alt="Mendocino">
+                <div class="about-icon">✚</div>
             </div>
             <div class="about-text">
-                <span class="section-tag">من أنا</span>
-                <h2>مساحة ملتزمة بالمحتوى الهادف<br>ومخلصة <span class="highlight">للجودة</span>.</h2>
+                <span class="section-tag">من نحن</span>
+                <h2>ملتزمون بالجودة<br>ومخلصون <span class="highlight">للحياة</span>.</h2>
                 <p>
-                    Mendocino هي مدونة شخصية أشارك فيها مقالاتي وأفكاري وتجاربي 
-                    في مجالات متنوعة. أهدف إلى تقديم محتوى هادف وممتع يثري القارئ.
+                    Mendocino منصة طبية شاملة تقدم معلومات ومحتوى طبي موثوق 
+                    يشمل مختلف التخصصات الطبية، من التمريض إلى الأدوية.
                 </p>
                 <a href="about.html" class="btn-learn">اعرف المزيد ←</a>
             </div>
         </div>
     </section>
 
-    <!-- ===== قسم التصنيفات ===== -->
-    <section class="categories-section">
-        <h2 class="section-heading">تصنيفات المقالات</h2>
+    <!-- ===== قسم الأقسام الطبية ===== -->
+    <section class="categories-section" id="departments">
+        <h2 class="section-heading">أقسامنا الطبية</h2>
         <div class="categories-grid">
-            <a href="articles.html#scientific" class="category-card">
-                <div class="category-icon">🔬</div>
-                <h3>مقالات علمية</h3>
-                <p>مواضيع علمية مبسطة</p>
+            <a href="#nursing" class="category-card" id="nursing">
+                <div class="category-icon">💉</div>
+                <h3>قسم التمريض</h3>
+                <p>رعاية تمريضية شاملة</p>
             </a>
-            <a href="articles.html#political" class="category-card">
-                <div class="category-icon">🏛️</div>
-                <h3>مقالات سياسية</h3>
-                <p>تحليلات ورؤى سياسية</p>
+            <a href="#labs" class="category-card" id="labs">
+                <div class="category-icon">🧪</div>
+                <h3>قسم المختبرات</h3>
+                <p>تحاليل وفحوصات دقيقة</p>
             </a>
-            <a href="articles.html#art" class="category-card">
-                <div class="category-icon">🎨</div>
-                <h3>مقالات فنية</h3>
-                <p>عالم الفن والإبداع</p>
+            <a href="#operations" class="category-card" id="operations">
+                <div class="category-icon">🏥</div>
+                <h3>قسم العمليات</h3>
+                <p>عمليات جراحية متقدمة</p>
             </a>
-            <a href="articles.html#sports" class="category-card">
-                <div class="category-icon">⚽</div>
-                <h3>مقالات رياضية</h3>
-                <p>أخبار وتحليلات رياضية</p>
+            <a href="#radiology" class="category-card" id="radiology">
+                <div class="category-icon">📡</div>
+                <h3>قسم الأشعة والسونار</h3>
+                <p>تصوير طبي دقيق</p>
             </a>
-            <a href="articles.html#history" class="category-card">
-                <div class="category-icon">📜</div>
-                <h3>مقالات تأريخية</h3>
-                <p>قصص من التاريخ</p>
+            <a href="#diseases" class="category-card" id="diseases">
+                <div class="category-icon">🦠</div>
+                <h3>الأمراض</h3>
+                <p>معلومات عن الأمراض</p>
+            </a>
+            <a href="#medicines" class="category-card" id="medicines">
+                <div class="category-icon">💊</div>
+                <h3>الأدوية</h3>
+                <p>دليل الأدوية الطبية</p>
             </a>
         </div>
     </section>
@@ -149,71 +153,63 @@
         <div class="stats-container">
             <div class="stats-text">
                 <h2>لماذا Mendocino؟</h2>
-                <p>جودة تثق بها، ومحتوى يمكنك الاعتماد عليه.</p>
+                <p>جودة تثق بها، ورعاية يمكنك الاعتماد عليها.</p>
             </div>
             <div class="stats-grid">
                 <div class="stat-item">
-                    <div class="stat-icon">📝</div>
+                    <div class="stat-icon">🏥</div>
+                    <div class="stat-number">6+</div>
+                    <div class="stat-label">أقسام طبية</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">👨‍⚕️</div>
                     <div class="stat-number">50+</div>
-                    <div class="stat-label">مقال منشور</div>
+                    <div class="stat-label">أخصائي</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-icon">👥</div>
-                    <div class="stat-number">1000+</div>
-                    <div class="stat-label">قارئ شهرياً</div>
+                    <div class="stat-icon">💊</div>
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">دواء متوفر</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-icon">🏆</div>
-                    <div class="stat-number">5</div>
-                    <div class="stat-label">تصنيفات متنوعة</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-icon">⭐</div>
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">محتوى أصلي</div>
+                    <div class="stat-icon">😊</div>
+                    <div class="stat-number">2000+</div>
+                    <div class="stat-label">مريض سعيد</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== قسم المقالات المميزة ===== -->
+    <!-- ===== قسم الخدمات المميزة ===== -->
     <section class="featured-section">
-        <h2 class="section-heading">أحدث المقالات</h2>
+        <h2 class="section-heading">خدماتنا المميزة</h2>
         <div class="featured-grid">
             <article class="product-card">
-                <div class="product-image">
-                    <img src="images/logo.png" alt="مقال">
-                </div>
-                <h3>عنوان المقال الأول</h3>
-                <p class="product-sub">مقالات علمية</p>
-                <a href="articles.html" class="btn-view">اقرأ المقال ←</a>
+                <div class="product-image">💉</div>
+                <h3>الرعاية التمريضية</h3>
+                <p class="product-sub">خدمات تمريضية على مدار الساعة</p>
+                <a href="#nursing" class="btn-view">اعرف المزيد ←</a>
             </article>
 
             <article class="product-card">
-                <div class="product-image">
-                    <img src="images/logo.png" alt="مقال">
-                </div>
-                <h3>عنوان المقال الثاني</h3>
-                <p class="product-sub">مقالات تأريخية</p>
-                <a href="articles.html" class="btn-view">اقرأ المقال ←</a>
+                <div class="product-image">🧪</div>
+                <h3>التحاليل المخبرية</h3>
+                <p class="product-sub">نتائج دقيقة وسريعة</p>
+                <a href="#labs" class="btn-view">اعرف المزيد ←</a>
             </article>
 
             <article class="product-card">
-                <div class="product-image">
-                    <img src="images/logo.png" alt="مقال">
-                </div>
-                <h3>عنوان المقال الثالث</h3>
-                <p class="product-sub">مقالات فنية</p>
-                <a href="articles.html" class="btn-view">اقرأ المقال ←</a>
+                <div class="product-image">📡</div>
+                <h3>التصوير الطبي</h3>
+                <p class="product-sub">أحدث أجهزة الأشعة والسونار</p>
+                <a href="#radiology" class="btn-view">اعرف المزيد ←</a>
             </article>
 
             <article class="product-card">
-                <div class="product-image">
-                    <img src="images/logo.png" alt="مقال">
-                </div>
-                <h3>عنوان المقال الرابع</h3>
-                <p class="product-sub">مقالات رياضية</p>
-                <a href="articles.html" class="btn-view">اقرأ المقال ←</a>
+                <div class="product-image">💊</div>
+                <h3>الاستشارات الدوائية</h3>
+                <p class="product-sub">دليل شامل للأدوية</p>
+                <a href="#medicines" class="btn-view">اعرف المزيد ←</a>
             </article>
         </div>
     </section>
@@ -223,11 +219,11 @@
         <div class="contact-container">
             <div class="contact-icon">🎧</div>
             <div class="contact-text">
-                <h3>أنا هنا لمساعدتك!</h3>
-                <p>تواصل معي لأي استفسار أو اقتراح.</p>
+                <h3>نحن هنا لمساعدتك!</h3>
+                <p>فريقنا جاهز لمساعدتك في احتياجاتك الصحية.</p>
             </div>
             <a href="https://www.facebook.com/share/1KAexjGzm2/" target="_blank" class="btn-contact-bottom">
-                تواصل معي الآن →
+                تواصل معنا الآن →
             </a>
         </div>
     </section>
@@ -236,19 +232,22 @@
     <footer class="main-footer">
         <div class="footer-container">
             <div class="footer-brand">
-                <img src="images/logo.png" alt="Mendocino">
-                <span>Mendocino</span>
-                <p>مساحة شخصية للمحتوى الهادف.</p>
+                <span class="footer-logo">✚</span>
+                <span class="footer-name">Mendocino</span>
+                <p>منصة طبية شاملة للمعلومات والخدمات الصحية.</p>
+            </div>
+            <div class="footer-links">
+                <h4>الأقسام</h4>
+                <a href="#nursing">قسم التمريض</a>
+                <a href="#labs">قسم المختبرات</a>
+                <a href="#operations">قسم العمليات</a>
+                <a href="#radiology">قسم الأشعة والسونار</a>
+                <a href="#diseases">الأمراض</a>
+                <a href="#medicines">الأدوية</a>
             </div>
             <div class="footer-links">
                 <h4>روابط سريعة</h4>
                 <a href="index.html">الرئيسية</a>
-                <a href="articles.html">مقالات</a>
-                <a href="gallery.html">أرشيف الصور</a>
-                <a href="news.html">أخبار سريعة</a>
-            </div>
-            <div class="footer-links">
-                <h4>تواصل</h4>
                 <a href="about.html">من أنا</a>
                 <a href="contact.html">اتصل بي</a>
                 <a href="https://www.facebook.com/share/1KAexjGzm2/" target="_blank">فيسبوك</a>
@@ -259,6 +258,6 @@
         </div>
     </footer>
 
-    <script src="script.js?v=30"></script>
+    <script src="script.js?v=40"></script>
 </body>
 </html>
