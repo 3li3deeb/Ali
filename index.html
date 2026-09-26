@@ -1,285 +1,380 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mendocino | الرئيسية</title>
-    <link rel="stylesheet" href="style.css?v=6">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mendocino | الرئيسية</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#2A9D9F;--primary-dark:#1E7B7D;--primary-light:#4DB8BA;--primary-soft:#E8F6F6;--primary-lighter:#F3FAFA;--text:#1a1a1a;--muted:#6B7280;--bg:#fff;--bg-alt:#F8FAFB;--border:#E5E7EB;--shadow:rgba(0,0,0,.06);--shadow-lg:rgba(42,157,159,.15)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direction:rtl;line-height:1.7;overflow-x:hidden}
+/* ===== Header ===== */
+.main-header{position:sticky;top:0;width:100%;background:#fff;border-bottom:1px solid var(--border);z-index:1000;box-shadow:0 2px 12px var(--shadow)}
+.header-container{max-width:1300px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand-link{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand-icon{font-size:32px;color:var(--primary);background:var(--primary-soft);width:55px;height:55px;display:flex;align-items:center;justify-content:center;border-radius:12px;font-weight:900}
+.brand-name{font-size:26px;font-weight:900;color:var(--primary-dark);letter-spacing:.5px}
+.main-nav ul{display:flex;list-style:none;gap:4px;align-items:center;flex-wrap:wrap}
+.main-nav a{display:block;padding:10px 16px;color:var(--text);text-decoration:none;font-weight:600;font-size:14.5px;border-radius:8px;transition:.3s;position:relative}
+.main-nav a:hover,.main-nav a.active{color:var(--primary)}
+.main-nav a.active::after{content:'';position:absolute;bottom:3px;right:50%;transform:translateX(50%);width:30%;height:3px;background:var(--primary);border-radius:3px}
+.dropdown{position:relative}
+.dropdown-menu{position:absolute;top:100%;right:50%;transform:translateX(50%) translateY(10px);min-width:220px;background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.12);list-style:none;padding:8px;opacity:0;visibility:hidden;transition:.3s;z-index:100;margin-top:8px}
+.dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateX(50%) translateY(0)}
+.dropdown-menu li a{padding:10px 14px;font-size:13.5px;border-radius:8px}
+.dropdown-menu li a:hover{background:var(--primary-soft);color:var(--primary-dark)}
+.dropdown-menu li a.active::after{display:none}
+.btn-contact{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;background:var(--primary);color:#fff;text-decoration:none;border-radius:50px;font-weight:700;font-size:14.5px;transition:.3s;box-shadow:0 4px 15px var(--shadow-lg);white-space:nowrap}
+.btn-contact:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 8px 25px var(--shadow-lg)}
+/* ===== Hero ===== */
+.hero-section{background:linear-gradient(135deg,var(--primary-soft) 0%,#fff 100%);padding:48px 32px 32px;position:relative;overflow:hidden}
+.hero-section::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(42,157,159,.15),transparent 70%);border-radius:50%;pointer-events:none}
+.hero-container{max-width:1300px;margin:0 auto;padding:32px 0;position:relative;z-index:1}
+.hero-text h1{font-size:clamp(32px,5vw,56px);font-weight:900;line-height:1.2;margin-bottom:20px}
+.hero-text h1 .highlight{color:var(--primary)}
+.hero-text>p{font-size:17px;color:var(--muted);max-width:600px;margin-bottom:40px}
+.hero-features{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;max-width:750px}
+.feature-item{display:flex;flex-direction:column;gap:6px}
+.feature-icon{font-size:32px;margin-bottom:4px}
+.feature-item h4{font-size:15px;font-weight:700;color:var(--primary-dark)}
+.feature-item p{font-size:13px;color:var(--muted);line-height:1.5}
+.action-bar{max-width:1300px;margin:24px auto 0;background:#fff;border-radius:20px;padding:24px 32px;display:flex;align-items:center;gap:20px;box-shadow:0 20px 50px rgba(42,157,159,.15);position:relative;z-index:2;flex-wrap:wrap}
+.action-field{flex:1;min-width:180px;display:flex;flex-direction:column;gap:6px}
+.action-field label{font-size:13px;font-weight:700;color:var(--primary-dark);padding-right:8px}
+.action-input{display:block;padding:12px 20px;background:var(--bg-alt);border:1.5px solid var(--border);border-radius:50px;font-size:14px;color:var(--text);text-decoration:none;transition:.3s;font-weight:500}
+.action-input:hover{border-color:var(--primary);background:var(--primary-lighter);color:var(--primary-dark)}
+.btn-find{padding:16px 36px;background:var(--primary);color:#fff;text-decoration:none;border-radius:50px;font-weight:700;font-size:15px;transition:.3s;box-shadow:0 6px 20px var(--shadow-lg);white-space:nowrap;align-self:flex-end}
+.btn-find:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 10px 30px var(--shadow-lg)}
+/* ===== Sections ===== */
+.articles-section{max-width:1300px;margin:0 auto;padding:64px 32px}
+.news-section-home{background:var(--bg-alt);max-width:100%;padding:64px 32px}
+.news-section-home>*{max-width:1300px;margin-left:auto;margin-right:auto}
+.section-header{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:40px;flex-wrap:wrap}
+.section-heading{font-size:clamp(24px,3vw,32px);font-weight:900;line-height:1.2;margin-bottom:5px;position:relative;padding-right:16px}
+.section-heading::before{content:'';position:absolute;right:0;top:50%;transform:translateY(-50%);width:5px;height:70%;background:linear-gradient(180deg,var(--primary),var(--primary-dark));border-radius:3px}
+.section-subheading{font-size:14.5px;color:var(--muted);padding-right:16px}
+.btn-view-all{padding:11px 24px;background:var(--primary-soft);color:var(--primary-dark);text-decoration:none;border-radius:50px;font-weight:700;font-size:14px;transition:.3s;white-space:nowrap;border:1.5px solid transparent}
+.btn-view-all:hover{background:var(--primary);color:#fff;transform:translateX(-5px);box-shadow:0 8px 20px var(--shadow-lg)}
+/* ===== Cards ===== */
+.article-cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:28px;max-width:1300px;margin:0 auto}
+.article-card-img{position:relative;border-radius:20px;overflow:hidden;cursor:pointer;box-shadow:0 8px 25px rgba(0,0,0,.08);transition:all .45s cubic-bezier(.25,.46,.45,.94);background:#f0f0f0;aspect-ratio:4/3;display:block}
+.article-card-img:hover{transform:translateY(-8px);box-shadow:0 25px 60px rgba(42,157,159,.3)}
+.card-image-wrapper{position:relative;width:100%;height:100%;overflow:hidden}
+.card-image-wrapper img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.25,.46,.45,.94);display:block}
+.article-card-img:hover .card-image-wrapper img{transform:scale(1.1)}
+.no-image-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:64px;background:linear-gradient(135deg,var(--primary-soft),var(--primary-lighter));color:var(--primary)}
+.card-gradient-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.6) 30%,rgba(0,0,0,.2) 60%,rgba(0,0,0,0) 100%);z-index:1;transition:opacity .4s}
+.article-card-img:hover .card-gradient-overlay{background:linear-gradient(to top,rgba(0,0,0,.9) 0%,rgba(0,0,0,.7) 35%,rgba(0,0,0,.3) 65%,rgba(0,0,0,.05) 100%)}
+.card-overlay-content{position:absolute;bottom:0;right:0;left:0;padding:24px 24px 20px;z-index:2;color:#fff;display:flex;flex-direction:column;gap:8px}
+.card-category-badge{display:inline-block;align-self:flex-start;padding:5px 14px;background:rgba(42,157,159,.9);color:#fff;border-radius:50px;font-size:11.5px;font-weight:700;backdrop-filter:blur(8px);margin-bottom:4px;box-shadow:0 2px 10px rgba(0,0,0,.2)}
+.card-title-overlay{font-size:18px;font-weight:900;line-height:1.4;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.5);margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-summary-overlay{font-size:13.5px;line-height:1.6;color:rgba(255,255,255,.92);text-shadow:0 1px 4px rgba(0,0,0,.5);margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-meta-overlay{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:8px;padding-top:10px;border-top:1px solid rgba(255,255,255,.2);font-size:12.5px;flex-wrap:wrap}
+.card-date-overlay{color:rgba(255,255,255,.85);display:flex;align-items:center;gap:5px}
+.card-read-more{color:var(--primary-light);font-weight:700;transition:all .3s}
+.article-card-img:hover .card-read-more{color:#fff;transform:translateX(-5px)}
+/* ===== States ===== */
+.loading-state{grid-column:1/-1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:64px 32px;gap:16px;color:var(--muted)}
+.loader{width:48px;height:48px;border:4px solid var(--primary-soft);border-top-color:var(--primary);border-radius:50%;animation:spin .9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.empty-state-home{grid-column:1/-1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:64px 32px;gap:16px;color:var(--muted);text-align:center;background:var(--bg-alt);border-radius:20px;border:2px dashed var(--border)}
+.empty-state-home p{font-size:16px;font-weight:600}
+.empty-state-home .big{font-size:48px;line-height:1}
+/* ===== Contact Bar ===== */
+.contact-bar{background:linear-gradient(135deg,var(--primary-light) 0%,var(--primary) 100%);padding:28px 32px;border-radius:20px;max-width:1300px;margin:32px auto}
+.contact-container{display:flex;align-items:center;gap:24px;flex-wrap:wrap;justify-content:space-between;max-width:1300px;margin:0 auto}
+.contact-icon{font-size:35px;background:rgba(255,255,255,.2);width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-text{flex:1;color:#fff;min-width:200px}
+.contact-text h3{font-size:18px;font-weight:900;margin-bottom:3px}
+.contact-text p{font-size:14px;opacity:.95}
+.btn-contact-bottom{display:inline-block;padding:14px 32px;background:#fff;color:var(--primary-dark);text-decoration:none;border-radius:50px;font-weight:700;font-size:14.5px;transition:.3s;white-space:nowrap}
+.btn-contact-bottom:hover{background:var(--primary-dark);color:#fff;transform:translateY(-2px)}
+/* ===== Footer ===== */
+.main-footer{background:#0F2B2C;color:#fff;padding:48px 32px 16px}
+.footer-container{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.1)}
+.footer-logo{display:inline-block;font-size:40px;color:var(--primary-light);font-weight:900;margin-bottom:8px}
+.footer-name{display:block;font-size:22px;font-weight:900;color:var(--primary-light);margin-bottom:8px}
+.footer-brand p{font-size:14.5px;color:#a8b5b5}
+.footer-links h4{color:var(--primary-light);font-size:17px;margin-bottom:16px}
+.footer-links a{display:block;color:#a8b5b5;text-decoration:none;padding:6px 0;font-size:14.5px;transition:.3s}
+.footer-links a:hover{color:var(--primary-light);transform:translateX(-5px)}
+.footer-bottom{text-align:center;padding-top:24px;color:#7a8888;font-size:13.5px}
+/* ===== Mobile ===== */
+@media(max-width:1024px){
+.header-container{padding:12px 16px;gap:16px}
+.main-nav a{padding:8px 11px;font-size:13.5px}
+.footer-container{grid-template-columns:1fr 1fr}
+.article-cards-grid{grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:22px}
+}
+@media(max-width:768px){
+.header-container{flex-wrap:wrap;padding:10px 16px;gap:10px;justify-content:center}
+.brand{flex:1;display:flex;justify-content:center}
+.brand-icon{width:42px;height:42px;font-size:24px}
+.brand-name{font-size:20px}
+.main-nav{order:3;width:100%}
+.main-nav ul{justify-content:center;flex-wrap:wrap;gap:2px}
+.main-nav a{padding:7px 10px;font-size:12.5px}
+.btn-contact{padding:8px 16px;font-size:12.5px}
+.hero-section{padding:32px 16px}
+.hero-text h1{font-size:28px}
+.hero-features{grid-template-columns:1fr;gap:16px}
+.action-bar{padding:20px;gap:13px}
+.action-field{min-width:100%}
+.btn-find{width:100%;text-align:center;align-self:stretch}
+.articles-section,.news-section-home{padding:48px 16px}
+.section-header{flex-direction:column;align-items:flex-start;gap:16px}
+.section-heading{font-size:22px}
+.article-cards-grid{grid-template-columns:1fr;gap:20px}
+.card-title-overlay{font-size:16px}
+.card-summary-overlay{font-size:12.5px}
+.card-overlay-content{padding:18px 18px 16px}
+.contact-bar{margin:32px 16px;padding:24px 20px;border-radius:16px}
+.contact-container{flex-direction:column;align-items:flex-start;gap:16px}
+.btn-contact-bottom{width:100%;text-align:center}
+.footer-container{grid-template-columns:1fr;gap:28px;text-align:center}
+.footer-links a:hover{transform:translateX(0)}
+}
+</style>
 </head>
 <body>
 
-    <!-- ===== الهيدر ===== -->
-    <header class="main-header">
-        <div class="header-container">
-            <div class="brand">
-                <a href="index.html" class="brand-link">
-                    <span class="brand-icon">✚</span>
-                    <span class="brand-name">Mendocino</span>
-                </a>
-            </div>
-
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="index.html" class="active">الرئيسية</a></li>
-                    <li class="dropdown">
-                        <a href="articles.html">الأقسام ▾</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="articles.html#scientific">مقالات علمية</a></li>
-                            <li><a href="articles.html#nutrition">تغذية</a></li>
-                            <li><a href="articles.html#heart">صحة القلب</a></li>
-                            <li><a href="articles.html#mental">الصحة النفسية</a></li>
-                            <li><a href="articles.html#children">صحة الأطفال</a></li>
-                            <li><a href="articles.html#chronic">الأمراض المزمنة</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="news.html">الأخبار</a></li>
-                    <li><a href="diseases.html">الأمراض</a></li>
-                    <li><a href="medicines.html">الأدوية</a></li>
-                    <li><a href="about.html">من أنا</a></li>
-                    <li><a href="contact.html">اتصل بي</a></li>
-                </ul>
-            </nav>
-
-            <a href="https://www.facebook.com/share/1KAexjGzm2/" target="_blank" class="btn-contact">
-                <span class="btn-icon">👤</span>
-                تواصل معي
+<!-- ===== Header ===== -->
+<header class="main-header">
+    <div class="header-container">
+        <div class="brand">
+            <a href="index.html" class="brand-link">
+                <span class="brand-icon">✚</span>
+                <span class="brand-name">Mendocino</span>
             </a>
         </div>
-    </header>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html" class="active">الرئيسية</a></li>
+                <li><a href="#articles-section">المقالات</a></li>
+                <li><a href="#news-section">الأخبار</a></li>
+                <li><a href="#diseases-section">الأمراض</a></li>
+                <li><a href="#medicines-section">الأدوية</a></li>
+                <li><a href="about.html">من أنا</a></li>
+                <li><a href="contact.html">اتصل بي</a></li>
+            </ul>
+        </nav>
+        <a href="https://www.facebook.com/share/1KAexjGzm2/" target="_blank" class="btn-contact">
+            <span>👤</span> تواصل معي
+        </a>
+    </div>
+</header>
 
-    <!-- ===== قسم Hero ===== -->
-    <section class="hero-section">
-        <div class="hero-container">
-            <div class="hero-text">
-                <h1>
-                    صحة أفضل<br>
-                    <span class="highlight">مستقبل أفضل</span>
-                </h1>
-                <p>معلومات طبية موثوقة ومقالات علمية موثقة من أجل حياة صحية أفضل.</p>
+<!-- ===== Hero ===== -->
+<section class="hero-section">
+    <div class="hero-container">
+        <div class="hero-text">
+            <h1>صحة أفضل<br><span class="highlight">مستقبل أفضل</span></h1>
+            <p>معلومات طبية موثوقة ومقالات علمية موثقة من أجل حياة صحية أفضل.</p>
+            <div class="hero-features">
+                <div class="feature-item">
+                    <div class="feature-icon">🩺</div>
+                    <h4>رعاية موثوقة</h4>
+                    <p>معايير طبية عالية</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔬</div>
+                    <h4>معلومات حديثة</h4>
+                    <p>من مصادر موثوقة</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💙</div>
+                    <h4>محتوى متميز</h4>
+                    <p>مقالات مختارة بعناية</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="action-bar">
+        <div class="action-field">
+            <label>تصفح المقالات</label>
+            <a href="#articles-section" class="action-input">اقرأ المقالات ←</a>
+        </div>
+        <div class="action-field">
+            <label>الأدوية</label>
+            <a href="#medicines-section" class="action-input">دليل الأدوية</a>
+        </div>
+        <div class="action-field">
+            <label>الأمراض</label>
+            <a href="#diseases-section" class="action-input">المعلومات الطبية</a>
+        </div>
+        <a href="#articles-section" class="btn-find">استكشف الآن</a>
+    </div>
+</section>
 
-                <div class="hero-features">
-                    <div class="feature-item">
-                        <div class="feature-icon">🩺</div>
-                        <h4>رعاية موثوقة</h4>
-                        <p>معايير طبية عالية</p>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">🔬</div>
-                        <h4>معلومات حديثة</h4>
-                        <p>من مصادر موثوقة</p>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">💙</div>
-                        <h4>محتوى متميز</h4>
-                        <p>مقالات مختارة بعناية</p>
+<!-- ===== المقالات ===== -->
+<section class="articles-section" id="articles-section">
+    <div class="section-header">
+        <div>
+            <h2 class="section-heading">أحدث المقالات</h2>
+            <p class="section-subheading">اختيارات جديدة من مقالاتنا العلمية</p>
+        </div>
+    </div>
+    <div class="article-cards-grid" id="articlesGrid">
+        <div class="loading-state"><div class="loader"></div><p>جارٍ تحميل المقالات...</p></div>
+    </div>
+</section>
+
+<!-- ===== الأخبار ===== -->
+<section class="articles-section news-section-home" id="news-section">
+    <div class="section-header">
+        <div>
+            <h2 class="section-heading">آخر الأخبار الطبية</h2>
+            <p class="section-subheading">مستجدات صحية من حول العالم</p>
+        </div>
+    </div>
+    <div class="article-cards-grid" id="newsGrid">
+        <div class="loading-state"><div class="loader"></div><p>جارٍ تحميل الأخبار...</p></div>
+    </div>
+</section>
+
+<!-- ===== الأمراض ===== -->
+<section class="articles-section" id="diseases-section">
+    <div class="section-header">
+        <div>
+            <h2 class="section-heading">الأمراض</h2>
+            <p class="section-subheading">معلومات طبية شاملة عن الأمراض</p>
+        </div>
+    </div>
+    <div class="article-cards-grid" id="diseasesGrid">
+        <div class="loading-state"><div class="loader"></div><p>جارٍ تحميل الأمراض...</p></div>
+    </div>
+</section>
+
+<!-- ===== الأدوية ===== -->
+<section class="articles-section news-section-home" id="medicines-section">
+    <div class="section-header">
+        <div>
+            <h2 class="section-heading">الأدوية</h2>
+            <p class="section-subheading">دليل شامل للأدوية الطبية</p>
+        </div>
+    </div>
+    <div class="article-cards-grid" id="medicinesGrid">
+        <div class="loading-state"><div class="loader"></div><p>جارٍ تحميل الأدوية...</p></div>
+    </div>
+</section>
+
+<!-- ===== Contact ===== -->
+<section class="contact-bar">
+    <div class="contact-container">
+        <div class="contact-icon">🎧</div>
+        <div class="contact-text">
+            <h3>نحن هنا لمساعدتك!</h3>
+            <p>تواصل معنا لأي استفسار أو اقتراح.</p>
+        </div>
+        <a href="https://www.facebook.com/share/1KAexjGzm2/" target="_blank" class="btn-contact-bottom">
+            تواصل معي الآن →
+        </a>
+    </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <span class="footer-logo">✚</span>
+            <span class="footer-name">Mendocino</span>
+            <p>منصة طبية شاملة للمعلومات والخدمات الصحية.</p>
+        </div>
+        <div class="footer-links">
+            <h4>الأقسام</h4>
+            <a href="#articles-section">المقالات</a>
+            <a href="#news-section">الأخبار</a>
+            <a href="#diseases-section">الأمراض</a>
+            <a href="#medicines-section">الأدوية</a>
+        </div>
+        <div class="footer-links">
+            <h4>روابط سريعة</h4>
+            <a href="index.html">الرئيسية</a>
+            <a href="about.html">من أنا</a>
+            <a href="contact.html">اتصل بي</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 Mendocino — جميع الحقوق محفوظة</p>
+    </div>
+</footer>
+
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SB_URL = 'https://lkfzibeuyurqkatexhzf.supabase.co';
+const SB_KEY = 'sb_publishable_bDRpST47zs7WWTJP1N1Q9w_SkJCRBPx';
+const sb = supabase.createClient(SB_URL, SB_KEY);
+
+// ===== Create Card =====
+function createCard(item, type) {
+    const imageUrl = item.image_url || '';
+    const title = item.title || item.name || 'بدون عنوان';
+    const rawContent = item.summary || item.description || item.content || '';
+    const summary = rawContent.replace(/<[^>]*>/g, '').substring(0, 130);
+    const category = item.category || '';
+    const date = item.created_at ? new Date(item.created_at).toISOString().slice(0,10) : '';
+
+    return `
+        <div class="article-card-img">
+            <div class="card-image-wrapper">
+                ${imageUrl 
+                    ? `<img src="${esc(imageUrl)}" alt="${esc(title)}" loading="lazy">` 
+                    : `<div class="no-image-placeholder">${type === 'article' ? '📝' : type === 'news' ? '📰' : type === 'disease' ? '🦠' : '💊'}</div>`
+                }
+                <div class="card-gradient-overlay"></div>
+                <div class="card-overlay-content">
+                    ${category ? `<span class="card-category-badge">${esc(category)}</span>` : ''}
+                    <h3 class="card-title-overlay">${esc(title)}</h3>
+                    ${summary ? `<p class="card-summary-overlay">${esc(summary)}${rawContent.length > 130 ? '...' : ''}</p>` : ''}
+                    <div class="card-meta-overlay">
+                        ${date ? `<span class="card-date-overlay">📅 ${date}</span>` : '<span></span>'}
+                        <span class="card-read-more">اقرأ المزيد →</span>
                     </div>
                 </div>
             </div>
         </div>
+    `;
+}
 
-        <div class="action-bar">
-            <div class="action-field">
-                <label>تصفح المقالات</label>
-                <a href="articles.html" class="action-input">اقرأ المقالات ←</a>
-            </div>
-            <div class="action-field">
-                <label>الأدوية</label>
-                <a href="medicines.html" class="action-input">دليل الأدوية</a>
-            </div>
-            <div class="action-field">
-                <label>الأمراض</label>
-                <a href="diseases.html" class="action-input">المعلومات الطبية</a>
-            </div>
-            <a href="articles.html" class="btn-find">استكشف الآن</a>
-        </div>
-    </section>
+// ===== Load =====
+async function loadSection(table, gridId, type) {
+    const grid = document.getElementById(gridId);
+    try {
+        const { data, error } = await sb.from(table).select('*').order('created_at', {ascending: false});
+        if (error) throw error;
 
-    <!-- ===== آخر المقالات ===== -->
-    <section class="articles-section">
-        <div class="section-header">
-            <div>
-                <h2 class="section-heading">أحدث المقالات</h2>
-                <p class="section-subheading">اختيارات جديدة من مقالاتنا العلمية</p>
-            </div>
-            <a href="articles.html" class="btn-view-all">عرض الكل ←</a>
-        </div>
+        const published = (data || []).filter(i => i.status !== 'draft');
 
-        <div class="article-cards-grid" id="articlesGrid">
-            <!-- تُحمَّل من Supabase -->
-            <div class="loading-state">
-                <div class="loader"></div>
-                <p>جارٍ تحميل المقالات...</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== آخر الأخبار ===== -->
-    <section class="articles-section news-section-home">
-        <div class="section-header">
-            <div>
-                <h2 class="section-heading">آخر الأخبار الطبية</h2>
-                <p class="section-subheading">مستجدات صحية من حول العالم</p>
-            </div>
-            <a href="news.html" class="btn-view-all">عرض الكل ←</a>
-        </div>
-
-        <div class="article-cards-grid" id="newsGrid">
-            <div class="loading-state">
-                <div class="loader"></div>
-                <p>جارٍ تحميل الأخبار...</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== شريط التواصل ===== -->
-    <section class="contact-bar">
-        <div class="contact-container">
-            <div class="contact-icon">🎧</div>
-            <div class="contact-text">
-                <h3>نحن هنا لمساعدتك!</h3>
-                <p>تواصل معنا لأي استفسار أو اقتراح.</p>
-            </div>
-            <a href="https://www.facebook.com/share/1KAexjGzm2/" target="_blank" class="btn-contact-bottom">
-                تواصل معي الآن →
-            </a>
-        </div>
-    </section>
-
-    <!-- ===== الفوتر ===== -->
-    <footer class="main-footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <span class="footer-logo">✚</span>
-                <span class="footer-name">Mendocino</span>
-                <p>منصة طبية شاملة للمعلومات والخدمات الصحية.</p>
-            </div>
-            <div class="footer-links">
-                <h4>الأقسام</h4>
-                <a href="articles.html#scientific">مقالات علمية</a>
-                <a href="articles.html#nutrition">تغذية</a>
-                <a href="articles.html#heart">صحة القلب</a>
-                <a href="articles.html#mental">الصحة النفسية</a>
-                <a href="news.html">الأخبار الطبية</a>
-            </div>
-            <div class="footer-links">
-                <h4>روابط سريعة</h4>
-                <a href="index.html">الرئيسية</a>
-                <a href="diseases.html">الأمراض</a>
-                <a href="medicines.html">الأدوية</a>
-                <a href="about.html">من أنا</a>
-                <a href="contact.html">اتصل بي</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2026 Mendocino — جميع الحقوق محفوظة</p>
-        </div>
-    </footer>
-
-    <script type="module">
-        import { fetchAll } from './supabase-config.js';
-
-        // ===== إنشاء بطاقة مقال =====
-        function createArticleCard(item, type = 'article') {
-            const imageUrl = item.image_url || '';
-            const summary = item.summary || (item.content ? item.content.replace(/<[^>]*>/g, '').substring(0, 100) + '...' : '');
-            const category = item.category || '';
-            const date = formatDate(item.created_at);
-            const url = type === 'news' ? `news.html#${item.id}` : `article.html?id=${item.id}`;
-
-            return `
-                <article class="article-card-img" onclick="window.location.href='${url}'">
-                    <div class="card-image-wrapper">
-                        ${imageUrl 
-                            ? `<img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(item.title)}" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('no-image');">` 
-                            : `<div class="no-image-placeholder">📷</div>`
-                        }
-                        <div class="card-gradient-overlay"></div>
-                        <div class="card-overlay-content">
-                            ${category ? `<span class="card-category-badge">${escapeHtml(category)}</span>` : ''}
-                            <h3 class="card-title-overlay">${escapeHtml(item.title || 'بدون عنوان')}</h3>
-                            ${summary ? `<p class="card-summary-overlay">${escapeHtml(summary.substring(0, 120))}${summary.length > 120 ? '...' : ''}</p>` : ''}
-                            <div class="card-meta-overlay">
-                                <span class="card-date-overlay">📅 ${date}</span>
-                                <span class="card-read-more">اقرأ المزيد →</span>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            `;
+        if (published.length === 0) {
+            grid.innerHTML = `<div class="empty-state-home"><span class="big">📭</span><p>لا توجد عناصر منشورة بعد</p></div>`;
+            return;
         }
 
-        // ===== تحميل المقالات =====
-        async function loadArticles() {
-            const grid = document.getElementById('articlesGrid');
-            try {
-                const items = await fetchAll('articles');
-                const published = items.filter(i => i.status !== 'draft').slice(0, 6);
+        grid.innerHTML = published.map(item => createCard(item, type)).join('');
+    } catch(e) {
+        console.error('Load error:', e);
+        grid.innerHTML = `<div class="empty-state-home"><span class="big">⚠️</span><p>تعذر التحميل: ${esc(e.message)}</p></div>`;
+    }
+}
 
-                if (published.length === 0) {
-                    grid.innerHTML = `
-                        <div class="empty-state-home">
-                            <span style="font-size: 3rem;">📝</span>
-                            <p>لا توجد مقالات منشورة بعد</p>
-                        </div>
-                    `;
-                    return;
-                }
+// ===== Helpers =====
+function esc(t) {
+    if (!t) return '';
+    const d = document.createElement('div');
+    d.textContent = t;
+    return d.innerHTML;
+}
 
-                grid.innerHTML = published.map(item => createArticleCard(item, 'article')).join('');
-            } catch (error) {
-                console.error('خطأ تحميل المقالات:', error);
-                grid.innerHTML = `<div class="empty-state-home"><p>تعذر تحميل المقالات</p></div>`;
-            }
-        }
-
-        // ===== تحميل الأخبار =====
-        async function loadNews() {
-            const grid = document.getElementById('newsGrid');
-            try {
-                const items = await fetchAll('news');
-                const published = items.filter(i => i.status !== 'draft').slice(0, 3);
-
-                if (published.length === 0) {
-                    grid.innerHTML = `
-                        <div class="empty-state-home">
-                            <span style="font-size: 3rem;">📰</span>
-                            <p>لا توجد أخبار منشورة بعد</p>
-                        </div>
-                    `;
-                    return;
-                }
-
-                grid.innerHTML = published.map(item => createArticleCard(item, 'news')).join('');
-            } catch (error) {
-                console.error('خطأ تحميل الأخبار:', error);
-                grid.innerHTML = `<div class="empty-state-home"><p>تعذر تحميل الأخبار</p></div>`;
-            }
-        }
-
-        // ===== أدوات مساعدة =====
-        function formatDate(timestamp) {
-            if (!timestamp) return '-';
-            const date = new Date(timestamp);
-            const y = date.getFullYear();
-            const m = String(date.getMonth() + 1).padStart(2, '0');
-            const d = String(date.getDate()).padStart(2, '0');
-            return `${y}-${m}-${d}`;
-        }
-
-        function escapeHtml(text) {
-            if (!text) return '';
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-
-        // ===== تشغيل التحميل =====
-        document.addEventListener('DOMContentLoaded', () => {
-            loadArticles();
-            loadNews();
-        });
-    </script>
-
+// ===== Init =====
+document.addEventListener('DOMContentLoaded', () => {
+    loadSection('articles', 'articlesGrid', 'article');
+    loadSection('news', 'newsGrid', 'news');
+    loadSection('diseases', 'diseasesGrid', 'disease');
+    loadSection('medicines', 'medicinesGrid', 'medicine');
+});
+</script>
 </body>
 </html>
