@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>لوحة التحكم | Mendocino</title>
-    <link rel="stylesheet" href="dashboard.css?v=3">
+    <link rel="stylesheet" href="dashboard.css?v=4">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    <!-- محرر النصوص الاحترافي Quill -->
     <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
 </head>
 <body>
@@ -157,12 +156,13 @@
             <div class="dashboard-card">
                 <div class="card-header">
                     <h3>إدارة المقالات العلمية</h3>
-                    <button class="btn-add" onclick="openEditor('article')">+ مقال جديد</button>
+                    <button class="btn-add" onclick="openEditor('articles')">+ مقال جديد</button>
                 </div>
                 <div class="table-wrapper">
                     <table class="data-table">
                         <thead>
                             <tr>
+                                <th>الصورة</th>
                                 <th>العنوان</th>
                                 <th>التصنيف</th>
                                 <th>التاريخ</th>
@@ -171,7 +171,7 @@
                             </tr>
                         </thead>
                         <tbody id="articlesTable">
-                            <tr><td colspan="5" class="empty-state">لا توجد مقالات بعد</td></tr>
+                            <tr><td colspan="6" class="empty-state">لا توجد مقالات بعد</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -189,6 +189,7 @@
                     <table class="data-table">
                         <thead>
                             <tr>
+                                <th>الصورة</th>
                                 <th>العنوان</th>
                                 <th>المصدر</th>
                                 <th>التاريخ</th>
@@ -197,7 +198,7 @@
                             </tr>
                         </thead>
                         <tbody id="newsTable">
-                            <tr><td colspan="5" class="empty-state">لا توجد أخبار بعد</td></tr>
+                            <tr><td colspan="6" class="empty-state">لا توجد أخبار بعد</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -209,15 +210,15 @@
             <div class="dashboard-card">
                 <div class="card-header">
                     <h3>قاعدة بيانات الأمراض</h3>
-                    <button class="btn-add" onclick="openEditor('disease')">+ إضافة مرض</button>
+                    <button class="btn-add" onclick="openEditor('diseases')">+ إضافة مرض</button>
                 </div>
                 <div class="table-wrapper">
                     <table class="data-table">
                         <thead>
                             <tr>
+                                <th>الصورة</th>
                                 <th>اسم المرض</th>
                                 <th>التصنيف</th>
-                                <th>الوصف</th>
                                 <th>إجراءات</th>
                             </tr>
                         </thead>
@@ -234,15 +235,15 @@
             <div class="dashboard-card">
                 <div class="card-header">
                     <h3>دليل الأدوية</h3>
-                    <button class="btn-add" onclick="openEditor('medicine')">+ إضافة دواء</button>
+                    <button class="btn-add" onclick="openEditor('medicines')">+ إضافة دواء</button>
                 </div>
                 <div class="table-wrapper">
                     <table class="data-table">
                         <thead>
                             <tr>
+                                <th>الصورة</th>
                                 <th>اسم الدواء</th>
                                 <th>التصنيف</th>
-                                <th>الاستخدامات</th>
                                 <th>إجراءات</th>
                             </tr>
                         </thead>
@@ -308,16 +309,14 @@
     <div class="modal" id="editorModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 id="modalTitle">إضافة مقال جديد</h2>
+                <h2 id="modalTitle">إضافة جديد</h2>
                 <button class="modal-close" onclick="closeEditor()">✕</button>
             </div>
 
             <div class="modal-body">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="editorTitle">العنوان *</label>
-                        <input type="text" id="editorTitle" placeholder="اكتب عنوان المقال...">
-                    </div>
+                <div class="form-group">
+                    <label for="editorTitle">العنوان *</label>
+                    <input type="text" id="editorTitle" placeholder="اكتب العنوان...">
                 </div>
 
                 <div class="form-row" id="articleFieldsOnly">
@@ -346,13 +345,57 @@
                     </div>
                 </div>
 
+                <!-- ===== رفع الصورة من الهاتف ===== -->
                 <div class="form-group">
-                    <label for="editorImage">رابط صورة (اختياري)</label>
-                    <input type="url" id="editorImage" placeholder="https://example.com/image.jpg">
+                    <label>صورة المقال / الخبر</label>
+                    <div class="image-upload-area" id="imageUploadArea">
+                        <input type="file" id="imageInput" accept="image/*" style="display:none;">
+                        
+                        <div class="upload-placeholder" id="uploadPlaceholder">
+                            <div class="upload-icon">📷</div>
+                            <div class="upload-text">
+                                <strong>اضغط لاختيار صورة</strong>
+                                <span>من الكاميرا أو معرض الصور</span>
+                            </div>
+                        </div>
+
+                        <div class="image-preview-container" id="imagePreviewContainer" style="display:none;">
+                            <img id="imagePreview" src="" alt="معاينة">
+                            <div class="preview-overlay">
+                                <button type="button" class="btn-remove-image" id="removeImageBtn" title="إزالة الصورة">🗑️</button>
+                                <button type="button" class="btn-change-image" id="changeImageBtn" title="تغيير الصورة">🔄</button>
+                            </div>
+                        </div>
+
+                        <div class="upload-progress" id="uploadProgress" style="display:none;">
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-fill" id="progressFill"></div>
+                            </div>
+                            <span class="progress-text" id="progressText">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== الموجز (يظهر على الصورة) ===== -->
+                <div class="form-group">
+                    <label for="editorSummary">
+                        موجز قصير 
+                        <span style="color: var(--text-muted); font-weight: 400; font-size: 0.78rem;">
+                            (سيظهر مظللاً على الصورة في الموقع)
+                        </span>
+                    </label>
+                    <textarea 
+                        id="editorSummary" 
+                        rows="2" 
+                        maxlength="150"
+                        placeholder="اكتب جملة قصيرة تظهر على الصورة..."
+                        style="resize: vertical; min-height: 70px;"
+                    ></textarea>
+                    <span class="char-counter" id="summaryCounter">0 / 150</span>
                 </div>
 
                 <div class="form-group">
-                    <label>المحتوى *</label>
+                    <label>المحتوى الكامل *</label>
                     <div id="quillEditor"></div>
                 </div>
 
@@ -398,10 +441,7 @@
         </div>
     </div>
 
-    <!-- ===== محرر Quill ===== -->
     <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
-
-    <!-- ===== سكربت لوحة التحكم ===== -->
-    <script src="dashboard.js?v=3" type="module"></script>
+    <script src="dashboard.js?v=4" type="module"></script>
 </body>
 </html>
