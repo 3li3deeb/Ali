@@ -17,35 +17,35 @@
         </div>
 
         <nav class="sidebar-nav">
-            <a href="#overview" class="nav-item active" data-section="overview">
+            <a href="#overview" class="nav-item active" data-section="overview" data-title="نظرة عامة" data-subtitle="مرحباً بك في لوحة تحكم Mendocino">
                 <span class="nav-icon">📊</span>
                 <span class="nav-label">نظرة عامة</span>
             </a>
-            <a href="#nursing" class="nav-item" data-section="nursing">
+            <a href="#nursing" class="nav-item" data-section="nursing" data-title="قسم التمريض" data-subtitle="إدارة قسم التمريض">
                 <span class="nav-icon">💉</span>
                 <span class="nav-label">قسم التمريض</span>
             </a>
-            <a href="#labs" class="nav-item" data-section="labs">
+            <a href="#labs" class="nav-item" data-section="labs" data-title="قسم المختبرات" data-subtitle="إدارة التحاليل المختبرية">
                 <span class="nav-icon">🧪</span>
                 <span class="nav-label">قسم المختبرات</span>
             </a>
-            <a href="#operations" class="nav-item" data-section="operations">
+            <a href="#operations" class="nav-item" data-section="operations" data-title="قسم العمليات" data-subtitle="إدارة جدول العمليات">
                 <span class="nav-icon">🏥</span>
                 <span class="nav-label">قسم العمليات</span>
             </a>
-            <a href="#radiology" class="nav-item" data-section="radiology">
+            <a href="#radiology" class="nav-item" data-section="radiology" data-title="الأشعة والسونار" data-subtitle="إدارة الفحوصات الإشعاعية">
                 <span class="nav-icon">📡</span>
                 <span class="nav-label">الأشعة والسونار</span>
             </a>
-            <a href="#diseases" class="nav-item" data-section="diseases">
+            <a href="#diseases" class="nav-item" data-section="diseases" data-title="الأمراض" data-subtitle="قاعدة بيانات الأمراض">
                 <span class="nav-icon">🦠</span>
                 <span class="nav-label">الأمراض</span>
             </a>
-            <a href="#medicines" class="nav-item" data-section="medicines">
+            <a href="#medicines" class="nav-item" data-section="medicines" data-title="الأدوية" data-subtitle="إدارة مخزون الأدوية">
                 <span class="nav-icon">💊</span>
                 <span class="nav-label">الأدوية</span>
             </a>
-            <a href="#settings" class="nav-item" data-section="settings">
+            <a href="#settings" class="nav-item" data-section="settings" data-title="الإعدادات" data-subtitle="إعدادات الحساب">
                 <span class="nav-icon">⚙️</span>
                 <span class="nav-label">الإعدادات</span>
             </a>
@@ -59,12 +59,15 @@
         </div>
     </aside>
 
-    <!-- ===== الزر للهاتف ===== -->
-    <button class="menu-toggle" id="menuToggle">
+    <!-- زر القائمة للهاتف -->
+    <button class="menu-toggle" id="menuToggle" aria-label="القائمة">
         <span></span>
         <span></span>
         <span></span>
     </button>
+
+    <!-- طبقة معتمة للهاتف -->
+    <div class="overlay" id="overlay"></div>
 
     <!-- ===== المحتوى الرئيسي ===== -->
     <main class="main-content">
@@ -97,7 +100,6 @@
         <!-- ===== قسم: نظرة عامة ===== -->
         <section class="content-section active" id="overview">
 
-            <!-- بطاقات الإحصائيات -->
             <div class="stats-cards">
                 <div class="stat-card">
                     <div class="stat-card-icon" style="background: linear-gradient(135deg, #2A9D9F, #4DB8BA);">👥</div>
@@ -136,7 +138,6 @@
                 </div>
             </div>
 
-            <!-- صف: رسم بياني + إجراءات سريعة -->
             <div class="dashboard-row">
                 <div class="dashboard-card chart-card">
                     <div class="card-header">
@@ -149,31 +150,31 @@
                     </div>
                     <div class="chart-bars">
                         <div class="bar-wrapper">
-                            <div class="bar" style="height: 60%;" data-value="120"></div>
+                            <div class="bar" style="height: 60%;"></div>
                             <span class="bar-label">السبت</span>
                         </div>
                         <div class="bar-wrapper">
-                            <div class="bar" style="height: 80%;" data-value="180"></div>
+                            <div class="bar" style="height: 80%;"></div>
                             <span class="bar-label">الأحد</span>
                         </div>
                         <div class="bar-wrapper">
-                            <div class="bar" style="height: 45%;" data-value="95"></div>
+                            <div class="bar" style="height: 45%;"></div>
                             <span class="bar-label">الاثنين</span>
                         </div>
                         <div class="bar-wrapper">
-                            <div class="bar" style="height: 90%;" data-value="210"></div>
+                            <div class="bar" style="height: 90%;"></div>
                             <span class="bar-label">الثلاثاء</span>
                         </div>
                         <div class="bar-wrapper">
-                            <div class="bar" style="height: 70%;" data-value="155"></div>
+                            <div class="bar" style="height: 70%;"></div>
                             <span class="bar-label">الأربعاء</span>
                         </div>
                         <div class="bar-wrapper">
-                            <div class="bar" style="height: 55%;" data-value="110"></div>
+                            <div class="bar" style="height: 55%;"></div>
                             <span class="bar-label">الخميس</span>
                         </div>
                         <div class="bar-wrapper">
-                            <div class="bar" style="height: 85%;" data-value="190"></div>
+                            <div class="bar" style="height: 85%;"></div>
                             <span class="bar-label">الجمعة</span>
                         </div>
                     </div>
@@ -204,7 +205,6 @@
                 </div>
             </div>
 
-            <!-- جدول آخر المواعيد -->
             <div class="dashboard-card">
                 <div class="card-header">
                     <h3>آخر المواعيد</h3>
@@ -264,7 +264,7 @@
 
         </section>
 
-        <!-- ===== قسم: قسم التمريض ===== -->
+        <!-- ===== قسم: التمريض ===== -->
         <section class="content-section" id="nursing">
             <div class="stats-cards">
                 <div class="stat-card">
