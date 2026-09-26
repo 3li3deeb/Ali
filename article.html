@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مقال | Mendocino</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#2A9D9F;--primary-dark:#1E7B7D;--primary-light:#4DB8BA;--primary-soft:#E8F6F6;--primary-lighter:#F3FAFA;--text:#1a1a1a;--muted:#6B7280;--bg:#fff;--bg-alt:#F8FAFB;--border:#E5E7EB}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direction:rtl;line-height:1.9;overflow-x:hidden}
+/* ===== Header ===== */
+.main-header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--border);z-index:1000;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.header-container{max-width:1300px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand-link{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand-icon{font-size:32px;color:var(--primary);background:var(--primary-soft);width:55px;height:55px;display:flex;align-items:center;justify-content:center;border-radius:12px;font-weight:900}
+.brand-name{font-size:26px;font-weight:900;color:var(--primary-dark)}
+.main-nav ul{display:flex;list-style:none;gap:4px;align-items:center;flex-wrap:wrap}
+.main-nav a{display:block;padding:10px 16px;color:var(--text);text-decoration:none;font-weight:600;font-size:14.5px;border-radius:8px;transition:.3s}
+.main-nav a:hover{color:var(--primary)}
+.btn-contact{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;background:var(--primary);color:#fff;text-decoration:none;border-radius:50px;font-weight:700;font-size:14.5px;transition:.3s;box-shadow:0 4px 15px rgba(42,157,159,.15)}
+.btn-contact:hover{background:var(--primary-dark);transform:translateY(-2px)}
+/* ===== Article Page ===== */
+.article-page{max-width:800px;margin:0 auto;padding:48px 32px}
+.back-btn{display:inline-flex;align-items:center;gap:8px;color:var(--primary-dark);text-decoration:none;font-weight:700;font-size:14px;padding:10px 20px;border-radius:50px;background:var(--primary-soft);transition:.3s;margin-bottom:32px}
+.back-btn:hover{background:var(--primary);color:#fff;transform:translateX(5px)}
+.article-category{display:inline-block;padding:6px 16px;background:var(--primary-soft);color:var(--primary-dark);border-radius:50px;font-size:13px;font-weight:700;margin-bottom:16px}
+.article-title{font-size:clamp(26px,4vw,42px);font-weight:900;line-height:1.3;margin-bottom:20px;color:var(--text)}
+.article-meta{display:flex;align-items:center;gap:20px;padding-bottom:24px;margin-bottom:24px;border-bottom:2px solid var(--border);flex-wrap:wrap;color:var(--muted);font-size:14px}
+.article-meta span{display:flex;align-items:center;gap:6px}
+.article-hero-image{width:100%;border-radius:20px;margin-bottom:32px;box-shadow:0 20px 50px rgba(0,0,0,.1);display:block;max-height:500px;object-fit:cover}
+.article-content{font-size:17px;line-height:2.1;color:var(--text)}
+.article-content h1,.article-content h2,.article-content h3{color:var(--primary-dark);margin:28px 0 16px;font-weight:900;line-height:1.3}
+.article-content h2{font-size:24px}
+.article-content h3{font-size:20px}
+.article-content p{margin-bottom:20px}
+.article-content ul,.article-content ol{padding-right:28px;margin-bottom:20px}
+.article-content li{margin-bottom:10px}
+.article-content blockquote{border-right:5px solid var(--primary);background:var(--primary-lighter);padding:20px 24px;border-radius:12px;margin:24px 0;font-style:italic;color:var(--primary-dark)}
+.article-content img{max-width:100%;height:auto;border-radius:12px;margin:20px 0}
+.article-content a{color:var(--primary);text-decoration:underline}
+.article-content code{background:var(--bg-alt);padding:3px 8px;border-radius:6px;font-family:monospace;font-size:14px;color:var(--primary-dark)}
+.article-content pre{background:var(--bg-alt);padding:20px;border-radius:12px;overflow-x:auto;margin:20px 0}
+/* ===== Action Buttons ===== */
+.article-actions{display:flex;gap:12px;flex-wrap:wrap;margin:40px 0 32px;padding:24px 0;border-top:2px solid var(--border);border-bottom:2px solid var(--border)}
+.action-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;background:var(--bg-alt);color:var(--text);border:1.5px solid var(--border);border-radius:50px;font-family:'Cairo',sans-serif;font-weight:700;font-size:14px;cursor:pointer;transition:.3s;text-decoration:none}
+.action-btn:hover{background:var(--primary-soft);border-color:var(--primary);color:var(--primary-dark);transform:translateY(-2px)}
+.action-btn.liked{background:#FEE2E2;border-color:#EF4444;color:#EF4444}
+.action-btn.facebook:hover{background:#1877F2;border-color:#1877F2;color:#fff}
+.action-btn.twitter:hover{background:#000;border-color:#000;color:#fff}
+.action-btn.whatsapp:hover{background:#25D366;border-color:#25D366;color:#fff}
+.action-btn.copy:hover{background:var(--primary-dark);border-color:var(--primary-dark);color:#fff}
+/* ===== Comments ===== */
+.comments-section{margin-top:48px}
+.comments-title{font-size:22px;font-weight:900;margin-bottom:24px;display:flex;align-items:center;gap:10px}
+.comments-title::before{content:'';width:5px;height:26px;background:linear-gradient(180deg,var(--primary),var(--primary-dark));border-radius:3px}
+.comment-form{background:var(--bg-alt);padding:24px;border-radius:16px;margin-bottom:32px}
+.comment-form input,.comment-form textarea{width:100%;padding:14px 18px;border:1.5px solid var(--border);border-radius:12px;font-family:'Cairo',sans-serif;font-size:15px;outline:none;background:#fff;transition:.2s;margin-bottom:14px;resize:vertical}
+.comment-form input:focus,.comment-form textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-soft)}
+.comment-form textarea{min-height:100px}
+.comment-form button{padding:14px 32px;background:var(--primary);color:#fff;border:none;border-radius:50px;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;cursor:pointer;transition:.3s;box-shadow:0 4px 15px rgba(42,157,159,.3)}
+.comment-form button:hover{background:var(--primary-dark);transform:translateY(-2px)}
+.comment-form button:disabled{opacity:.6;cursor:not-allowed}
+.comments-list{display:flex;flex-direction:column;gap:16px}
+.comment{background:#fff;padding:20px;border-radius:14px;border:1px solid var(--border);transition:.3s}
+.comment:hover{border-color:var(--primary-light);box-shadow:0 8px 25px rgba(0,0,0,.05)}
+.comment-head{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.comment-avatar{width:44px;height:44px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;flex-shrink:0}
+.comment-name{font-weight:700;font-size:15px}
+.comment-date{font-size:12px;color:var(--muted)}
+.comment-text{color:var(--text);font-size:15px;line-height:1.8}
+/* ===== States ===== */
+.loading-page{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:20px;color:var(--muted)}
+.loader{width:60px;height:60px;border:5px solid var(--primary-soft);border-top-color:var(--primary);border-radius:50%;animation:spin .9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.not-found{text-align:center;padding:80px 20px;color:var(--muted)}
+.not-found .big{font-size:80px;line-height:1;margin-bottom:20px}
+.not-found h2{font-size:26px;font-weight:900;color:var(--text);margin-bottom:12px}
+.not-found a{display:inline-block;margin-top:24px;padding:14px 32px;background:var(--primary);color:#fff;text-decoration:none;border-radius:50px;font-weight:700}
+/* ===== Footer ===== */
+.main-footer{background:#0F2B2C;color:#fff;padding:48px 32px 16px;margin-top:64px}
+.footer-container{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.1)}
+.footer-logo{display:inline-block;font-size:40px;color:var(--primary-light);font-weight:900;margin-bottom:8px}
+.footer-name{display:block;font-size:22px;font-weight:900;color:var(--primary-light);margin-bottom:8px}
+.footer-brand p{font-size:14.5px;color:#a8b5b5}
+.footer-links h4{color:var(--primary-light);font-size:17px;margin-bottom:16px}
+.footer-links a{display:block;color:#a8b5b5;text-decoration:none;padding:6px 0;font-size:14.5px;transition:.3s}
+.footer-links a:hover{color:var(--primary-light);transform:translateX(-5px)}
+.footer-bottom{text-align:center;padding-top:24px;color:#7a8888;font-size:13.5px}
+/* ===== Toast ===== */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--primary-dark);color:#fff;padding:14px 28px;border-radius:50px;font-weight:700;font-size:14.5px;box-shadow:0 10px 40px rgba(0,0,0,.3);z-index:2000;opacity:0;transition:.4s;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+/* ===== Mobile ===== */
+@media(max-width:768px){
+.header-container{padding:10px 16px;flex-wrap:wrap;justify-content:center;gap:10px}
+.brand{flex:1;display:flex;justify-content:center}
+.brand-icon{width:42px;height:42px;font-size:24px}
+.brand-name{font-size:20px}
+.main-nav{order:3;width:100%}
+.main-nav ul{justify-content:center;gap:2px}
+.main-nav a{padding:7px 10px;font-size:12.5px}
+.btn-contact{padding:8px 16px;font-size:12.5px}
+.article-page{padding:32px 16px}
+.article-title{font-size:24px}
+.article-content{font-size:15.5px}
+.article-actions{justify-content:center}
+.action-btn{flex:1;min-width:calc(50% - 6px);justify-content:center;padding:12px 14px;font-size:13px}
+.footer-container{grid-template-columns:1fr;gap:28px;text-align:center}
+.footer-links a:hover{transform:translateX(0)}
+}
+</style>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="header-container">
+        <div class="brand">
+            <a href="index.html" class="brand-link">
+                <span class="brand-icon">✚</span>
+                <span class="brand-name">Mendocino</span>
+            </a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="index.html#articles-section">المقالات</a></li>
+                <li><a href="index.html#news-section">الأخبار</a></li>
+                <li><a href="index.html#diseases-section">الأمراض</a></li>
+                <li><a href="index.html#medicines-section">الأدوية</a></li>
+            </ul>
+        </nav>
+        <a href="https://www.facebook.com/share/1KAexjGzm2/" target="_blank" class="btn-contact">
+            <span>👤</span> تواصل معي
+        </a>
+    </div>
+</header>
+
+<main class="article-page" id="articlePage">
+    <div class="loading-page">
+        <div class="loader"></div>
+        <p>جارٍ تحميل المقال...</p>
+    </div>
+</main>
+
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <span class="footer-logo">✚</span>
+            <span class="footer-name">Mendocino</span>
+            <p>منصة طبية شاملة للمعلومات والخدمات الصحية.</p>
+        </div>
+        <div class="footer-links">
+            <h4>الأقسام</h4>
+            <a href="index.html#articles-section">المقالات</a>
+            <a href="index.html#news-section">الأخبار</a>
+            <a href="index.html#diseases-section">الأمراض</a>
+            <a href="index.html#medicines-section">الأدوية</a>
+        </div>
+        <div class="footer-links">
+            <h4>روابط سريعة</h4>
+            <a href="index.html">الرئيسية</a>
+            <a href="about.html">من أنا</a>
+            <a href="contact.html">اتصل بي</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 Mendocino — جميع الحقوق محفوظة</p>
+    </div>
+</footer>
+
+<div class="toast" id="toast">تم النسخ!</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SB_URL = 'https://lkfzibeuyurqkatexhzf.supabase.co';
+const SB_KEY = 'sb_publishable_bDRpST47zs7WWTJP1N1Q9w_SkJCRBPx';
+const sb = supabase.createClient(SB_URL, SB_KEY);
+
+// ===== Helpers =====
+function esc(t) {
+    if (!t) return '';
+    const d = document.createElement('div');
+    d.textContent = t;
+    return d.innerHTML;
+}
+function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2000);
+}
+function formatDate(ts) {
+    if (!ts) return '';
+    const d = new Date(ts);
+    const months = ['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+    return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+}
+
+// ===== Get URL params =====
+const params = new URLSearchParams(window.location.search);
+const articleId = params.get('id');
+const articleType = params.get('type') || 'articles'; // articles / news / diseases / medicines
+
+// ===== Load Article =====
+async function loadArticle() {
+    const container = document.getElementById('articlePage');
+    
+    if (!articleId) {
+        container.innerHTML = `
+            <div class="not-found">
+                <div class="big">🔍</div>
+                <h2>لم يتم تحديد المقال</h2>
+                <p>الرجاء العودة للرئيسية واختيار مقال</p>
+                <a href="index.html">العودة للرئيسية</a>
+            </div>`;
+        return;
+    }
+
+    try {
+        const { data, error } = await sb.from(articleType).select('*').eq('id', articleId).single();
+        if (error) throw error;
+        if (!data) throw new Error('المقال غير موجود');
+
+        const title = data.title || data.name || 'بدون عنوان';
+        const content = data.content || data.description || '';
+        const category = data.category || '';
+        const imageUrl = data.image_url || '';
+        const date = formatDate(data.created_at);
+        const views = data.views || 0;
+
+        // زيادة عدد المشاهدات
+        try {
+            await sb.from(articleType).update({ views: views + 1 }).eq('id', articleId);
+        } catch(e) { console.log('Views update failed'); }
+
+        document.title = title + ' | Mendocino';
+
+        container.innerHTML = `
+            <a href="index.html" class="back-btn">→ العودة للرئيسية</a>
+            
+            ${category ? `<span class="article-category">${esc(category)}</span>` : ''}
+            <h1 class="article-title">${esc(title)}</h1>
+            
+            <div class="article-meta">
+                ${date ? `<span>📅 ${date}</span>` : ''}
+                <span>👁️ ${views + 1} مشاهدة</span>
+            </div>
+
+            ${imageUrl ? `<img src="${esc(imageUrl)}" alt="${esc(title)}" class="article-hero-image" onerror="this.style.display='none'">` : ''}
+
+            <div class="article-content" id="articleContent">
+                ${content}
+            </div>
+
+            <div class="article-actions">
+                <button class="action-btn" id="likeBtn" onclick="toggleLike()">
+                    <span>❤️</span> <span id="likeText">إعجاب</span>
+                    <span id="likeCount">(${data.likes || 0})</span>
+                </button>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}" target="_blank" class="action-btn facebook">
+                    <span>📘</span> فيسبوك
+                </a>
+                <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(title)}" target="_blank" class="action-btn twitter">
+                    <span>𝕏</span> تويتر
+                </a>
+                <a href="https://wa.me/?text=${encodeURIComponent(title + ' ' + window.location.href)}" target="_blank" class="action-btn whatsapp">
+                    <span>💬</span> واتساب
+                </a>
+                <button class="action-btn copy" onclick="copyLink()">
+                    <span>🔗</span> نسخ الرابط
+                </button>
+            </div>
+
+            <section class="comments-section">
+                <h3 class="comments-title">التعليقات</h3>
+                
+                <div class="comment-form">
+                    <input type="text" id="commentName" placeholder="اسمك..." maxlength="50">
+                    <textarea id="commentText" placeholder="اكتب تعليقك..." maxlength="500"></textarea>
+                    <button id="submitComment" onclick="submitComment()">إرسال التعليق</button>
+                </div>
+
+                <div class="comments-list" id="commentsList">
+                    <div class="loading-page"><div class="loader"></div></div>
+                </div>
+            </section>
+        `;
+
+        loadComments();
+        checkLiked();
+
+    } catch(e) {
+        console.error(e);
+        container.innerHTML = `
+            <div class="not-found">
+                <div class="big">⚠️</div>
+                <h2>تعذر تحميل المقال</h2>
+                <p>${esc(e.message)}</p>
+                <a href="index.html">العودة للرئيسية</a>
+            </div>`;
+    }
+}
+
+// ===== Comments =====
+async function loadComments() {
+    const list = document.getElementById('commentsList');
+    if (!list) return;
+
+    try {
+        const { data, error } = await sb
+            .from('comments')
+            .select('*')
+            .eq('article_id', articleId)
+            .eq('approved', true)
+            .order('created_at', { ascending: false });
+
+        if (error) throw error;
+
+        if (!data || data.length === 0) {
+            list.innerHTML = '<p style="text-align:center;color:var(--muted);padding:24px">لا توجد تعليقات بعد. كن أول من يعلّق!</p>';
+            return;
+        }
+
+        list.innerHTML = data.map(c => `
+            <div class="comment">
+                <div class="comment-head">
+                    <div class="comment-avatar">${esc((c.name || 'ز').charAt(0))}</div>
+                    <div>
+                        <div class="comment-name">${esc(c.name || 'زائر')}</div>
+                        <div class="comment-date">${formatDate(c.created_at)}</div>
+                    </div>
+                </div>
+                <div class="comment-text">${esc(c.text || '')}</div>
+            </div>
+        `).join('');
+    } catch(e) {
+        console.error(e);
+        list.innerHTML = '<p style="text-align:center;color:#EF4444;padding:24px">تعذر تحميل التعليقات</p>';
+    }
+}
+
+async function submitComment() {
+    const nameEl = document.getElementById('commentName');
+    const textEl = document.getElementById('commentText');
+    const btn = document.getElementById('submitComment');
+
+    const name = nameEl.value.trim();
+    const text = textEl.value.trim();
+
+    if (!name) { showToast('⚠️ اكتب اسمك'); nameEl.focus(); return; }
+    if (!text) { showToast('⚠️ اكتب تعليقك'); textEl.focus(); return; }
+
+    btn.disabled = true;
+    btn.textContent = 'جارٍ الإرسال...';
+
+    try {
+        const { error } = await sb.from('comments').insert([{
+            article_id: parseInt(articleId),
+            name: name,
+            text: text,
+            approved: false
+        }]);
+
+        if (error) throw error;
+
+        showToast('✅ تم إرسال تعليقك وسيظهر بعد الموافقة');
+        nameEl.value = '';
+        textEl.value = '';
+    } catch(e) {
+        showToast('❌ فشل الإرسال: ' + e.message);
+    } finally {
+        btn.disabled = false;
+        btn.textContent = 'إرسال التعليق';
+    }
+}
+
+// ===== Likes =====
+async function toggleLike() {
+    const btn = document.getElementById('likeBtn');
+    const likedKey = 'liked_' + articleType + '_' + articleId;
+    const isLiked = localStorage.getItem(likedKey) === '1';
+
+    try {
+        const { data } = await sb.from(articleType).select('likes').eq('id', articleId).single();
+        const currentLikes = data?.likes || 0;
+
+        if (isLiked) {
+            // إزالة الإعجاب
+            await sb.from(articleType).update({ likes: Math.max(0, currentLikes - 1) }).eq('id', articleId);
+            localStorage.removeItem(likedKey);
+            btn.classList.remove('liked');
+            document.getElementById('likeText').textContent = 'إعجاب';
+            document.getElementById('likeCount').textContent = `(${Math.max(0, currentLikes - 1)})`;
+        } else {
+            // إضافة الإعجاب
+            await sb.from(articleType).update({ likes: currentLikes + 1 }).eq('id', articleId);
+            localStorage.setItem(likedKey, '1');
+            btn.classList.add('liked');
+            document.getElementById('likeText').textContent = 'أعجبني';
+            document.getElementById('likeCount').textContent = `(${currentLikes + 1})`;
+        }
+    } catch(e) {
+        showToast('فشل: ' + e.message);
+    }
+}
+
+function checkLiked() {
+    const likedKey = 'liked_' + articleType + '_' + articleId;
+    if (localStorage.getItem(likedKey) === '1') {
+        const btn = document.getElementById('likeBtn');
+        if (btn) {
+            btn.classList.add('liked');
+            const t = document.getElementById('likeText');
+            if (t) t.textContent = 'أعجبني';
+        }
+    }
+}
+
+// ===== Copy Link =====
+function copyLink() {
+    const url = window.location.href;
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(() => showToast('✅ تم نسخ الرابط'));
+    } else {
+        const input = document.createElement('input');
+        input.value = url;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+        showToast('✅ تم نسخ الرابط');
+    }
+}
+
+// ===== Start =====
+loadArticle();
+</script>
+</body>
+</html>
