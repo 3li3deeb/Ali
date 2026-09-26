@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>لوحة التحكم | Mendocino</title>
-    <link rel="stylesheet" href="dashboard.css?v=1">
+    <link rel="stylesheet" href="dashboard.css?v=2">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -17,35 +17,35 @@
         </div>
 
         <nav class="sidebar-nav">
-            <a href="#overview" class="nav-item active" data-section="overview" data-title="نظرة عامة" data-subtitle="مرحباً بك في لوحة تحكم Mendocino">
+            <a href="#overview" class="nav-item active" data-section="overview" data-title="نظرة عامة" data-subtitle="ملخص شامل لأداء الموقع">
                 <span class="nav-icon">📊</span>
                 <span class="nav-label">نظرة عامة</span>
             </a>
-            <a href="#nursing" class="nav-item" data-section="nursing" data-title="قسم التمريض" data-subtitle="إدارة قسم التمريض">
-                <span class="nav-icon">💉</span>
-                <span class="nav-label">قسم التمريض</span>
+            <a href="#articles" class="nav-item" data-section="articles" data-title="المقالات العلمية" data-subtitle="إدارة المقالات المنشورة">
+                <span class="nav-icon">📝</span>
+                <span class="nav-label">المقالات</span>
             </a>
-            <a href="#labs" class="nav-item" data-section="labs" data-title="قسم المختبرات" data-subtitle="إدارة التحاليل المختبرية">
-                <span class="nav-icon">🧪</span>
-                <span class="nav-label">قسم المختبرات</span>
-            </a>
-            <a href="#operations" class="nav-item" data-section="operations" data-title="قسم العمليات" data-subtitle="إدارة جدول العمليات">
-                <span class="nav-icon">🏥</span>
-                <span class="nav-label">قسم العمليات</span>
-            </a>
-            <a href="#radiology" class="nav-item" data-section="radiology" data-title="الأشعة والسونار" data-subtitle="إدارة الفحوصات الإشعاعية">
-                <span class="nav-icon">📡</span>
-                <span class="nav-label">الأشعة والسونار</span>
+            <a href="#news" class="nav-item" data-section="news" data-title="الأخبار الطبية" data-subtitle="إدارة الأخبار الصحية">
+                <span class="nav-icon">📰</span>
+                <span class="nav-label">الأخبار الطبية</span>
             </a>
             <a href="#diseases" class="nav-item" data-section="diseases" data-title="الأمراض" data-subtitle="قاعدة بيانات الأمراض">
                 <span class="nav-icon">🦠</span>
                 <span class="nav-label">الأمراض</span>
             </a>
-            <a href="#medicines" class="nav-item" data-section="medicines" data-title="الأدوية" data-subtitle="إدارة مخزون الأدوية">
+            <a href="#medicines" class="nav-item" data-section="medicines" data-title="الأدوية" data-subtitle="دليل الأدوية الطبية">
                 <span class="nav-icon">💊</span>
                 <span class="nav-label">الأدوية</span>
             </a>
-            <a href="#settings" class="nav-item" data-section="settings" data-title="الإعدادات" data-subtitle="إعدادات الحساب">
+            <a href="#categories" class="nav-item" data-section="categories" data-title="التصنيفات" data-subtitle="إدارة تصنيفات المحتوى">
+                <span class="nav-icon">🏷️</span>
+                <span class="nav-label">التصنيفات</span>
+            </a>
+            <a href="#comments" class="nav-item" data-section="comments" data-title="التعليقات" data-subtitle="مراجعة تعليقات القراء">
+                <span class="nav-icon">💬</span>
+                <span class="nav-label">التعليقات</span>
+            </a>
+            <a href="#settings" class="nav-item" data-section="settings" data-title="الإعدادات" data-subtitle="إعدادات الموقع والحساب">
                 <span class="nav-icon">⚙️</span>
                 <span class="nav-label">الإعدادات</span>
             </a>
@@ -59,14 +59,12 @@
         </div>
     </aside>
 
-    <!-- زر القائمة للهاتف -->
     <button class="menu-toggle" id="menuToggle" aria-label="القائمة">
         <span></span>
         <span></span>
         <span></span>
     </button>
 
-    <!-- طبقة معتمة للهاتف -->
     <div class="overlay" id="overlay"></div>
 
     <!-- ===== المحتوى الرئيسي ===== -->
@@ -76,22 +74,22 @@
         <header class="topbar">
             <div class="topbar-left">
                 <h1 class="page-title" id="pageTitle">نظرة عامة</h1>
-                <p class="page-subtitle" id="pageSubtitle">مرحباً بك في لوحة تحكم Mendocino</p>
+                <p class="page-subtitle" id="pageSubtitle">ملخص شامل لأداء الموقع</p>
             </div>
             <div class="topbar-right">
                 <div class="search-box">
                     <span class="search-icon">🔍</span>
-                    <input type="text" placeholder="ابحث...">
+                    <input type="text" placeholder="ابحث في المحتوى...">
                 </div>
                 <button class="icon-btn" title="الإشعارات">
                     🔔
-                    <span class="badge">3</span>
+                    <span class="badge">5</span>
                 </button>
                 <div class="user-profile">
                     <div class="user-avatar">A</div>
                     <div class="user-info">
                         <span class="user-name">علي</span>
-                        <span class="user-role">مدير</span>
+                        <span class="user-role">محرر</span>
                     </div>
                 </div>
             </div>
@@ -102,38 +100,38 @@
 
             <div class="stats-cards">
                 <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #2A9D9F, #4DB8BA);">👥</div>
+                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #2A9D9F, #4DB8BA);">📝</div>
                     <div class="stat-card-body">
-                        <span class="stat-card-label">إجمالي المرضى</span>
-                        <span class="stat-card-value" data-count="2458">0</span>
-                        <span class="stat-card-change positive">+12% هذا الشهر</span>
+                        <span class="stat-card-label">إجمالي المقالات</span>
+                        <span class="stat-card-value" data-count="248">0</span>
+                        <span class="stat-card-change positive">+12 هذا الشهر</span>
                     </div>
                 </div>
 
                 <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #F59E0B, #FBBF24);">📅</div>
+                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #F59E0B, #FBBF24);">📰</div>
                     <div class="stat-card-body">
-                        <span class="stat-card-label">المواعيد اليوم</span>
-                        <span class="stat-card-value" data-count="87">0</span>
-                        <span class="stat-card-change positive">+5% عن أمس</span>
+                        <span class="stat-card-label">الأخبار المنشورة</span>
+                        <span class="stat-card-value" data-count="86">0</span>
+                        <span class="stat-card-change positive">+5 هذا الأسبوع</span>
                     </div>
                 </div>
 
                 <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #10B981, #34D399);">🏥</div>
+                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #10B981, #34D399);">👁️</div>
                     <div class="stat-card-body">
-                        <span class="stat-card-label">العمليات الجارية</span>
-                        <span class="stat-card-value" data-count="12">0</span>
-                        <span class="stat-card-change">3 حالات طارئة</span>
+                        <span class="stat-card-label">مشاهدات اليوم</span>
+                        <span class="stat-card-value" data-count="15420">0</span>
+                        <span class="stat-card-change positive">+8% عن أمس</span>
                     </div>
                 </div>
 
                 <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #EF4444, #F87171);">⚠️</div>
+                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #8B5CF6, #A78BFA);">👥</div>
                     <div class="stat-card-body">
-                        <span class="stat-card-label">حالات حرجة</span>
-                        <span class="stat-card-value" data-count="4">0</span>
-                        <span class="stat-card-change negative">يحتاج متابعة</span>
+                        <span class="stat-card-label">الزوار النشطون</span>
+                        <span class="stat-card-value" data-count="342">0</span>
+                        <span class="stat-card-change positive">+15% الآن</span>
                     </div>
                 </div>
             </div>
@@ -141,7 +139,7 @@
             <div class="dashboard-row">
                 <div class="dashboard-card chart-card">
                     <div class="card-header">
-                        <h3>إحصائيات الأسبوع</h3>
+                        <h3>مشاهدات آخر 7 أيام</h3>
                         <select class="card-select">
                             <option>آخر 7 أيام</option>
                             <option>آخر 30 يوم</option>
@@ -185,21 +183,21 @@
                         <h3>إجراءات سريعة</h3>
                     </div>
                     <div class="actions-grid">
-                        <a href="#" class="action-btn">
-                            <span class="action-icon">➕</span>
-                            <span>مريض جديد</span>
+                        <a href="#articles" class="action-btn">
+                            <span class="action-icon">✍️</span>
+                            <span>مقال جديد</span>
                         </a>
-                        <a href="#" class="action-btn">
-                            <span class="action-icon">📅</span>
-                            <span>موعد جديد</span>
+                        <a href="#news" class="action-btn">
+                            <span class="action-icon">📢</span>
+                            <span>خبر جديد</span>
                         </a>
-                        <a href="#" class="action-btn">
+                        <a href="#medicines" class="action-btn">
                             <span class="action-icon">💊</span>
                             <span>إضافة دواء</span>
                         </a>
-                        <a href="#" class="action-btn">
-                            <span class="action-icon">📊</span>
-                            <span>تقرير جديد</span>
+                        <a href="#diseases" class="action-btn">
+                            <span class="action-icon">🦠</span>
+                            <span>إضافة مرض</span>
                         </a>
                     </div>
                 </div>
@@ -207,256 +205,180 @@
 
             <div class="dashboard-card">
                 <div class="card-header">
-                    <h3>آخر المواعيد</h3>
-                    <a href="#" class="card-link">عرض الكل ←</a>
+                    <h3>أحدث المقالات</h3>
+                    <a href="#articles" class="card-link">عرض الكل ←</a>
                 </div>
                 <div class="table-wrapper">
                     <table class="data-table">
                         <thead>
                             <tr>
-                                <th>المريض</th>
-                                <th>القسم</th>
-                                <th>الطبيب</th>
-                                <th>الوقت</th>
+                                <th>العنوان</th>
+                                <th>التصنيف</th>
+                                <th>الكاتب</th>
+                                <th>المشاهدات</th>
                                 <th>الحالة</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><span class="user-cell"><span class="mini-avatar">أ</span>أحمد محمد</span></td>
-                                <td>التمريض</td>
+                                <td>أحدث تطورات علاج السكري</td>
+                                <td>علمية</td>
+                                <td>د. علي</td>
+                                <td>1,245</td>
+                                <td><span class="status-badge success">منشور</span></td>
+                            </tr>
+                            <tr>
+                                <td>أهمية التغذية الصحية</td>
+                                <td>تغذية</td>
                                 <td>د. سارة</td>
-                                <td>10:30 ص</td>
-                                <td><span class="status-badge success">مؤكد</span></td>
+                                <td>892</td>
+                                <td><span class="status-badge success">منشور</span></td>
                             </tr>
                             <tr>
-                                <td><span class="user-cell"><span class="mini-avatar">ف</span>فاطمة علي</span></td>
-                                <td>المختبرات</td>
+                                <td>الوقاية من أمراض القلب</td>
+                                <td>قلب</td>
                                 <td>د. خالد</td>
-                                <td>11:00 ص</td>
-                                <td><span class="status-badge warning">قيد الانتظار</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="user-cell"><span class="mini-avatar">م</span>محمد حسن</span></td>
-                                <td>الأشعة</td>
-                                <td>د. ليلى</td>
-                                <td>11:45 ص</td>
-                                <td><span class="status-badge success">مؤكد</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="user-cell"><span class="mini-avatar">ن</span>نور الهدى</span></td>
-                                <td>العمليات</td>
-                                <td>د. عمر</td>
-                                <td>12:30 م</td>
-                                <td><span class="status-badge danger">عاجل</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="user-cell"><span class="mini-avatar">ح</span>حسين كريم</span></td>
-                                <td>الأدوية</td>
-                                <td>د. رنا</td>
-                                <td>1:15 م</td>
-                                <td><span class="status-badge success">مؤكد</span></td>
+                                <td>567</td>
+                                <td><span class="status-badge warning">مسودة</span></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
 
-        </section>
-
-        <!-- ===== قسم: التمريض ===== -->
-        <section class="content-section" id="nursing">
-            <div class="stats-cards">
-                <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #2A9D9F, #4DB8BA);">💉</div>
-                    <div class="stat-card-body">
-                        <span class="stat-card-label">مرضى القسم</span>
-                        <span class="stat-card-value" data-count="156">0</span>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #10B981, #34D399);">👨‍⚕️</div>
-                    <div class="stat-card-body">
-                        <span class="stat-card-label">الممرضون</span>
-                        <span class="stat-card-value" data-count="24">0</span>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #F59E0B, #FBBF24);">📋</div>
-                    <div class="stat-card-body">
-                        <span class="stat-card-label">المهام اليومية</span>
-                        <span class="stat-card-value" data-count="42">0</span>
-                    </div>
-                </div>
-            </div>
-
             <div class="dashboard-card">
                 <div class="card-header">
-                    <h3>سجل مرضى التمريض</h3>
-                    <button class="btn-add">+ إضافة مريض</button>
+                    <h3>الأخبار الطبية الحديثة</h3>
+                    <a href="#news" class="card-link">عرض الكل ←</a>
                 </div>
                 <div class="table-wrapper">
                     <table class="data-table">
                         <thead>
                             <tr>
-                                <th>الاسم</th>
-                                <th>الغرفة</th>
-                                <th>الحالة</th>
+                                <th>الخبر</th>
+                                <th>المصدر</th>
                                 <th>التاريخ</th>
+                                <th>الحالة</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>أحمد محمد</td>
-                                <td>101</td>
-                                <td><span class="status-badge success">مستقر</span></td>
+                                <td>اكتشاف علاج جديد لفيروس الكبد</td>
+                                <td>منظمة الصحة</td>
                                 <td>2026-09-25</td>
+                                <td><span class="status-badge success">منشور</span></td>
                             </tr>
                             <tr>
-                                <td>فاطمة علي</td>
-                                <td>102</td>
-                                <td><span class="status-badge warning">تحت المراقبة</span></td>
-                                <td>2026-09-25</td>
-                            </tr>
-                            <tr>
-                                <td>محمد حسن</td>
-                                <td>105</td>
-                                <td><span class="status-badge success">مستقر</span></td>
+                                <td>تحذير من تفشي الإنفلونزا الموسمية</td>
+                                <td>وزارة الصحة</td>
                                 <td>2026-09-24</td>
+                                <td><span class="status-badge success">منشور</span></td>
+                            </tr>
+                            <tr>
+                                <td>دراسة جديدة حول فوائد الصيام</td>
+                                <td>مجلة طبية</td>
+                                <td>2026-09-23</td>
+                                <td><span class="status-badge warning">مسودة</span></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+
         </section>
 
-        <!-- ===== قسم: المختبرات ===== -->
-        <section class="content-section" id="labs">
+        <!-- ===== قسم: المقالات ===== -->
+        <section class="content-section" id="articles">
             <div class="stats-cards">
                 <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #2A9D9F, #4DB8BA);">🧪</div>
+                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #2A9D9F, #4DB8BA);">✅</div>
                     <div class="stat-card-body">
-                        <span class="stat-card-label">التحاليل اليوم</span>
-                        <span class="stat-card-value" data-count="68">0</span>
+                        <span class="stat-card-label">مقالات منشورة</span>
+                        <span class="stat-card-value" data-count="218">0</span>
                     </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #10B981, #34D399);">✅</div>
+                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #F59E0B, #FBBF24);">📝</div>
                     <div class="stat-card-body">
-                        <span class="stat-card-label">النتائج الجاهزة</span>
-                        <span class="stat-card-value" data-count="52">0</span>
+                        <span class="stat-card-label">مسودات</span>
+                        <span class="stat-card-value" data-count="30">0</span>
                     </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #F59E0B, #FBBF24);">⏳</div>
+                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #10B981, #34D399);">👁️</div>
                     <div class="stat-card-body">
-                        <span class="stat-card-label">قيد التحليل</span>
-                        <span class="stat-card-value" data-count="16">0</span>
+                        <span class="stat-card-label">إجمالي القراءات</span>
+                        <span class="stat-card-value" data-count="85420">0</span>
                     </div>
                 </div>
             </div>
 
             <div class="dashboard-card">
                 <div class="card-header">
-                    <h3>التحاليل المخبرية</h3>
+                    <h3>إدارة المقالات العلمية</h3>
+                    <button class="btn-add">+ مقال جديد</button>
                 </div>
                 <div class="table-wrapper">
                     <table class="data-table">
                         <thead>
                             <tr>
-                                <th>رقم العينة</th>
-                                <th>المريض</th>
-                                <th>نوع التحليل</th>
+                                <th>العنوان</th>
+                                <th>التصنيف</th>
+                                <th>الكاتب</th>
+                                <th>التاريخ</th>
+                                <th>المشاهدات</th>
                                 <th>الحالة</th>
+                                <th>إجراءات</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>#LAB-2451</td>
-                                <td>أحمد محمد</td>
-                                <td>تحليل دم شامل</td>
-                                <td><span class="status-badge success">جاهز</span></td>
+                                <td>أحدث تطورات علاج السكري</td>
+                                <td>علمية</td>
+                                <td>د. علي</td>
+                                <td>2026-09-25</td>
+                                <td>1,245</td>
+                                <td><span class="status-badge success">منشور</span></td>
+                                <td>
+                                    <button class="btn-mini">✏️</button>
+                                    <button class="btn-mini danger">🗑️</button>
+                                </td>
                             </tr>
                             <tr>
-                                <td>#LAB-2452</td>
-                                <td>فاطمة علي</td>
-                                <td>سكر الدم</td>
-                                <td><span class="status-badge warning">قيد التحليل</span></td>
+                                <td>أهمية التغذية الصحية</td>
+                                <td>تغذية</td>
+                                <td>د. سارة</td>
+                                <td>2026-09-24</td>
+                                <td>892</td>
+                                <td><span class="status-badge success">منشور</span></td>
+                                <td>
+                                    <button class="btn-mini">✏️</button>
+                                    <button class="btn-mini danger">🗑️</button>
+                                </td>
                             </tr>
                             <tr>
-                                <td>#LAB-2453</td>
-                                <td>محمد حسن</td>
-                                <td>وظائف الكبد</td>
-                                <td><span class="status-badge success">جاهز</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== قسم: العمليات ===== -->
-        <section class="content-section" id="operations">
-            <div class="stats-cards">
-                <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #2A9D9F, #4DB8BA);">🏥</div>
-                    <div class="stat-card-body">
-                        <span class="stat-card-label">عمليات اليوم</span>
-                        <span class="stat-card-value" data-count="8">0</span>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #10B981, #34D399);">✅</div>
-                    <div class="stat-card-body">
-                        <span class="stat-card-label">مكتملة</span>
-                        <span class="stat-card-value" data-count="5">0</span>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #F59E0B, #FBBF24);">🕐</div>
-                    <div class="stat-card-body">
-                        <span class="stat-card-label">قادمة</span>
-                        <span class="stat-card-value" data-count="3">0</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="dashboard-card">
-                <div class="card-header">
-                    <h3>جدول العمليات</h3>
-                </div>
-                <div class="table-wrapper">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>المريض</th>
-                                <th>نوع العملية</th>
-                                <th>الطبيب</th>
-                                <th>الوقت</th>
-                                <th>الحالة</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>نور الهدى</td>
-                                <td>عملية قلب مفتوح</td>
-                                <td>د. عمر</td>
-                                <td>10:00 ص</td>
-                                <td><span class="status-badge danger">جارية</span></td>
-                            </tr>
-                            <tr>
-                                <td>حسين كريم</td>
-                                <td>استئصال مرارة</td>
-                                <td>د. رنا</td>
-                                <td>12:00 م</td>
-                                <td><span class="status-badge warning">قادمة</span></td>
-                            </tr>
-                            <tr>
-                                <td>سارة أحمد</td>
-                                <td>عملية غضروف</td>
+                                <td>الوقاية من أمراض القلب</td>
+                                <td>قلب</td>
                                 <td>د. خالد</td>
-                                <td>2:00 م</td>
-                                <td><span class="status-badge warning">قادمة</span></td>
+                                <td>2026-09-23</td>
+                                <td>567</td>
+                                <td><span class="status-badge warning">مسودة</span></td>
+                                <td>
+                                    <button class="btn-mini">✏️</button>
+                                    <button class="btn-mini danger">🗑️</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>فيروسات الجهاز التنفسي</td>
+                                <td>علمية</td>
+                                <td>د. ليلى</td>
+                                <td>2026-09-22</td>
+                                <td>1,890</td>
+                                <td><span class="status-badge success">منشور</span></td>
+                                <td>
+                                    <button class="btn-mini">✏️</button>
+                                    <button class="btn-mini danger">🗑️</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -464,68 +386,82 @@
             </div>
         </section>
 
-        <!-- ===== قسم: الأشعة والسونار ===== -->
-        <section class="content-section" id="radiology">
+        <!-- ===== قسم: الأخبار الطبية ===== -->
+        <section class="content-section" id="news">
             <div class="stats-cards">
                 <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #2A9D9F, #4DB8BA);">📡</div>
+                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #2A9D9F, #4DB8BA);">📰</div>
                     <div class="stat-card-body">
-                        <span class="stat-card-label">فحوصات اليوم</span>
-                        <span class="stat-card-value" data-count="45">0</span>
+                        <span class="stat-card-label">أخبار منشورة</span>
+                        <span class="stat-card-value" data-count="86">0</span>
                     </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #10B981, #34D399);">🖼️</div>
+                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #F59E0B, #FBBF24);">🔥</div>
                     <div class="stat-card-body">
-                        <span class="stat-card-label">صور جاهزة</span>
-                        <span class="stat-card-value" data-count="38">0</span>
+                        <span class="stat-card-label">أخبار عاجلة</span>
+                        <span class="stat-card-value" data-count="12">0</span>
                     </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #F59E0B, #FBBF24);">⏳</div>
+                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #10B981, #34D399);">👁️</div>
                     <div class="stat-card-body">
-                        <span class="stat-card-label">قيد الانتظار</span>
-                        <span class="stat-card-value" data-count="7">0</span>
+                        <span class="stat-card-label">قراءات الأخبار</span>
+                        <span class="stat-card-value" data-count="42310">0</span>
                     </div>
                 </div>
             </div>
 
             <div class="dashboard-card">
                 <div class="card-header">
-                    <h3>جدول الفحوصات</h3>
+                    <h3>إدارة الأخبار الطبية</h3>
+                    <button class="btn-add">+ خبر جديد</button>
                 </div>
                 <div class="table-wrapper">
                     <table class="data-table">
                         <thead>
                             <tr>
-                                <th>المريض</th>
-                                <th>نوع الفحص</th>
-                                <th>الفني</th>
-                                <th>الوقت</th>
+                                <th>العنوان</th>
+                                <th>المصدر</th>
+                                <th>التاريخ</th>
+                                <th>المشاهدات</th>
                                 <th>الحالة</th>
+                                <th>إجراءات</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>أحمد محمد</td>
-                                <td>أشعة سينية</td>
-                                <td>م. علي</td>
-                                <td>9:30 ص</td>
-                                <td><span class="status-badge success">جاهز</span></td>
+                                <td>اكتشاف علاج جديد لفيروس الكبد</td>
+                                <td>منظمة الصحة</td>
+                                <td>2026-09-25</td>
+                                <td>2,340</td>
+                                <td><span class="status-badge success">منشور</span></td>
+                                <td>
+                                    <button class="btn-mini">✏️</button>
+                                    <button class="btn-mini danger">🗑️</button>
+                                </td>
                             </tr>
                             <tr>
-                                <td>فاطمة علي</td>
-                                <td>سونار بطن</td>
-                                <td>م. هدى</td>
-                                <td>10:15 ص</td>
-                                <td><span class="status-badge success">جاهز</span></td>
+                                <td>تحذير من تفشي الإنفلونزا الموسمية</td>
+                                <td>وزارة الصحة</td>
+                                <td>2026-09-24</td>
+                                <td>1,890</td>
+                                <td><span class="status-badge danger">عاجل</span></td>
+                                <td>
+                                    <button class="btn-mini">✏️</button>
+                                    <button class="btn-mini danger">🗑️</button>
+                                </td>
                             </tr>
                             <tr>
-                                <td>محمد حسن</td>
-                                <td>رنين مغناطيسي</td>
-                                <td>م. ياسر</td>
-                                <td>11:00 ص</td>
-                                <td><span class="status-badge warning">قيد الانتظار</span></td>
+                                <td>دراسة جديدة حول فوائد الصيام</td>
+                                <td>مجلة طبية</td>
+                                <td>2026-09-23</td>
+                                <td>945</td>
+                                <td><span class="status-badge warning">مسودة</span></td>
+                                <td>
+                                    <button class="btn-mini">✏️</button>
+                                    <button class="btn-mini danger">🗑️</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -546,22 +482,22 @@
                 <div class="stat-card">
                     <div class="stat-card-icon" style="background: linear-gradient(135deg, #10B981, #34D399);">✅</div>
                     <div class="stat-card-body">
-                        <span class="stat-card-label">تحت العلاج</span>
-                        <span class="stat-card-value" data-count="98">0</span>
+                        <span class="stat-card-label">معلومات محدثة</span>
+                        <span class="stat-card-value" data-count="138">0</span>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-card-icon" style="background: linear-gradient(135deg, #F59E0B, #FBBF24);">📖</div>
                     <div class="stat-card-body">
-                        <span class="stat-card-label">معلومات محدثة</span>
-                        <span class="stat-card-value" data-count="142">0</span>
+                        <span class="stat-card-label">قيد المراجعة</span>
+                        <span class="stat-card-value" data-count="4">0</span>
                     </div>
                 </div>
             </div>
 
             <div class="dashboard-card">
                 <div class="card-header">
-                    <h3>قائمة الأمراض</h3>
+                    <h3>قاعدة بيانات الأمراض</h3>
                     <button class="btn-add">+ إضافة مرض</button>
                 </div>
                 <div class="table-wrapper">
@@ -570,28 +506,45 @@
                             <tr>
                                 <th>اسم المرض</th>
                                 <th>التصنيف</th>
-                                <th>عدد الحالات</th>
+                                <th>عدد المقالات</th>
+                                <th>المشاهدات</th>
                                 <th>الحالة</th>
+                                <th>إجراءات</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>السكري</td>
                                 <td>مزمن</td>
-                                <td>45</td>
-                                <td><span class="status-badge warning">نشط</span></td>
+                                <td>24</td>
+                                <td>8,540</td>
+                                <td><span class="status-badge success">محدّث</span></td>
+                                <td>
+                                    <button class="btn-mini">✏️</button>
+                                    <button class="btn-mini danger">🗑️</button>
+                                </td>
                             </tr>
                             <tr>
                                 <td>ضغط الدم</td>
                                 <td>مزمن</td>
-                                <td>62</td>
-                                <td><span class="status-badge warning">نشط</span></td>
+                                <td>18</td>
+                                <td>6,210</td>
+                                <td><span class="status-badge success">محدّث</span></td>
+                                <td>
+                                    <button class="btn-mini">✏️</button>
+                                    <button class="btn-mini danger">🗑️</button>
+                                </td>
                             </tr>
                             <tr>
                                 <td>الإنفلونزا</td>
                                 <td>موسمي</td>
-                                <td>28</td>
-                                <td><span class="status-badge success">موسمي</span></td>
+                                <td>12</td>
+                                <td>4,320</td>
+                                <td><span class="status-badge warning">قيد المراجعة</span></td>
+                                <td>
+                                    <button class="btn-mini">✏️</button>
+                                    <button class="btn-mini danger">🗑️</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -612,14 +565,14 @@
                 <div class="stat-card">
                     <div class="stat-card-icon" style="background: linear-gradient(135deg, #10B981, #34D399);">✅</div>
                     <div class="stat-card-body">
-                        <span class="stat-card-label">متوفر</span>
+                        <span class="stat-card-label">معلومات مكتملة</span>
                         <span class="stat-card-value" data-count="480">0</span>
                     </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #EF4444, #F87171);">⚠️</div>
+                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #F59E0B, #FBBF24);">📝</div>
                     <div class="stat-card-body">
-                        <span class="stat-card-label">نواقص</span>
+                        <span class="stat-card-label">تحتاج تحديث</span>
                         <span class="stat-card-value" data-count="44">0</span>
                     </div>
                 </div>
@@ -627,7 +580,7 @@
 
             <div class="dashboard-card">
                 <div class="card-header">
-                    <h3>قائمة الأدوية</h3>
+                    <h3>دليل الأدوية</h3>
                     <button class="btn-add">+ إضافة دواء</button>
                 </div>
                 <div class="table-wrapper">
@@ -636,28 +589,45 @@
                             <tr>
                                 <th>اسم الدواء</th>
                                 <th>التصنيف</th>
-                                <th>الكمية</th>
+                                <th>الاستخدامات</th>
+                                <th>المشاهدات</th>
                                 <th>الحالة</th>
+                                <th>إجراءات</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>باراسيتامول</td>
                                 <td>مسكن</td>
-                                <td>450</td>
-                                <td><span class="status-badge success">متوفر</span></td>
+                                <td>خافض حرارة، مسكن ألم</td>
+                                <td>3,450</td>
+                                <td><span class="status-badge success">مكتمل</span></td>
+                                <td>
+                                    <button class="btn-mini">✏️</button>
+                                    <button class="btn-mini danger">🗑️</button>
+                                </td>
                             </tr>
                             <tr>
                                 <td>أموكسيسيلين</td>
                                 <td>مضاد حيوي</td>
-                                <td>28</td>
-                                <td><span class="status-badge warning">كمية منخفضة</span></td>
+                                <td>علاج البكتيريا</td>
+                                <td>2,180</td>
+                                <td><span class="status-badge success">مكتمل</span></td>
+                                <td>
+                                    <button class="btn-mini">✏️</button>
+                                    <button class="btn-mini danger">🗑️</button>
+                                </td>
                             </tr>
                             <tr>
                                 <td>ميتفورمين</td>
                                 <td>سكري</td>
-                                <td>0</td>
-                                <td><span class="status-badge danger">ناقص</span></td>
+                                <td>خفض سكر الدم</td>
+                                <td>1,920</td>
+                                <td><span class="status-badge warning">يحتاج تحديث</span></td>
+                                <td>
+                                    <button class="btn-mini">✏️</button>
+                                    <button class="btn-mini danger">🗑️</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -665,36 +635,136 @@
             </div>
         </section>
 
-        <!-- ===== قسم: الإعدادات ===== -->
-        <section class="content-section" id="settings">
+        <!-- ===== قسم: التصنيفات ===== -->
+        <section class="content-section" id="categories">
             <div class="dashboard-card">
                 <div class="card-header">
-                    <h3>إعدادات الحساب</h3>
+                    <h3>تصنيفات المحتوى</h3>
+                    <button class="btn-add">+ تصنيف جديد</button>
                 </div>
-                <div class="settings-form">
-                    <div class="form-group">
-                        <label>الاسم الكامل</label>
-                        <input type="text" value="علي">
+                <div class="categories-grid">
+                    <div class="category-item">
+                        <span class="category-item-icon">🔬</span>
+                        <h4>مقالات علمية</h4>
+                        <span class="category-item-count">68 مقال</span>
+                        <div class="category-item-actions">
+                            <button class="btn-mini">✏️</button>
+                            <button class="btn-mini danger">🗑️</button>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>البريد الإلكتروني</label>
-                        <input type="email" value="ali@example.com">
+                    <div class="category-item">
+                        <span class="category-item-icon">🥗</span>
+                        <h4>تغذية</h4>
+                        <span class="category-item-count">42 مقال</span>
+                        <div class="category-item-actions">
+                            <button class="btn-mini">✏️</button>
+                            <button class="btn-mini danger">🗑️</button>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>رقم الهاتف</label>
-                        <input type="tel" value="+964 000 000 0000">
+                    <div class="category-item">
+                        <span class="category-item-icon">❤️</span>
+                        <h4>صحة القلب</h4>
+                        <span class="category-item-count">35 مقال</span>
+                        <div class="category-item-actions">
+                            <button class="btn-mini">✏️</button>
+                            <button class="btn-mini danger">🗑️</button>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>الموقع</label>
-                        <input type="text" value="العراق">
+                    <div class="category-item">
+                        <span class="category-item-icon">🧠</span>
+                        <h4>الصحة النفسية</h4>
+                        <span class="category-item-count">28 مقال</span>
+                        <div class="category-item-actions">
+                            <button class="btn-mini">✏️</button>
+                            <button class="btn-mini danger">🗑️</button>
+                        </div>
                     </div>
-                    <button class="btn-save">حفظ التغييرات</button>
+                    <div class="category-item">
+                        <span class="category-item-icon">👶</span>
+                        <h4>صحة الأطفال</h4>
+                        <span class="category-item-count">24 مقال</span>
+                        <div class="category-item-actions">
+                            <button class="btn-mini">✏️</button>
+                            <button class="btn-mini danger">🗑️</button>
+                        </div>
+                    </div>
+                    <div class="category-item">
+                        <span class="category-item-icon">💉</span>
+                        <h4>الأمراض المزمنة</h4>
+                        <span class="category-item-count">51 مقال</span>
+                        <div class="category-item-actions">
+                            <button class="btn-mini">✏️</button>
+                            <button class="btn-mini danger">🗑️</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-    </main>
+        <!-- ===== قسم: التعليقات ===== -->
+        <section class="content-section" id="comments">
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #2A9D9F, #4DB8BA);">💬</div>
+                    <div class="stat-card-body">
+                        <span class="stat-card-label">إجمالي التعليقات</span>
+                        <span class="stat-card-value" data-count="1842">0</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #F59E0B, #FBBF24);">⏳</div>
+                    <div class="stat-card-body">
+                        <span class="stat-card-label">بانتظار المراجعة</span>
+                        <span class="stat-card-value" data-count="12">0</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #10B981, #34D399);">✅</div>
+                    <div class="stat-card-body">
+                        <span class="stat-card-label">تمت الموافقة</span>
+                        <span class="stat-card-value" data-count="1820">0</span>
+                    </div>
+                </div>
+            </div>
 
-    <script src="dashboard.js?v=1"></script>
-</body>
-</html>
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h3>التعليقات الحديثة</h3>
+                </div>
+                <div class="comments-list">
+                    <div class="comment-item">
+                        <div class="comment-avatar">أ</div>
+                        <div class="comment-body">
+                            <div class="comment-header">
+                                <strong>أحمد محمد</strong>
+                                <span class="comment-date">قبل 5 دقائق</span>
+                            </div>
+                            <p>مقال رائع، استفدت كثيراً. شكراً على المجهود.</p>
+                            <div class="comment-actions">
+                                <button class="btn-mini success">✓ موافقة</button>
+                                <button class="btn-mini danger">✗ رفض</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comment-item">
+                        <div class="comment-avatar">ف</div>
+                        <div class="comment-body">
+                            <div class="comment-header">
+                                <strong>فاطمة علي</strong>
+                                <span class="comment-date">قبل 20 دقيقة</span>
+                            </div>
+                            <p>هل يمكن إضافة مصادر علمية للمقال؟</p>
+                            <div class="comment-actions">
+                                <button class="btn-mini success">✓ موافقة</button>
+                                <button class="btn-mini danger">✗ رفض</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comment-item">
+                        <div class="comment-avatar">م</div>
+                        <div class="comment-body">
+                            <div class="comment-header">
+                                <strong>محمد حسن</strong>
+                                <span class="comment-date">قبل ساعة
