@@ -3,14 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>لوحة التحكم | Mendocino</title>
+<title>لوحة التحكم | Medicino</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
 <style>
 :root{--primary:#2A9D9F;--primary-dark:#1E7B7D;--primary-soft:#E8F6F6;--text:#1a1a1a;--muted:#6B7280;--bg:#F4F7F9;--card:#fff;--border:#E5E7EB;--success:#10B981;--warning:#F59E0B;--danger:#EF4444;--sidebar:#0F2B2C}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direction:rtl;line-height:1.7}
-/* ===== Sidebar ===== */
 .sidebar{position:fixed;top:0;right:0;width:260px;height:100vh;background:var(--sidebar);color:#fff;display:flex;flex-direction:column;z-index:100;overflow-y:auto;transition:transform .3s}
 .sidebar-brand{display:flex;align-items:center;gap:12px;padding:20px;border-bottom:1px solid rgba(255,255,255,.1)}
 .brand-icon{font-size:28px;color:#4DB8BA;background:rgba(77,184,186,.2);width:48px;height:48px;display:flex;align-items:center;justify-content:center;border-radius:12px;font-weight:900}
@@ -23,36 +22,30 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
 .sidebar-footer{padding:16px 20px;border-top:1px solid rgba(255,255,255,.1)}
 .back-link{display:flex;align-items:center;justify-content:center;gap:8px;color:#4DB8BA;text-decoration:none;font-weight:600;font-size:14px;padding:10px}
 .back-link:hover{color:#fff}
-/* ===== Menu Toggle ===== */
 .menu-toggle{display:none;position:fixed;top:16px;right:16px;z-index:200;width:46px;height:46px;background:var(--primary);border:none;border-radius:12px;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:4px;box-shadow:0 4px 15px rgba(42,157,159,.4)}
 .menu-toggle span{display:block;width:20px;height:2.5px;background:#fff;border-radius:3px}
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:99}
 .overlay.active{display:block}
-/* ===== Main ===== */
 .main-content{margin-right:260px;padding:24px 32px;min-height:100vh}
 .topbar{display:flex;align-items:center;justify-content:space-between;gap:24px;background:var(--card);padding:20px 24px;border-radius:16px;margin-bottom:32px;flex-wrap:wrap;box-shadow:0 1px 3px rgba(0,0,0,.05)}
 .page-title{font-size:24px;font-weight:900}
 .page-subtitle{font-size:13px;color:var(--muted)}
 .user-avatar{width:40px;height:40px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px}
-/* ===== Sections ===== */
 .content-section{display:none}
 .content-section.active{display:block;animation:fadeIn .4s}
 @keyframes fadeIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
-/* ===== Stats ===== */
 .stats-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:24px}
 .stat-card{background:var(--card);border-radius:16px;padding:20px;display:flex;align-items:center;gap:16px;border:1px solid var(--border);transition:.3s}
 .stat-card:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(0,0,0,.08)}
 .stat-card-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
 .stat-card-label{font-size:13px;color:var(--muted);font-weight:600}
 .stat-card-value{font-size:28px;font-weight:900;line-height:1.1}
-/* ===== Cards ===== */
 .card{background:var(--card);border-radius:16px;padding:24px;border:1px solid var(--border);margin-bottom:24px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
 .card-header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px;flex-wrap:wrap}
 .card-header h3{font-size:18px;font-weight:900;display:flex;align-items:center;gap:10px}
 .card-header h3::before{content:'';width:4px;height:22px;background:linear-gradient(180deg,var(--primary),var(--primary-dark));border-radius:3px}
 .btn-add{padding:10px 22px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;border:none;border-radius:50px;font-family:'Cairo',sans-serif;font-weight:700;font-size:14px;cursor:pointer;transition:.2s;box-shadow:0 4px 12px rgba(42,157,159,.3)}
 .btn-add:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(42,157,159,.4)}
-/* ===== Tables ===== */
 .table-wrap{overflow-x:auto;border-radius:12px}
 table{width:100%;border-collapse:collapse;min-width:600px}
 thead{background:var(--bg)}
@@ -71,7 +64,6 @@ tbody tr:last-child td{border-bottom:none}
 .btn-mini{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--bg);border:1px solid var(--border);cursor:pointer;font-size:16px;transition:.2s;margin-left:4px}
 .btn-mini:hover{background:var(--primary-soft);border-color:var(--primary);transform:translateY(-2px)}
 .btn-mini.danger:hover{background:rgba(239,68,68,.1);border-color:var(--danger)}
-/* ===== Modal ===== */
 .modal{display:none;position:fixed;inset:0;background:rgba(15,43,44,.7);backdrop-filter:blur(6px);z-index:1000;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
 .modal.active{display:flex}
 .modal-content{background:#fff;border-radius:20px;width:100%;max-width:800px;max-height:92vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,.2);animation:slideUp .4s}
@@ -93,7 +85,6 @@ tbody tr:last-child td{border-bottom:none}
 .btn-save-modal{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;box-shadow:0 4px 15px rgba(42,157,159,.3)}
 .btn-save-modal:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 25px rgba(42,157,159,.4)}
 .btn-save-modal:disabled{opacity:.6;cursor:not-allowed}
-/* ===== Image Upload ===== */
 .img-upload{position:relative;width:100%;min-height:200px;border:2px dashed var(--border);border-radius:14px;background:var(--bg);cursor:pointer;transition:.2s;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .img-upload:hover{border-color:var(--primary);background:var(--primary-soft)}
 .upload-placeholder{display:flex;flex-direction:column;align-items:center;gap:8px;padding:32px 16px;text-align:center;pointer-events:none}
@@ -108,18 +99,16 @@ tbody tr:last-child td{border-bottom:none}
 .progress-bar{flex:1;height:6px;background:var(--primary-soft);border-radius:3px;overflow:hidden}
 .progress-fill{height:100%;width:0;background:var(--primary);transition:width .3s}
 .char-counter{font-size:11px;color:var(--muted);text-align:left;padding-left:8px}
-/* ===== Spinner ===== */
 .spinner{display:none;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;margin-left:8px}
 .spinner.show{display:inline-block}
 @keyframes spin{to{transform:rotate(360deg)}}
-/* ===== Categories ===== */
 .categories-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
 .category-item{background:var(--bg);border:1.5px solid var(--border);border-radius:14px;padding:24px;text-align:center;transition:.2s}
 .category-item:hover{border-color:var(--primary);background:var(--primary-soft);transform:translateY(-4px)}
 .category-item .icon{font-size:40px;display:block;margin-bottom:12px}
 .category-item h4{font-size:16px;font-weight:700;margin-bottom:4px}
 .category-item .count{font-size:13px;color:var(--muted)}
-/* ===== Mobile ===== */
+.hint{font-size:11.5px;color:var(--muted);font-weight:400;padding-right:4px}
 @media(max-width:768px){
 .sidebar{transform:translateX(100%)}
 .sidebar.open{transform:translateX(0)}
@@ -142,7 +131,7 @@ tbody tr:last-child td{border-bottom:none}
 <aside class="sidebar" id="sidebar">
     <div class="sidebar-brand">
         <span class="brand-icon">✚</span>
-        <span class="brand-name">Mendocino</span>
+        <span class="brand-name">Medicino</span>
     </div>
     <nav class="sidebar-nav">
         <a class="nav-item active" data-sec="overview" data-title="نظرة عامة" data-sub="ملخص الموقع"><span class="nav-icon">📊</span>نظرة عامة</a>
@@ -167,7 +156,6 @@ tbody tr:last-child td{border-bottom:none}
         <div class="user-avatar">A</div>
     </header>
 
-    <!-- نظرة عامة -->
     <section class="content-section active" id="overview">
         <div class="stats-cards">
             <div class="stat-card">
@@ -198,7 +186,6 @@ tbody tr:last-child td{border-bottom:none}
         </div>
     </section>
 
-    <!-- المقالات -->
     <section class="content-section" id="articles">
         <div class="card">
             <div class="card-header">
@@ -214,7 +201,6 @@ tbody tr:last-child td{border-bottom:none}
         </div>
     </section>
 
-    <!-- الأخبار -->
     <section class="content-section" id="news">
         <div class="card">
             <div class="card-header">
@@ -230,7 +216,6 @@ tbody tr:last-child td{border-bottom:none}
         </div>
     </section>
 
-    <!-- الأمراض -->
     <section class="content-section" id="diseases">
         <div class="card">
             <div class="card-header">
@@ -246,7 +231,6 @@ tbody tr:last-child td{border-bottom:none}
         </div>
     </section>
 
-    <!-- الأدوية -->
     <section class="content-section" id="medicines">
         <div class="card">
             <div class="card-header">
@@ -262,7 +246,6 @@ tbody tr:last-child td{border-bottom:none}
         </div>
     </section>
 
-    <!-- التصنيفات -->
     <section class="content-section" id="categories">
         <div class="card">
             <div class="card-header"><h3>التصنيفات</h3></div>
@@ -270,7 +253,6 @@ tbody tr:last-child td{border-bottom:none}
         </div>
     </section>
 
-    <!-- التعليقات -->
     <section class="content-section" id="comments">
         <div class="card">
             <div class="card-header"><h3>التعليقات</h3></div>
@@ -305,7 +287,7 @@ tbody tr:last-child td{border-bottom:none}
                     </select>
                 </div>
                 <div class="form-group" id="sourceGroup" style="display:none">
-                    <label>المصدر</label>
+                    <label>المصدر (نص قصير)</label>
                     <input type="text" id="fSource" placeholder="اختياري...">
                 </div>
             </div>
@@ -336,13 +318,27 @@ tbody tr:last-child td{border-bottom:none}
                 </div>
             </div>
             <div class="form-group">
-                <label>موجز قصير <span style="color:var(--muted);font-weight:400;font-size:12px">(يظهر على الصورة)</span></label>
+                <label>موجز قصير <span class="hint">(يظهر على الصورة)</span></label>
                 <textarea id="fSummary" rows="2" maxlength="150" placeholder="جملة قصيرة..." style="min-height:70px;resize:vertical"></textarea>
                 <span class="char-counter" id="charCount">0 / 150</span>
             </div>
             <div class="form-group">
                 <label>المحتوى *</label>
                 <div id="quillEditor"></div>
+            </div>
+            <!-- ===== المصادر ===== -->
+            <div class="form-group">
+                <label>
+                    المصادر والمراجع
+                    <span class="hint">(سطر لكل مصدر — تظهر في نهاية المقال)</span>
+                </label>
+                <textarea 
+                    id="fSources" 
+                    rows="4" 
+                    placeholder="مثال:&#10;منظمة الصحة العالمية - who.int&#10;مجلة Nature الطبية - nature.com&#10;دراسة جامعة هارفارد 2024"
+                    style="min-height:100px;resize:vertical;line-height:1.8"
+                ></textarea>
+                <span class="char-counter">كل سطر = مصدر واحد</span>
             </div>
             <div class="form-group">
                 <label>الحالة</label>
@@ -380,12 +376,9 @@ tbody tr:last-child td{border-bottom:none}
     </div>
 </div>
 
-<!-- Quill + Supabase -->
 <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script>
-// ===== تهيئة Supabase =====
 const SB_URL = 'https://lkfzibeuyurqkatexhzf.supabase.co';
 const SB_KEY = 'sb_publishable_bDRpST47zs7WWTJP1N1Q9w_SkJCRBPx';
 let sb = null;
@@ -397,7 +390,6 @@ try {
     alert('خطأ في تحميل Supabase: ' + e.message);
 }
 
-// ===== State =====
 let currentTable = null;
 let currentId = null;
 let deleteTarget = { table:null, id:null };
@@ -405,9 +397,7 @@ let quill = null;
 let selectedFile = null;
 let existingImgUrl = null;
 
-// ===== Init =====
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('✅ DOM ready');
     initNav();
     initMenu();
     initQuill();
@@ -416,7 +406,6 @@ document.addEventListener('DOMContentLoaded', () => {
     loadEverything();
 });
 
-// ===== Navigation =====
 function initNav() {
     document.querySelectorAll('.nav-item').forEach(item => {
         item.addEventListener('click', (e) => {
@@ -451,7 +440,6 @@ function initMenu() {
     });
 }
 
-// ===== Quill =====
 function initQuill() {
     if (quill) return;
     quill = new Quill('#quillEditor', {
@@ -472,7 +460,6 @@ function initQuill() {
     });
 }
 
-// ===== Image Upload =====
 function initImgUpload() {
     const area = document.getElementById('imgArea');
     const input = document.getElementById('imgInput');
@@ -513,7 +500,6 @@ function changeImg(e) {
     document.getElementById('imgInput').click();
 }
 
-// ===== Summary Counter =====
 function initSummaryCounter() {
     const ta = document.getElementById('fSummary');
     ta.addEventListener('input', () => {
@@ -523,7 +509,6 @@ function initSummaryCounter() {
     });
 }
 
-// ===== Load Data =====
 async function loadEverything() {
     if (!sb) { alert('Supabase غير محمّل'); return; }
     await Promise.all([
@@ -669,7 +654,6 @@ async function loadCategories() {
     } catch(e) { console.error(e); }
 }
 
-// ===== Editor =====
 window.openEditor = function(table) {
     if (!quill) initQuill();
     currentTable = table;
@@ -693,6 +677,7 @@ window.openEditor = function(table) {
     document.getElementById('fCatField').value = '';
     document.getElementById('fStatus').value = 'published';
     document.getElementById('fSummary').value = '';
+    document.getElementById('fSources').value = '';
     document.getElementById('charCount').textContent = '0 / 150';
     quill.root.innerHTML = '';
 
@@ -723,6 +708,9 @@ function editItem(table, item) {
         document.getElementById('fSummary').value = item.summary;
         document.getElementById('charCount').textContent = item.summary.length + ' / 150';
     }
+    if (item.sources) {
+        document.getElementById('fSources').value = item.sources;
+    }
     if (item.image_url) {
         existingImgUrl = item.image_url;
         document.getElementById('imgPrev').src = item.image_url;
@@ -739,13 +727,13 @@ window.closeEditor = function() {
     currentId = null;
 };
 
-// ===== Save =====
 document.getElementById('saveBtn').addEventListener('click', async () => {
     if (!currentTable || !quill) return;
     const title = document.getElementById('fTitle').value.trim();
     const content = quill.root.innerHTML.trim();
     const status = document.getElementById('fStatus').value;
     const summary = document.getElementById('fSummary').value.trim();
+    const sources = document.getElementById('fSources').value.trim();
 
     if (!title) { alert('أدخل العنوان'); return; }
     if (!content || content === '<p><br></p>') { alert('أدخل المحتوى'); return; }
@@ -759,10 +747,11 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
         if (!cat) { alert('اختر التصنيف'); return; }
         data.title = title;
         data.category = cat;
-        // ⚠️ source يُرسل فقط للأخبار
         if (isNews) {
             data.source = document.getElementById('fSource').value.trim();
         }
+        // ✅ إضافة المصادر
+        data.sources = sources;
     } else {
         data.name = title;
         data.category = document.getElementById('fCatField').value.trim();
@@ -777,7 +766,6 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
     txt.textContent = 'جارٍ الحفظ...';
 
     try {
-        // رفع الصورة
         if (selectedFile) {
             const prog = document.getElementById('progressBox');
             prog.style.display = 'flex';
@@ -800,7 +788,6 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
             data.image_url = existingImgUrl;
         }
 
-        // Save
         if (currentId) {
             const { error } = await sb.from(currentTable).update(data).eq('id', currentId);
             if (error) throw error;
@@ -827,7 +814,6 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
     }
 });
 
-// ===== Delete =====
 function openDelete(table, id) {
     deleteTarget = {table, id};
     document.getElementById('deleteModal').classList.add('active');
@@ -856,7 +842,6 @@ document.getElementById('delBtn').addEventListener('click', async () => {
     }
 });
 
-// ===== Helpers =====
 function esc(t) {
     if (!t) return '';
     const d = document.createElement('div');
