@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mendocino | الرئيسية</title>
+<title>Medicino | الرئيسية</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
 :root{--primary:#2A9D9F;--primary-dark:#1E7B7D;--primary-light:#4DB8BA;--primary-soft:#E8F6F6;--primary-lighter:#F3FAFA;--text:#1a1a1a;--muted:#6B7280;--bg:#fff;--bg-alt:#F8FAFB;--border:#E5E7EB;--shadow:rgba(0,0,0,.06);--shadow-lg:rgba(42,157,159,.15)}
@@ -140,7 +140,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
         <div class="brand">
             <a href="index.html" class="brand-link">
                 <span class="brand-icon">✚</span>
-                <span class="brand-name">Mendocino</span>
+                <span class="brand-name">Medicino</span>
             </a>
         </div>
         <nav class="main-nav">
@@ -273,7 +273,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
     <div class="footer-container">
         <div class="footer-brand">
             <span class="footer-logo">✚</span>
-            <span class="footer-name">Mendocino</span>
+            <span class="footer-name">Medicino</span>
             <p>منصة طبية شاملة للمعلومات والخدمات الصحية.</p>
         </div>
         <div class="footer-links">
@@ -291,7 +291,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
         </div>
     </div>
     <div class="footer-bottom">
-        <p>© 2026 Mendocino — جميع الحقوق محفوظة</p>
+        <p>© 2026 Medicino — جميع الحقوق محفوظة</p>
     </div>
 </footer>
 
@@ -302,7 +302,6 @@ const SB_URL = 'https://lkfzibeuyurqkatexhzf.supabase.co';
 const SB_KEY = 'sb_publishable_bDRpST47zs7WWTJP1N1Q9w_SkJCRBPx';
 const sb = supabase.createClient(SB_URL, SB_KEY);
 
-// ===== Create Card (with clickable link) =====
 function createCard(item, type) {
     const imageUrl = item.image_url || '';
     const title = item.title || item.name || 'بدون عنوان';
@@ -311,7 +310,6 @@ function createCard(item, type) {
     const category = item.category || '';
     const date = item.created_at ? new Date(item.created_at).toISOString().slice(0,10) : '';
 
-    // تحديد الجدول في الرابط
     const tableName = type === 'article' ? 'articles' 
                     : type === 'news' ? 'news' 
                     : type === 'disease' ? 'diseases' 
@@ -341,7 +339,6 @@ function createCard(item, type) {
     `;
 }
 
-// ===== Load Section =====
 async function loadSection(table, gridId, type) {
     const grid = document.getElementById(gridId);
     try {
@@ -362,7 +359,6 @@ async function loadSection(table, gridId, type) {
     }
 }
 
-// ===== Helpers =====
 function esc(t) {
     if (!t) return '';
     const d = document.createElement('div');
@@ -370,7 +366,6 @@ function esc(t) {
     return d.innerHTML;
 }
 
-// ===== Init =====
 document.addEventListener('DOMContentLoaded', () => {
     loadSection('articles', 'articlesGrid', 'article');
     loadSection('news', 'newsGrid', 'news');
