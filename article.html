@@ -3,13 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مقال | Mendocino</title>
+<title>مقال | Medicino</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
 :root{--primary:#2A9D9F;--primary-dark:#1E7B7D;--primary-light:#4DB8BA;--primary-soft:#E8F6F6;--primary-lighter:#F3FAFA;--text:#1a1a1a;--muted:#6B7280;--bg:#fff;--bg-alt:#F8FAFB;--border:#E5E7EB}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direction:rtl;line-height:1.9;overflow-x:hidden}
-/* ===== Header ===== */
 .main-header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--border);z-index:1000;box-shadow:0 2px 12px rgba(0,0,0,.06)}
 .header-container{max-width:1300px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .brand-link{display:flex;align-items:center;gap:12px;text-decoration:none}
@@ -20,7 +19,6 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
 .main-nav a:hover{color:var(--primary)}
 .btn-contact{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;background:var(--primary);color:#fff;text-decoration:none;border-radius:50px;font-weight:700;font-size:14.5px;transition:.3s;box-shadow:0 4px 15px rgba(42,157,159,.15)}
 .btn-contact:hover{background:var(--primary-dark);transform:translateY(-2px)}
-/* ===== Article Page ===== */
 .article-page{max-width:800px;margin:0 auto;padding:48px 32px}
 .back-btn{display:inline-flex;align-items:center;gap:8px;color:var(--primary-dark);text-decoration:none;font-weight:700;font-size:14px;padding:10px 20px;border-radius:50px;background:var(--primary-soft);transition:.3s;margin-bottom:32px}
 .back-btn:hover{background:var(--primary);color:#fff;transform:translateX(5px)}
@@ -41,7 +39,17 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
 .article-content a{color:var(--primary);text-decoration:underline}
 .article-content code{background:var(--bg-alt);padding:3px 8px;border-radius:6px;font-family:monospace;font-size:14px;color:var(--primary-dark)}
 .article-content pre{background:var(--bg-alt);padding:20px;border-radius:12px;overflow-x:auto;margin:20px 0}
-/* ===== Action Buttons ===== */
+
+/* ===== المصادر ===== */
+.article-sources{margin-top:48px;padding:24px;background:var(--bg-alt);border-radius:16px;border-right:5px solid var(--primary);border-top:1px solid var(--border);border-bottom:1px solid var(--border);border-left:1px solid var(--border)}
+.article-sources h3{font-size:18px;font-weight:900;color:var(--primary-dark);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.article-sources h3::before{content:'📚';font-size:22px}
+.article-sources ol{padding-right:24px;margin:0;counter-reset:source-counter;list-style:none}
+.article-sources ol li{counter-increment:source-counter;position:relative;padding:10px 16px 10px 0;font-size:14.5px;color:var(--text);line-height:1.7;border-bottom:1px dashed var(--border);direction:ltr;text-align:left}
+.article-sources ol li:last-child{border-bottom:none}
+.article-sources ol li::before{content:counter(source-counter) ".";position:absolute;right:0;top:10px;font-weight:900;color:var(--primary);font-size:14px}
+.article-sources ol li a{color:var(--primary);word-break:break-all}
+
 .article-actions{display:flex;gap:12px;flex-wrap:wrap;margin:40px 0 32px;padding:24px 0;border-top:2px solid var(--border);border-bottom:2px solid var(--border)}
 .action-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;background:var(--bg-alt);color:var(--text);border:1.5px solid var(--border);border-radius:50px;font-family:'Cairo',sans-serif;font-weight:700;font-size:14px;cursor:pointer;transition:.3s;text-decoration:none}
 .action-btn:hover{background:var(--primary-soft);border-color:var(--primary);color:var(--primary-dark);transform:translateY(-2px)}
@@ -50,7 +58,6 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
 .action-btn.twitter:hover{background:#000;border-color:#000;color:#fff}
 .action-btn.whatsapp:hover{background:#25D366;border-color:#25D366;color:#fff}
 .action-btn.copy:hover{background:var(--primary-dark);border-color:var(--primary-dark);color:#fff}
-/* ===== Comments ===== */
 .comments-section{margin-top:48px}
 .comments-title{font-size:22px;font-weight:900;margin-bottom:24px;display:flex;align-items:center;gap:10px}
 .comments-title::before{content:'';width:5px;height:26px;background:linear-gradient(180deg,var(--primary),var(--primary-dark));border-radius:3px}
@@ -69,7 +76,6 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
 .comment-name{font-weight:700;font-size:15px}
 .comment-date{font-size:12px;color:var(--muted)}
 .comment-text{color:var(--text);font-size:15px;line-height:1.8}
-/* ===== States ===== */
 .loading-page{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:20px;color:var(--muted)}
 .loader{width:60px;height:60px;border:5px solid var(--primary-soft);border-top-color:var(--primary);border-radius:50%;animation:spin .9s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -77,7 +83,6 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
 .not-found .big{font-size:80px;line-height:1;margin-bottom:20px}
 .not-found h2{font-size:26px;font-weight:900;color:var(--text);margin-bottom:12px}
 .not-found a{display:inline-block;margin-top:24px;padding:14px 32px;background:var(--primary);color:#fff;text-decoration:none;border-radius:50px;font-weight:700}
-/* ===== Footer ===== */
 .main-footer{background:#0F2B2C;color:#fff;padding:48px 32px 16px;margin-top:64px}
 .footer-container{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.1)}
 .footer-logo{display:inline-block;font-size:40px;color:var(--primary-light);font-weight:900;margin-bottom:8px}
@@ -87,10 +92,8 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
 .footer-links a{display:block;color:#a8b5b5;text-decoration:none;padding:6px 0;font-size:14.5px;transition:.3s}
 .footer-links a:hover{color:var(--primary-light);transform:translateX(-5px)}
 .footer-bottom{text-align:center;padding-top:24px;color:#7a8888;font-size:13.5px}
-/* ===== Toast ===== */
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--primary-dark);color:#fff;padding:14px 28px;border-radius:50px;font-weight:700;font-size:14.5px;box-shadow:0 10px 40px rgba(0,0,0,.3);z-index:2000;opacity:0;transition:.4s;pointer-events:none}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
-/* ===== Mobile ===== */
 @media(max-width:768px){
 .header-container{padding:10px 16px;flex-wrap:wrap;justify-content:center;gap:10px}
 .brand{flex:1;display:flex;justify-content:center}
@@ -105,6 +108,8 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
 .article-content{font-size:15.5px}
 .article-actions{justify-content:center}
 .action-btn{flex:1;min-width:calc(50% - 6px);justify-content:center;padding:12px 14px;font-size:13px}
+.article-sources{padding:18px}
+.article-sources ol li{font-size:13.5px}
 .footer-container{grid-template-columns:1fr;gap:28px;text-align:center}
 .footer-links a:hover{transform:translateX(0)}
 }
@@ -117,7 +122,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
         <div class="brand">
             <a href="index.html" class="brand-link">
                 <span class="brand-icon">✚</span>
-                <span class="brand-name">Mendocino</span>
+                <span class="brand-name">Medicino</span>
             </a>
         </div>
         <nav class="main-nav">
@@ -146,7 +151,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
     <div class="footer-container">
         <div class="footer-brand">
             <span class="footer-logo">✚</span>
-            <span class="footer-name">Mendocino</span>
+            <span class="footer-name">Medicino</span>
             <p>منصة طبية شاملة للمعلومات والخدمات الصحية.</p>
         </div>
         <div class="footer-links">
@@ -164,7 +169,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
         </div>
     </div>
     <div class="footer-bottom">
-        <p>© 2026 Mendocino — جميع الحقوق محفوظة</p>
+        <p>© 2026 Medicino — جميع الحقوق محفوظة</p>
     </div>
 </footer>
 
@@ -176,7 +181,6 @@ const SB_URL = 'https://lkfzibeuyurqkatexhzf.supabase.co';
 const SB_KEY = 'sb_publishable_bDRpST47zs7WWTJP1N1Q9w_SkJCRBPx';
 const sb = supabase.createClient(SB_URL, SB_KEY);
 
-// ===== Helpers =====
 function esc(t) {
     if (!t) return '';
     const d = document.createElement('div');
@@ -196,12 +200,10 @@ function formatDate(ts) {
     return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
 }
 
-// ===== Get URL params =====
 const params = new URLSearchParams(window.location.search);
 const articleId = params.get('id');
-const articleType = params.get('type') || 'articles'; // articles / news / diseases / medicines
+const articleType = params.get('type') || 'articles';
 
-// ===== Load Article =====
 async function loadArticle() {
     const container = document.getElementById('articlePage');
     
@@ -227,13 +229,35 @@ async function loadArticle() {
         const imageUrl = data.image_url || '';
         const date = formatDate(data.created_at);
         const views = data.views || 0;
+        const sources = data.sources || '';
 
-        // زيادة عدد المشاهدات
         try {
             await sb.from(articleType).update({ views: views + 1 }).eq('id', articleId);
         } catch(e) { console.log('Views update failed'); }
 
-        document.title = title + ' | Mendocino';
+        document.title = title + ' | Medicino';
+
+        // بناء قائمة المصادر
+        let sourcesHTML = '';
+        if (sources && sources.trim()) {
+            const sourceLines = sources.split('\n').map(s => s.trim()).filter(s => s);
+            if (sourceLines.length > 0) {
+                sourcesHTML = `
+                    <div class="article-sources">
+                        <h3>المصادر والمراجع</h3>
+                        <ol>
+                            ${sourceLines.map(s => {
+                                // إذا كان المصدر يحتوي على رابط، اجعله قابلاً للنقر
+                                if (s.startsWith('http://') || s.startsWith('https://')) {
+                                    return `<li><a href="${esc(s)}" target="_blank" rel="noopener">${esc(s)}</a></li>`;
+                                }
+                                return `<li>${esc(s)}</li>`;
+                            }).join('')}
+                        </ol>
+                    </div>
+                `;
+            }
+        }
 
         container.innerHTML = `
             <a href="index.html" class="back-btn">→ العودة للرئيسية</a>
@@ -251,6 +275,8 @@ async function loadArticle() {
             <div class="article-content" id="articleContent">
                 ${content}
             </div>
+
+            ${sourcesHTML}
 
             <div class="article-actions">
                 <button class="action-btn" id="likeBtn" onclick="toggleLike()">
@@ -301,7 +327,6 @@ async function loadArticle() {
     }
 }
 
-// ===== Comments =====
 async function loadComments() {
     const list = document.getElementById('commentsList');
     if (!list) return;
@@ -374,7 +399,6 @@ async function submitComment() {
     }
 }
 
-// ===== Likes =====
 async function toggleLike() {
     const btn = document.getElementById('likeBtn');
     const likedKey = 'liked_' + articleType + '_' + articleId;
@@ -385,14 +409,12 @@ async function toggleLike() {
         const currentLikes = data?.likes || 0;
 
         if (isLiked) {
-            // إزالة الإعجاب
             await sb.from(articleType).update({ likes: Math.max(0, currentLikes - 1) }).eq('id', articleId);
             localStorage.removeItem(likedKey);
             btn.classList.remove('liked');
             document.getElementById('likeText').textContent = 'إعجاب';
             document.getElementById('likeCount').textContent = `(${Math.max(0, currentLikes - 1)})`;
         } else {
-            // إضافة الإعجاب
             await sb.from(articleType).update({ likes: currentLikes + 1 }).eq('id', articleId);
             localStorage.setItem(likedKey, '1');
             btn.classList.add('liked');
@@ -416,7 +438,6 @@ function checkLiked() {
     }
 }
 
-// ===== Copy Link =====
 function copyLink() {
     const url = window.location.href;
     if (navigator.clipboard) {
@@ -432,7 +453,6 @@ function copyLink() {
     }
 }
 
-// ===== Start =====
 loadArticle();
 </script>
 </body>
