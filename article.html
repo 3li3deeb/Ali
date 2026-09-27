@@ -9,6 +9,7 @@
 :root{--primary:#2A9D9F;--primary-dark:#1E7B7D;--primary-light:#4DB8BA;--primary-soft:#E8F6F6;--primary-lighter:#F3FAFA;--text:#1a1a1a;--muted:#6B7280;--bg:#fff;--bg-alt:#F8FAFB;--border:#E5E7EB}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direction:rtl;line-height:1.9;overflow-x:hidden}
+/* ===== Header ===== */
 .main-header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--border);z-index:1000;box-shadow:0 2px 12px rgba(0,0,0,.06)}
 .header-container{max-width:1300px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .brand-link{display:flex;align-items:center;gap:12px;text-decoration:none}
@@ -19,6 +20,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
 .main-nav a:hover{color:var(--primary)}
 .btn-contact{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;background:var(--primary);color:#fff;text-decoration:none;border-radius:50px;font-weight:700;font-size:14.5px;transition:.3s;box-shadow:0 4px 15px rgba(42,157,159,.15)}
 .btn-contact:hover{background:var(--primary-dark);transform:translateY(-2px)}
+/* ===== Article Page ===== */
 .article-page{max-width:800px;margin:0 auto;padding:48px 32px}
 .back-btn{display:inline-flex;align-items:center;gap:8px;color:var(--primary-dark);text-decoration:none;font-weight:700;font-size:14px;padding:10px 20px;border-radius:50px;background:var(--primary-soft);transition:.3s;margin-bottom:32px}
 .back-btn:hover{background:var(--primary);color:#fff;transform:translateX(5px)}
@@ -36,7 +38,8 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
 .article-content li{margin-bottom:10px}
 .article-content blockquote{border-right:5px solid var(--primary);background:var(--primary-lighter);padding:20px 24px;border-radius:12px;margin:24px 0;font-style:italic;color:var(--primary-dark)}
 .article-content img{max-width:100%;height:auto;border-radius:12px;margin:20px 0}
-.article-content a{color:var(--primary);text-decoration:underline}
+.article-content a{color:var(--primary);text-decoration:underline;font-weight:600;transition:.2s;border-bottom:1px solid transparent}
+.article-content a:hover{color:var(--primary-dark);border-bottom-color:var(--primary-dark)}
 .article-content code{background:var(--bg-alt);padding:3px 8px;border-radius:6px;font-family:monospace;font-size:14px;color:var(--primary-dark)}
 .article-content pre{background:var(--bg-alt);padding:20px;border-radius:12px;overflow-x:auto;margin:20px 0}
 
@@ -44,12 +47,16 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
 .article-sources{margin-top:48px;padding:24px;background:var(--bg-alt);border-radius:16px;border-right:5px solid var(--primary);border-top:1px solid var(--border);border-bottom:1px solid var(--border);border-left:1px solid var(--border)}
 .article-sources h3{font-size:18px;font-weight:900;color:var(--primary-dark);margin-bottom:16px;display:flex;align-items:center;gap:10px}
 .article-sources h3::before{content:'📚';font-size:22px}
-.article-sources ol{padding-right:24px;margin:0;counter-reset:source-counter;list-style:none}
-.article-sources ol li{counter-increment:source-counter;position:relative;padding:10px 16px 10px 0;font-size:14.5px;color:var(--text);line-height:1.7;border-bottom:1px dashed var(--border);direction:ltr;text-align:left}
+.article-sources ol{padding-right:0;margin:0;counter-reset:source-counter;list-style:none}
+.article-sources ol li{counter-increment:source-counter;position:relative;padding:12px 40px 12px 16px;font-size:14.5px;color:var(--text);line-height:1.7;border-bottom:1px dashed var(--border);transition:.2s;border-radius:8px}
 .article-sources ol li:last-child{border-bottom:none}
-.article-sources ol li::before{content:counter(source-counter) ".";position:absolute;right:0;top:10px;font-weight:900;color:var(--primary);font-size:14px}
-.article-sources ol li a{color:var(--primary);word-break:break-all}
+.article-sources ol li:hover{background:var(--primary-lighter)}
+.article-sources ol li::before{content:counter(source-counter);position:absolute;right:8px;top:12px;width:24px;height:24px;background:var(--primary-soft);color:var(--primary-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;font-family:'Cairo',sans-serif}
+.article-sources ol li a{color:var(--primary);text-decoration:none;word-break:break-all;font-weight:600;border-bottom:1.5px solid transparent;transition:.2s;display:inline-flex;align-items:center;gap:6px}
+.article-sources ol li a:hover{color:var(--primary-dark);border-bottom-color:var(--primary-dark)}
+.article-sources ol li a::after{content:'↗';font-size:12px;opacity:.7}
 
+/* ===== Actions ===== */
 .article-actions{display:flex;gap:12px;flex-wrap:wrap;margin:40px 0 32px;padding:24px 0;border-top:2px solid var(--border);border-bottom:2px solid var(--border)}
 .action-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;background:var(--bg-alt);color:var(--text);border:1.5px solid var(--border);border-radius:50px;font-family:'Cairo',sans-serif;font-weight:700;font-size:14px;cursor:pointer;transition:.3s;text-decoration:none}
 .action-btn:hover{background:var(--primary-soft);border-color:var(--primary);color:var(--primary-dark);transform:translateY(-2px)}
@@ -58,6 +65,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
 .action-btn.twitter:hover{background:#000;border-color:#000;color:#fff}
 .action-btn.whatsapp:hover{background:#25D366;border-color:#25D366;color:#fff}
 .action-btn.copy:hover{background:var(--primary-dark);border-color:var(--primary-dark);color:#fff}
+/* ===== Comments ===== */
 .comments-section{margin-top:48px}
 .comments-title{font-size:22px;font-weight:900;margin-bottom:24px;display:flex;align-items:center;gap:10px}
 .comments-title::before{content:'';width:5px;height:26px;background:linear-gradient(180deg,var(--primary),var(--primary-dark));border-radius:3px}
@@ -76,6 +84,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
 .comment-name{font-weight:700;font-size:15px}
 .comment-date{font-size:12px;color:var(--muted)}
 .comment-text{color:var(--text);font-size:15px;line-height:1.8}
+/* ===== States ===== */
 .loading-page{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:20px;color:var(--muted)}
 .loader{width:60px;height:60px;border:5px solid var(--primary-soft);border-top-color:var(--primary);border-radius:50%;animation:spin .9s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -83,6 +92,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
 .not-found .big{font-size:80px;line-height:1;margin-bottom:20px}
 .not-found h2{font-size:26px;font-weight:900;color:var(--text);margin-bottom:12px}
 .not-found a{display:inline-block;margin-top:24px;padding:14px 32px;background:var(--primary);color:#fff;text-decoration:none;border-radius:50px;font-weight:700}
+/* ===== Footer ===== */
 .main-footer{background:#0F2B2C;color:#fff;padding:48px 32px 16px;margin-top:64px}
 .footer-container{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.1)}
 .footer-logo{display:inline-block;font-size:40px;color:var(--primary-light);font-weight:900;margin-bottom:8px}
@@ -92,8 +102,10 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
 .footer-links a{display:block;color:#a8b5b5;text-decoration:none;padding:6px 0;font-size:14.5px;transition:.3s}
 .footer-links a:hover{color:var(--primary-light);transform:translateX(-5px)}
 .footer-bottom{text-align:center;padding-top:24px;color:#7a8888;font-size:13.5px}
+/* ===== Toast ===== */
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--primary-dark);color:#fff;padding:14px 28px;border-radius:50px;font-weight:700;font-size:14.5px;box-shadow:0 10px 40px rgba(0,0,0,.3);z-index:2000;opacity:0;transition:.4s;pointer-events:none}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+/* ===== Mobile ===== */
 @media(max-width:768px){
 .header-container{padding:10px 16px;flex-wrap:wrap;justify-content:center;gap:10px}
 .brand{flex:1;display:flex;justify-content:center}
@@ -109,7 +121,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
 .article-actions{justify-content:center}
 .action-btn{flex:1;min-width:calc(50% - 6px);justify-content:center;padding:12px 14px;font-size:13px}
 .article-sources{padding:18px}
-.article-sources ol li{font-size:13.5px}
+.article-sources ol li{font-size:13.5px;padding:10px 38px 10px 12px}
 .footer-container{grid-template-columns:1fr;gap:28px;text-align:center}
 .footer-links a:hover{transform:translateX(0)}
 }
@@ -181,6 +193,7 @@ const SB_URL = 'https://lkfzibeuyurqkatexhzf.supabase.co';
 const SB_KEY = 'sb_publishable_bDRpST47zs7WWTJP1N1Q9w_SkJCRBPx';
 const sb = supabase.createClient(SB_URL, SB_KEY);
 
+// ===== Helpers =====
 function esc(t) {
     if (!t) return '';
     const d = document.createElement('div');
@@ -200,13 +213,32 @@ function formatDate(ts) {
     return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
 }
 
+// ===== بناء عنصر مصدر (يدعم Markdown) =====
+function buildSourceItem(s) {
+    // صيغة [نص](رابط)
+    const mdMatch = s.match(/^\[([^\]]+)\]\((https?:\/\/[^)]+)\)$/);
+    if (mdMatch) {
+        const text = mdMatch[1];
+        const url = mdMatch[2];
+        return `<li><a href="${esc(url)}" target="_blank" rel="noopener">${esc(text)}</a></li>`;
+    }
+    // رابط مباشر
+    if (s.startsWith('http://') || s.startsWith('https://')) {
+        return `<li><a href="${esc(s)}" target="_blank" rel="noopener">${esc(s)}</a></li>`;
+    }
+    // نص عادي
+    return `<li>${esc(s)}</li>`;
+}
+
+// ===== URL Params =====
 const params = new URLSearchParams(window.location.search);
 const articleId = params.get('id');
 const articleType = params.get('type') || 'articles';
 
+// ===== Load Article =====
 async function loadArticle() {
     const container = document.getElementById('articlePage');
-    
+
     if (!articleId) {
         container.innerHTML = `
             <div class="not-found">
@@ -231,6 +263,7 @@ async function loadArticle() {
         const views = data.views || 0;
         const sources = data.sources || '';
 
+        // زيادة عدد المشاهدات
         try {
             await sb.from(articleType).update({ views: views + 1 }).eq('id', articleId);
         } catch(e) { console.log('Views update failed'); }
@@ -242,18 +275,11 @@ async function loadArticle() {
         if (sources && sources.trim()) {
             const sourceLines = sources.split('\n').map(s => s.trim()).filter(s => s);
             if (sourceLines.length > 0) {
+                const items = sourceLines.map(s => buildSourceItem(s)).join('');
                 sourcesHTML = `
                     <div class="article-sources">
                         <h3>المصادر والمراجع</h3>
-                        <ol>
-                            ${sourceLines.map(s => {
-                                // إذا كان المصدر يحتوي على رابط، اجعله قابلاً للنقر
-                                if (s.startsWith('http://') || s.startsWith('https://')) {
-                                    return `<li><a href="${esc(s)}" target="_blank" rel="noopener">${esc(s)}</a></li>`;
-                                }
-                                return `<li>${esc(s)}</li>`;
-                            }).join('')}
-                        </ol>
+                        <ol>${items}</ol>
                     </div>
                 `;
             }
@@ -261,10 +287,10 @@ async function loadArticle() {
 
         container.innerHTML = `
             <a href="index.html" class="back-btn">→ العودة للرئيسية</a>
-            
+
             ${category ? `<span class="article-category">${esc(category)}</span>` : ''}
             <h1 class="article-title">${esc(title)}</h1>
-            
+
             <div class="article-meta">
                 ${date ? `<span>📅 ${date}</span>` : ''}
                 <span>👁️ ${views + 1} مشاهدة</span>
@@ -299,7 +325,7 @@ async function loadArticle() {
 
             <section class="comments-section">
                 <h3 class="comments-title">التعليقات</h3>
-                
+
                 <div class="comment-form">
                     <input type="text" id="commentName" placeholder="اسمك..." maxlength="50">
                     <textarea id="commentText" placeholder="اكتب تعليقك..." maxlength="500"></textarea>
@@ -327,6 +353,7 @@ async function loadArticle() {
     }
 }
 
+// ===== Comments =====
 async function loadComments() {
     const list = document.getElementById('commentsList');
     if (!list) return;
@@ -399,6 +426,7 @@ async function submitComment() {
     }
 }
 
+// ===== Likes =====
 async function toggleLike() {
     const btn = document.getElementById('likeBtn');
     const likedKey = 'liked_' + articleType + '_' + articleId;
@@ -438,6 +466,7 @@ function checkLiked() {
     }
 }
 
+// ===== Copy Link =====
 function copyLink() {
     const url = window.location.href;
     if (navigator.clipboard) {
@@ -453,6 +482,7 @@ function copyLink() {
     }
 }
 
+// ===== Start =====
 loadArticle();
 </script>
 </body>
