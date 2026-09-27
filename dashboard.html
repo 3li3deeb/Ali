@@ -109,6 +109,10 @@ tbody tr:last-child td{border-bottom:none}
 .category-item h4{font-size:16px;font-weight:700;margin-bottom:4px}
 .category-item .count{font-size:13px;color:var(--muted)}
 .hint{font-size:11.5px;color:var(--muted);font-weight:400;padding-right:4px}
+.btn-link-insert{padding:7px 14px;background:var(--primary);color:#fff;border:none;border-radius:50px;font-family:'Cairo',sans-serif;font-weight:700;font-size:12px;cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:.2s;box-shadow:0 3px 10px rgba(42,157,159,.3)}
+.btn-link-insert:hover{background:var(--primary-dark);transform:translateY(-1px)}
+.sources-help{background:var(--primary-soft);padding:10px 14px;border-radius:10px;font-size:11.5px;color:var(--primary-dark);line-height:1.7;margin-top:6px}
+.sources-help code{background:#fff;padding:2px 6px;border-radius:4px;font-family:monospace;font-size:11px;color:var(--primary-dark);direction:ltr;display:inline-block}
 @media(max-width:768px){
 .sidebar{transform:translateX(100%)}
 .sidebar.open{transform:translateX(0)}
@@ -261,7 +265,6 @@ tbody tr:last-child td{border-bottom:none}
     </section>
 </main>
 
-<!-- Modal Editor -->
 <div class="modal" id="editorModal">
     <div class="modal-content">
         <div class="modal-header">
@@ -326,19 +329,28 @@ tbody tr:last-child td{border-bottom:none}
                 <label>المحتوى *</label>
                 <div id="quillEditor"></div>
             </div>
-            <!-- ===== المصادر ===== -->
             <div class="form-group">
-                <label>
-                    المصادر والمراجع
-                    <span class="hint">(سطر لكل مصدر — تظهر في نهاية المقال)</span>
-                </label>
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+                    <label style="margin:0">
+                        المصادر والمراجع
+                        <span class="hint">(سطر لكل مصدر)</span>
+                    </label>
+                    <button type="button" class="btn-link-insert" onclick="insertSourceLink()">
+                        🔗 إدراج رابط
+                    </button>
+                </div>
                 <textarea 
                     id="fSources" 
                     rows="4" 
                     placeholder="مثال:&#10;منظمة الصحة العالمية - who.int&#10;مجلة Nature الطبية - nature.com&#10;دراسة جامعة هارفارد 2024"
                     style="min-height:100px;resize:vertical;line-height:1.8"
                 ></textarea>
-                <span class="char-counter">كل سطر = مصدر واحد</span>
+                <div class="sources-help">
+                    💡 <strong>طرق الكتابة:</strong><br>
+                    • <code>[اسم المصدر](https://example.com)</code> ← رابط على اسم المصدر<br>
+                    • <code>https://example.com</code> ← رابط مباشر<br>
+                    • <code>نص عادي بدون رابط</code>
+                </div>
             </div>
             <div class="form-group">
                 <label>الحالة</label>
@@ -359,7 +371,6 @@ tbody tr:last-child td{border-bottom:none}
     </div>
 </div>
 
-<!-- Modal Delete -->
 <div class="modal" id="deleteModal">
     <div class="modal-content" style="max-width:450px">
         <div class="modal-header">
@@ -727,6 +738,29 @@ window.closeEditor = function() {
     currentId = null;
 };
 
+// ===== إدراج رابط مصدر =====
+function insertSourceLink() {
+    const text = prompt('✏️ اكتب اسم المصدر (مثال: منظمة الصحة العالمية):');
+    if (!text || !text.trim()) return;
+
+    const url = prompt('🔗 الصق الرابط (يبدأ بـ https://):');
+    if (!url || !url.trim()) return;
+
+    let cleanUrl = url.trim();
+    if (!cleanUrl.startsWith('http://') && !cleanUrl.startsWith('https://')) {
+        cleanUrl = 'https://' + cleanUrl;
+    }
+
+    const line = `[${text.trim()}](${cleanUrl})`;
+
+    const ta = document.getElementById('fSources');
+    const current = ta.value.trim();
+    ta.value = current ? current + '\n' + line : line;
+
+    ta.focus();
+    ta.setSelectionRange(ta.value.length, ta.value.length);
+}
+
 document.getElementById('saveBtn').addEventListener('click', async () => {
     if (!currentTable || !quill) return;
     const title = document.getElementById('fTitle').value.trim();
@@ -750,7 +784,6 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
         if (isNews) {
             data.source = document.getElementById('fSource').value.trim();
         }
-        // ✅ إضافة المصادر
         data.sources = sources;
     } else {
         data.name = title;
